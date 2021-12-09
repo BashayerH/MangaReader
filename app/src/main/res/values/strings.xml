@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Manga Reader</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="no_account">if you don\'t have account <b>Register here!</b> </string>
+</resources>

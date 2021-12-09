@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "602205984416",
+    "project_id": "manga-reader-b422a",
+    "storage_bucket": "manga-reader-b422a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602205984416:android:efb59302c128f8a74a1bc5",
+        "android_client_info": {
+          "package_name": "com.tuwaiq.mangareader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602205984416-20rv068e1vj90lhjvi72ao4n02j4j02q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsEetCeBo3HTnEWHTJbiaGi8Xa_Lcv7MY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602205984416-20rv068e1vj90lhjvi72ao4n02j4j02q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

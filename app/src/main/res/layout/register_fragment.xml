@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".register.RegisterFragment">
+
+        <EditText
+            android:id="@+id/emil_txtRg"
+            android:layout_width="230dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:ems="10"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/pass_rg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_nameET_rg" />
+
+        <EditText
+            android:id="@+id/user_nameET_rg"
+            android:layout_width="223dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="161dp"
+            android:layout_marginBottom="24dp"
+            android:ems="10"
+            android:hint="user_name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/emil_txtRg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/pass_rg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="12dp"
+            android:ems="10"
+            android:hint="password"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/conform_pass_rg"
+            app:layout_constraintEnd_toEndOf="@+id/conform_pass_rg"
+            app:layout_constraintStart_toStartOf="@+id/conform_pass_rg"
+            app:layout_constraintTop_toBottomOf="@+id/emil_txtRg" />
+
+        <EditText
+            android:id="@+id/conform_pass_rg"
+            android:layout_width="230dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="69dp"
+            android:ems="10"
+            android:hint="conform_password"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/logIn_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass_rg" />
+
+        <Button
+            android:id="@+id/logIn_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="157dp"
+            android:text="log_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/conform_pass_rg" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

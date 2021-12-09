@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="no_account">if you don\'t have account Register here!</string>
+</resources>
