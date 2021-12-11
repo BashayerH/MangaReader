@@ -79,8 +79,9 @@ class RegisterFragment : Fragment() {
         confPassword = binding.conformPassRg.text.toString()
         when{
             userName.isEmpty() -> showToast("enter username")
-            emil.isEmpty() ->showToast("enter an emil")
+            emil.isEmpty() ->showToast("enter a correct emil")
             password.isEmpty() -> showToast("enter password")
+            password.length < 6 -> showToast("the password must be at least 6 digit")
             password != confPassword -> showToast("passwords not match")
             else -> registerUser(emil,password,userName)
         }
@@ -94,11 +95,10 @@ class RegisterFragment : Fragment() {
                 if(task.isSuccessful){
                     val firbaseUser = firebaseAuth.currentUser
                     val emil = firbaseUser!!.email
-                    showToast("good job")
-
-              //      Log.e(TAG,"true register",task.exception)
-
-                    naveController.navigate(R.id.action_registerFragment_to_mainPageFragment)
+                    showToast("the account is create ")
+                    naveController.navigate(RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment(
+                        userName,emil!!))
+                        //R.id.action_registerFragment_to_mainPageFragment)
                 }else{
                     showToast("there is something wrong")
                     Log.e(TAG,"",task.exception)

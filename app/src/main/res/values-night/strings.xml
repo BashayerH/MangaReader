@@ -3,4 +3,7 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="no_account">if you don\'t have account Register here!</string>
+    <string name="setting">Setting</string>
+    <string name="logout">logout</string>
+    <string name="profile_name">profile name</string>
 </resources>

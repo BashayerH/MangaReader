@@ -8,12 +8,21 @@
     <fragment
         android:id="@+id/mainPageFragment"
         android:name="com.tuwaiq.mangareader.homePage.MainPageFragment"
-        android:label="main_page_fragment"
-        tools:layout="@layout/main_page_fragment" />
+        android:label="Home"
+        tools:layout="@layout/main_page_fragment" >
+        <argument
+            android:name="userName"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="emil"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.tuwaiq.mangareader.register.RegisterFragment"
-        android:label="register_fragment"
+        android:label="register"
         tools:layout="@layout/register_fragment" >
         <action
             android:id="@+id/action_registerFragment_to_mainPageFragment"
@@ -31,4 +40,12 @@
             android:id="@+id/action_signPageFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.tuwaiq.mangareader.favorite.FavoriteFragment"
+        android:label="Favorite" />
+    <fragment
+        android:id="@+id/uploadMangaFragment"
+        android:name="com.tuwaiq.mangareader.UploadManga.UploadMangaFragment"
+        android:label="UploadManga" />
 </navigation>
