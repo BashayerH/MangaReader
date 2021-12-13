@@ -6,10 +6,6 @@
 
     </data>
 
-<!--     <androidx.drawerlayout.widget.DrawerLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/drawer_nav_layout">-->
 
 
 
@@ -25,15 +21,7 @@
             android:layout_height="match_parent" />
     </FrameLayout>
 
-<!--        <com.google.android.material.navigation.NavigationView-->
-<!--            android:id="@+id/nav_draw_menu"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="match_parent"-->
 
-<!--            app:headerLayout="@layout/header"-->
 
-<!--            app:menu="@menu/drawer_nav_menu" />-->
-<!--        <include layout="@layout/drawble_layout"-->
-<!--            />-->
-<!--</androidx.drawerlayout.widget.DrawerLayout>-->
+
 </layout>

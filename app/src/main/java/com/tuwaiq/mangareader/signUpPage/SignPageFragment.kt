@@ -4,12 +4,14 @@ import android.app.ProgressDialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -66,9 +68,12 @@ class SignPageFragment : Fragment() {
 
         binding.registerTxt.setOnClickListener {
             findNavController().navigate(R.id.action_signPageFragment_to_registerFragment)
+
+
         }
         return binding.root
     }
+
 
     private fun validateUser() {
         //check if the user put correct pass and emil
@@ -94,6 +99,7 @@ class SignPageFragment : Fragment() {
                 //why
                 val firbaseUser = firebaseAuth.currentUser
                 val emil = firbaseUser!!.email
+                val displayName = userName
                 naveController.navigate(R.id.action_registerFragment_to_mainPageFragment)
 
             }
@@ -105,10 +111,11 @@ class SignPageFragment : Fragment() {
     }
     private fun checkUser(){
     val firebaseUser =firebaseAuth.currentUser
-
+        Log.d("fromSignPage", "fff $firebaseUser")
     if (firebaseUser != null) {
         //كيف اسوي انتقال مباشر??
-        findNavController().navigate(R.id.action_signPageFragment_to_mainPageFragment)
+            val action = SignPageFragmentDirections.actionSignPageFragmentToMainPageFragment(firebaseUser.email)
+        findNavController().navigate(action)
 
     }
     }

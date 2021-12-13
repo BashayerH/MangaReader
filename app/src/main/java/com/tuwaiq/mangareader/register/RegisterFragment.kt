@@ -10,12 +10,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.tuwaiq.mangareader.LoginData
-import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
 
 private const val TAG = "RegisterFragment"
@@ -94,11 +92,12 @@ class RegisterFragment : Fragment() {
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                     val firbaseUser = firebaseAuth.currentUser
-                    val emil = firbaseUser!!.email
+                   val emil = firbaseUser?.email
+                   // val displayName = userName
                     showToast("the account is create ")
-                    naveController.navigate(RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment(
-                        userName,emil!!))
-                        //R.id.action_registerFragment_to_mainPageFragment)
+                    val action = RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment(firbaseUser?.email)
+                    naveController.navigate(action)
+
                 }else{
                     showToast("there is something wrong")
                     Log.e(TAG,"",task.exception)

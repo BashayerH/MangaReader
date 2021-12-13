@@ -9,13 +9,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".UploadManga.uploadMangaFragment">
+        tools:context=".changePhoto.ChangePhotoFragment">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="55dp"
-            android:text="Hello uplod page" />
+            android:text="Hello" />
 
     </FrameLayout>
 </layout>

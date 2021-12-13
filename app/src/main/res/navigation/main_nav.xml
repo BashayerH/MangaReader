@@ -9,21 +9,30 @@
         android:id="@+id/mainPageFragment"
         android:name="com.tuwaiq.mangareader.homePage.MainPageFragment"
         android:label="Home"
-        tools:layout="@layout/main_page_fragment" >
-        <argument
-            android:name="userName"
-            app:argType="string"
-            app:nullable="true" />
+        tools:layout="@layout/main_page_fragment">
+<!--        <argument-->
+<!--            android:name="displayName"-->
+<!--            app:argType="string"-->
+<!--            app:nullable="true" />-->
         <argument
             android:name="emil"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_signPageFragment"
+            app:destination="@id/signPageFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_uploadMangaFragment"
+            app:destination="@id/uploadMangaFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.tuwaiq.mangareader.register.RegisterFragment"
         android:label="register"
-        tools:layout="@layout/register_fragment" >
+        tools:layout="@layout/register_fragment">
         <action
             android:id="@+id/action_registerFragment_to_mainPageFragment"
             app:destination="@id/mainPageFragment" />
@@ -32,7 +41,7 @@
         android:id="@+id/signPageFragment"
         android:name="com.tuwaiq.mangareader.signUpPage.SignPageFragment"
         android:label="sign_page_fragment"
-        tools:layout="@layout/sign_page_fragment" >
+        tools:layout="@layout/sign_page_fragment">
         <action
             android:id="@+id/action_signPageFragment_to_registerFragment"
             app:destination="@id/registerFragment" />

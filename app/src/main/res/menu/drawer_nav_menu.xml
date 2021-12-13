@@ -20,15 +20,24 @@
             android:id="@+id/setting"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/setting" />
+
+    </group>
+<item android:title="@string/logout">
+    <menu>
+
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_baseline_login_24"
             android:title="@string/logout"
 
             />
-    </group>
 
+    </menu>
+
+
+</item>
 
 </menu>
+
 
 
