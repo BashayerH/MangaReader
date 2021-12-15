@@ -9,6 +9,7 @@ data class DataManga(
     val img:String = "",
     val latest_chapter:String ="",
     val latest_chapter_url:String ="",
+    val latest_chapter_title:String ="",
     val description:String = " ",
     val url :String =""
 

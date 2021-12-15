@@ -15,10 +15,27 @@
         android:layout_height="match_parent"
         tools:context=".homePage.MainPageFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/manga_rv"
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="187dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="70sp"
+            android:fontFamily="@font/advent_pro_semibold"
+            android:text="most popular manga"
+            android:textAlignment="textStart"
+            android:textSize="20sp" />
+
+        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+            android:id="@+id/recycler_manga"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/manga_rv"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="55sp" />-->
     </FrameLayout>
 
 

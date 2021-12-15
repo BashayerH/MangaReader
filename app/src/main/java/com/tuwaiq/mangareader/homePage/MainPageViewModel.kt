@@ -16,11 +16,11 @@ class MainPageViewModel : ViewModel() {
   private  val _result:MutableLiveData<List<DataManga>> = MutableLiveData()
     val result:LiveData<List<DataManga>> = _result
 
-    //never used
+   // never used
 //    fun getTheData(){
 //        viewModelScope.launch {
 //            repo.fetchMangaFlow.collect {
-//                _result.value =
+//                _result.value = it
 //            }
 //
 //    }

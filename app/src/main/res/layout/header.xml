@@ -27,8 +27,8 @@
 
     <TextView
         android:id="@+id/profileName"
-        android:layout_width="117dp"
-        android:layout_height="35dp"
+        android:layout_width="135dp"
+        android:layout_height="37dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:hint="@string/profile_name"
@@ -38,14 +38,26 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/emilProfil"
+        android:layout_width="116dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:hint="emil"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/changePhoto"
+        app:layout_constraintTop_toBottomOf="@+id/profileName" />
+
+    <TextView
         android:id="@+id/changePhoto"
-        android:layout_width="128dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="102dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="4dp"
         android:text="change photo"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/navHeaderImg"
-        app:layout_constraintTop_toBottomOf="@+id/profileName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navHeaderImg" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

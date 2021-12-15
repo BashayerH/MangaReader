@@ -7,16 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
+import java.util.*
+import kotlin.collections.HashMap
 
 private const val TAG = "RegisterFragment"
+ var infoUserCollection = Firebase.firestore.collection("InfoUser")
 class RegisterFragment : Fragment() {
 
 
@@ -71,10 +79,11 @@ class RegisterFragment : Fragment() {
 
     }
     private fun validateRegister() {
-        userName = binding.userNameETRg.text.toString().trim()
-        emil=binding.emilTxtRg.text.toString().trim()
-        password = binding.passRg.text.toString()
-        confPassword = binding.conformPassRg.text.toString()
+            userName = binding.userNameETRg.text.toString()
+             emil = binding.emilTxtRg.text.toString().trim()
+              password =  binding.passRg.text.toString()
+             confPassword =  binding.conformPassRg.text.toString()
+
         when{
             userName.isEmpty() -> showToast("enter username")
             emil.isEmpty() ->showToast("enter a correct emil")
@@ -82,7 +91,9 @@ class RegisterFragment : Fragment() {
             password.length < 6 -> showToast("the password must be at least 6 digit")
             password != confPassword -> showToast("passwords not match")
             else -> registerUser(emil,password,userName)
+
         }
+
     }
 
 
@@ -91,13 +102,20 @@ class RegisterFragment : Fragment() {
         firebaseAuth.createUserWithEmailAndPassword(emil,password)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    val firbaseUser = firebaseAuth.currentUser
-                   val emil = firbaseUser?.email
-                   // val displayName = userName
-                    showToast("the account is create ")
-                    val action = RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment(firbaseUser?.email)
-                    naveController.navigate(action)
+                    val firebaseUser = firebaseAuth.currentUser
 
+                   val person: HashMap<String, String> = hashMapOf(
+                       "userName" to username,
+                        "emil" to emil,
+                   )
+                    infoUserCollection.document(firebaseAuth.currentUser!!.uid).set(person)
+                        .addOnSuccessListener {
+                            showToast("the info is saved")
+                        }
+
+                    showToast("the account is create ")
+                    val action = RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment()
+                    naveController.navigate(action)
                 }else{
                     showToast("there is something wrong")
                     Log.e(TAG,"",task.exception)
@@ -110,6 +128,8 @@ class RegisterFragment : Fragment() {
 
 
     }
+
+
 
     private fun showToast(msg:String){
         Toast.makeText(requireContext(),msg, Toast.LENGTH_LONG).show()

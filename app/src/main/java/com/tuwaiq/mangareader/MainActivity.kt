@@ -16,15 +16,19 @@ import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
 import com.tuwaiq.mangareader.favorite.FavoriteFragment
 import com.tuwaiq.mangareader.favorite.FavoriteViewModel
 import com.tuwaiq.mangareader.homePage.MainPageFragment
-import com.tuwaiq.mangareader.homePage.MainPageFragmentArgs
+
+import com.tuwaiq.mangareader.register.infoUserCollection
 
 
-  val firebaseAuth: FirebaseAuth  = FirebaseAuth.getInstance()
-
+val firebaseAuth: FirebaseAuth  = FirebaseAuth.getInstance()
+    val firebaseStore = Firebase.firestore
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
 
@@ -32,6 +36,7 @@ private lateinit var binding: ActivityMainBinding
 private lateinit var drawerLayout: DrawerLayout
 private lateinit var navigationView:NavigationView
 private lateinit var imgViewList:ImageView
+private lateinit var homeBtn:ImageView
 private lateinit var titleChange:TextView
 private lateinit var naveController: NavController
 //private lateinit var profileName:TextView
@@ -47,6 +52,9 @@ private lateinit var naveController: NavController
          drawerLayout = binding.drawerNavLayout
          navigationView= binding.navDrawXml
          imgViewList = binding.imgViewActionBar
+         homeBtn= binding.homeBtn
+
+
 
         naveController = findNavController(R.id.fragmentNavContainerView)
 
@@ -56,6 +64,11 @@ private lateinit var naveController: NavController
         }
             //to change app bar title
         titleChange = binding.titleAppBar
+         //to connect home img on app bar with home fragment
+        homeBtn.setOnClickListener {
+            naveController.navigate(R.id.mainPageFragment)
+        }
+
 
 
             //try to disply name in profile
@@ -69,8 +82,7 @@ private lateinit var naveController: NavController
         navDistnation()
 
         drawerOnClick()
-            //to show burger bar but there issue
-      //  NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout)
+
 
 //try to disply name in profile
 //        val args = MainPageFragmentArgs by navArgs()
@@ -106,7 +118,6 @@ private lateinit var naveController: NavController
          navigationView.setNavigationItemSelectedListener {
              when(it.itemId){
                  R.id.logout ->{
-                            //FirebaseAuth.getInstance().signOut()
                         firebaseAuth.signOut()
                      naveController.navigate(R.id.action_mainPageFragment_to_signPageFragment)
                      drawerLayout.close()
@@ -127,13 +138,25 @@ private lateinit var naveController: NavController
                  else -> true
              }
          }
+        updateUserName()
     }
 
-    private fun updateUserName(userName: String) {
+    private fun updateUserName() {
+        val currentUser = firebaseAuth.currentUser
+        infoUserCollection.document(currentUser!!.uid).get()
+            .addOnSuccessListener {
+                val infoUserList = it.data
+                infoUserList?.forEach {
+                    when(it.key){
+                        "userName" -> findViewById<TextView>(R.id.profileName).setText(it.value.toString())
+                        "emil" -> findViewById<TextView>(R.id.emilProfil).setText(it.value.toString())
 
-        val headerView = navigationView.getHeaderView(0)
-        val viewUserName =headerView.findViewById<TextView>(R.id.profileName)
-        viewUserName?.text = userName
+                    }
+
+                }
+            }
+
+
     }
 
 

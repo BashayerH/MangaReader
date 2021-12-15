@@ -10,8 +10,10 @@
         <entry key="app/src/main/res/layout/drawble_layout.xml" value="0.14722222222222223" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/main_page_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/manga_list_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/main_page_fragment.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/manga_list_item.xml" value="0.2782608695652174" />
+        <entry key="app/src/main/res/layout/manga_page_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/manga_page_details_fragment.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/sighn_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/sign_page_fragment.xml" value="0.25" />

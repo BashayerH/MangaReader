@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -20,7 +23,9 @@ import coil.load
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.MainPageFragmentBinding
 import com.tuwaiq.mangareader.databinding.MangaListItemBinding
+import com.tuwaiq.mangareader.firebaseAuth
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import com.tuwaiq.mangareader.register.infoUserCollection
 
 
 class MainPageFragment : Fragment() {
@@ -32,14 +37,12 @@ class MainPageFragment : Fragment() {
     private lateinit var navController: NavController
 
 
-    private val navArgs:MainPageFragmentArgs by navArgs()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
-        Log.d("fromMainPage","the email ${navArgs.emil} ")
 
     }
     override fun onCreateView(
@@ -47,21 +50,41 @@ class MainPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = MainPageFragmentBinding.inflate(layoutInflater)
-        binding.mangaRv.layoutManager = GridLayoutManager(requireContext(),2)
+         binding.recyclerManga.setIntervalRatio(.5f)
+
+      //  binding.mangaRv.layoutManager = GridLayoutManager(requireContext(),2)
         navController = findNavController()
-//for argument try to teke the user name to disply it in profile
-        val args = MainPageFragmentArgs.fromBundle(requireArguments())
-        args.emil
+
 
        // NavigationUI.setupWithNavController(binding.drawerNavLayout,navController)
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainPageViewModel.dataLiveData.observe(
+            viewLifecycleOwner,
+           Observer {
+                binding.recyclerManga.adapter = MangaAdapter(it)
+            }
+        )
+    }
+
     private inner class MangaHolder(val binding: MangaListItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(story:DataManga){
+
             binding.mangaImg.load(story.img)
+
             binding.mangaTitle.text = story.title
-            binding.lastCh.text = story.latest_chapter_url
+            binding.lastCh.text = story.latest_chapter_title
+            binding.mangaImg.setOnClickListener {
+               val bundle = Bundle()
+                bundle.putString("title",binding.mangaTitle.toString())
+                navController.navigate(R.id.mangaPageDetailsFragment,bundle)
+//                arguments?.putSerializable("title",story.title)
+//                arguments?.putSerializable("img",story.img)
+//                arguments?.putSerializable("latest_chapter_title",story.latest_chapter_title)
+            }
         }
     }
 
@@ -84,8 +107,5 @@ class MainPageFragment : Fragment() {
 
 
     }
-
-
-
 
 }

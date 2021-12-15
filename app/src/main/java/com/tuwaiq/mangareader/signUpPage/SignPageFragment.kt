@@ -114,7 +114,7 @@ class SignPageFragment : Fragment() {
         Log.d("fromSignPage", "fff $firebaseUser")
     if (firebaseUser != null) {
         //كيف اسوي انتقال مباشر??
-            val action = SignPageFragmentDirections.actionSignPageFragmentToMainPageFragment(firebaseUser.email)
+            val action = SignPageFragmentDirections.actionSignPageFragmentToMainPageFragment()
         findNavController().navigate(action)
 
     }

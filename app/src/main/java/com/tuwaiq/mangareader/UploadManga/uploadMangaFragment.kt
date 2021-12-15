@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.UploadMangaFragmentBinding
+import com.tuwaiq.mangareader.firebaseAuth
 
 class UploadMangaFragment : Fragment() {
 

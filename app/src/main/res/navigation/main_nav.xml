@@ -10,14 +10,8 @@
         android:name="com.tuwaiq.mangareader.homePage.MainPageFragment"
         android:label="Home"
         tools:layout="@layout/main_page_fragment">
-<!--        <argument-->
-<!--            android:name="displayName"-->
-<!--            app:argType="string"-->
-<!--            app:nullable="true" />-->
-        <argument
-            android:name="emil"
-            app:argType="string"
-            app:nullable="true" />
+
+
         <action
             android:id="@+id/action_mainPageFragment_to_signPageFragment"
             app:destination="@id/signPageFragment" />
@@ -57,4 +51,21 @@
         android:id="@+id/uploadMangaFragment"
         android:name="com.tuwaiq.mangareader.UploadManga.UploadMangaFragment"
         android:label="UploadManga" />
+    <fragment
+        android:id="@+id/mangaPageDetailsFragment"
+        android:name="com.tuwaiq.mangareader.MangaPageDetailsFragment"
+        android:label="MangaPageDetailsFragment" >
+
+        <argument android:name="title_args"
+            android:defaultValue="None"/>
+        <argument
+            android:name="last_ch_args"
+            app:argType="string"
+            android:defaultValue="None" />
+
+    </fragment>
+
+
+
+
 </navigation>
