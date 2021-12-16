@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:icon="@drawable/ic_baseline_star_24"
+        android:id="@+id/favoriteFragment"
+        android:title="favorit" />
+    <item
+        android:icon="@drawable/ic_baseline_home_24"
+        android:id="@+id/mainPageFragment"
+        android:title="home" />
+    <item
+        android:id="@+id/downloadPageFragment"
+        android:icon="@drawable/ic_baseline_cloud_download_24"
+        android:title="download" />
+
+
+    <item
+        android:icon="@drawable/ic_baseline_format_list_bulleted_24"
+        android:id="@+id/drawer_nav_layout"
+        android:title="more" />
+</menu>

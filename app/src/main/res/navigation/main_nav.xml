@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_mainPageFragment_to_uploadMangaFragment"
             app:destination="@id/uploadMangaFragment" />
+        <action
+            android:id="@+id/action_mainPageFragment_to_mangaPageDetailsFragment"
+            app:destination="@id/mangaPageDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -53,19 +56,20 @@
         android:label="UploadManga" />
     <fragment
         android:id="@+id/mangaPageDetailsFragment"
-        android:name="com.tuwaiq.mangareader.MangaPageDetailsFragment"
+        android:name="com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragment"
         android:label="MangaPageDetailsFragment" >
-
-        <argument android:name="title_args"
-            android:defaultValue="None"/>
         <argument
-            android:name="last_ch_args"
-            app:argType="string"
-            android:defaultValue="None" />
+    android:name="currentManga"
+    app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </fragment>
-
-
+    <fragment
+        android:id="@+id/downloadPageFragment"
+        android:name="com.tuwaiq.mangareader.downlodPage.downloadPageFragment"
+        android:label="download_page_fragment"
+        tools:layout="@layout/download_page_fragment" />
 
 
 </navigation>

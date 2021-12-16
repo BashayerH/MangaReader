@@ -13,7 +13,11 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.navArgs
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
@@ -39,7 +43,8 @@ private lateinit var imgViewList:ImageView
 private lateinit var homeBtn:ImageView
 private lateinit var titleChange:TextView
 private lateinit var naveController: NavController
-//private lateinit var profileName:TextView
+private lateinit var bottomNav:BottomNavigationView
+private lateinit var appBar:AppBarConfiguration
 
 
 
@@ -52,7 +57,7 @@ private lateinit var naveController: NavController
          drawerLayout = binding.drawerNavLayout
          navigationView= binding.navDrawXml
          imgViewList = binding.imgViewActionBar
-         homeBtn= binding.homeBtn
+        bottomNav = binding.menuBottom
 
 
 
@@ -60,27 +65,22 @@ private lateinit var naveController: NavController
 
             //to connect img on app bar with drawer
         imgViewList.setOnClickListener {
-            drawerLayout.openDrawer(GravityCompat.START)
+            drawerLayout.openDrawer(GravityCompat.END)
         }
             //to change app bar title
         titleChange = binding.titleAppBar
-         //to connect home img on app bar with home fragment
-        homeBtn.setOnClickListener {
-            naveController.navigate(R.id.mainPageFragment)
-        }
+           //to connect home img on app bar with home fragment
 
 
 
-            //try to disply name in profile
-        // profileName = findViewById(R.id.profileName)
-        //    profileName = binding.appBar
-
+        //to show bottom navigation
+        bottomNav.setupWithNavController(naveController)
+        appBar= AppBarConfiguration(naveController.graph,drawerLayout)
 
         //to show navigation draw
         NavigationUI.setupWithNavController(navigationView,naveController)
          //to handle app bar
         navDistnation()
-
         drawerOnClick()
 
 

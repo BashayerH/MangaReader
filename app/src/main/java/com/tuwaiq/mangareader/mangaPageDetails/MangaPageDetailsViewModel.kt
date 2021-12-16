@@ -1,7 +1,7 @@
-package com.tuwaiq.mangareader
+package com.tuwaiq.mangareader.mangaPageDetails
 
 import androidx.lifecycle.ViewModel
 
 class MangaPageDetailsViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
 }

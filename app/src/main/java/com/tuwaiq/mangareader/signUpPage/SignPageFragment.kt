@@ -56,8 +56,7 @@ class SignPageFragment : Fragment() {
         progressDialog.setMessage("Logging in...")
         progressDialog.setCanceledOnTouchOutside(false)
 
-//        firebaseAuth = Firebase.auth
-//         checkUser()
+
 
         //for log in
         binding.loginBtn.setOnClickListener {

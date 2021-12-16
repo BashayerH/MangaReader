@@ -18,7 +18,9 @@
             android:id="@+id/mangaImg"
             android:layout_width="388dp"
             android:layout_height="323dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="80dp"
+            android:layout_marginEnd="16dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/mangaTitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,30 +30,17 @@
 
         <TextView
             android:id="@+id/mangaTitle"
-            android:layout_width="189dp"
-            android:layout_height="107dp"
-            android:fontFamily="@font/advent_pro_semibold"
+            android:layout_width="191dp"
+            android:layout_height="75dp"
+            android:fontFamily="@font/arima_madurai_thin"
             android:hint="manga title"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textColor="#673AB7"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mangaImg" />
-
-        <TextView
-            android:id="@+id/lastCh"
-            android:layout_width="255dp"
-            android:layout_height="53dp"
-            android:fontFamily="@font/advent_pro_semibold"
-            android:hint="last chapter"
-            android:padding="10sp"
-            android:textAlignment="center"
-            android:textColor="#673AB7"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.452"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mangaTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

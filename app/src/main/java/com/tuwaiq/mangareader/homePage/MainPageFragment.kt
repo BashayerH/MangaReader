@@ -71,19 +71,16 @@ class MainPageFragment : Fragment() {
     }
 
     private inner class MangaHolder(val binding: MangaListItemBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(story:DataManga){
+        fun bind(currentManga:DataManga){
 
-            binding.mangaImg.load(story.img)
+            binding.mangaImg.load(currentManga.img)
 
-            binding.mangaTitle.text = story.title
-            binding.lastCh.text = story.latest_chapter_title
+            binding.mangaTitle.text = currentManga.title
             binding.mangaImg.setOnClickListener {
-               val bundle = Bundle()
-                bundle.putString("title",binding.mangaTitle.toString())
-                navController.navigate(R.id.mangaPageDetailsFragment,bundle)
-//                arguments?.putSerializable("title",story.title)
-//                arguments?.putSerializable("img",story.img)
-//                arguments?.putSerializable("latest_chapter_title",story.latest_chapter_title)
+                val action = MainPageFragmentDirections.actionMainPageFragmentToMangaPageDetailsFragment(currentManga)
+
+                navController.navigate(action)
+//
             }
         }
     }
@@ -99,8 +96,8 @@ class MainPageFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: MangaHolder, position: Int) {
-            val mangas = manga[position]
-            holder.bind(mangas)
+            val currentManga = manga[position]
+            holder.bind(currentManga)
         }
 
         override fun getItemCount(): Int = manga.size
