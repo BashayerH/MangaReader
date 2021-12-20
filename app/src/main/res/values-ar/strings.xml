@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Manga Reader</string>
+    <string name="no_account">اذا لم يكن لديك حساب ، اضغط هنا لإنشاء حساب</string>
+    <string name="favorite">المفضلة</string>
+    <string name="upload">رفع</string>
+    <string name="setting">الإعدادات</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="profile_name">حساب المستخدم</string>
+    <string name="conform_password">تأكيد كلمة السر</string>
+    <string name="log_in">دخول</string>
+    <string name="password">كلمة السر</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="email">الإيميل</string>
+    <string name="last_chapter">"اخر فصل : "</string>
+    <string name="description">الوصف</string>
+    <string name="manga_name">اسم المانجا</string>
+    <string name="last_ch">اخر فصل</string>
+    <string name="the_story">القصة</string>
+    <string name="read">للقراءة</string>
+    <string name="manga_title">عنوان المانجا</string>
+    <string name="most_popular_manga">المانجا الأكثر شهرة</string>
+    <string name="change_photo">تغيير صورة العرض</string>
+</resources>

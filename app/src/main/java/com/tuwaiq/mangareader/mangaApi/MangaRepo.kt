@@ -24,6 +24,7 @@ open class MangaRepo {
 
 
 
+
     fun fetchManga ():LiveData<List<DataManga>> {
         return liveData (Dispatchers.IO ) {
             val response = mangaApi.getManga()

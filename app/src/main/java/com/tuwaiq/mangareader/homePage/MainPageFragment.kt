@@ -23,7 +23,6 @@ import coil.load
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.MainPageFragmentBinding
 import com.tuwaiq.mangareader.databinding.MangaListItemBinding
-import com.tuwaiq.mangareader.firebaseAuth
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import com.tuwaiq.mangareader.register.infoUserCollection
 
@@ -39,6 +38,7 @@ class MainPageFragment : Fragment() {
 
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,7 +50,7 @@ class MainPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = MainPageFragmentBinding.inflate(layoutInflater)
-         binding.recyclerManga.setIntervalRatio(.5f)
+         binding.recyclerManga.getCarouselLayoutManager()
 
       //  binding.mangaRv.layoutManager = GridLayoutManager(requireContext(),2)
         navController = findNavController()

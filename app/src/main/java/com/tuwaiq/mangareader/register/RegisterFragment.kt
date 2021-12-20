@@ -91,12 +91,8 @@ class RegisterFragment : Fragment() {
             password.length < 6 -> showToast("the password must be at least 6 digit")
             password != confPassword -> showToast("passwords not match")
             else -> registerUser(emil,password,userName)
-
         }
-
     }
-
-
 
     private fun registerUser(emil: String, password: String,username:String) {
         firebaseAuth.createUserWithEmailAndPassword(emil,password)
@@ -104,21 +100,23 @@ class RegisterFragment : Fragment() {
                 if(task.isSuccessful){
                     val firebaseUser = firebaseAuth.currentUser
 
-                   val person: HashMap<String, String> = hashMapOf(
-                       "userName" to username,
-                        "emil" to emil,
+                   val person =InfoUser(
+                 binding.userNameETRg.text.toString()
+                       , binding.emilTxtRg.text.toString()
                    )
-                    infoUserCollection.document(firebaseAuth.currentUser!!.uid).set(person)
-                        .addOnSuccessListener {
-                            showToast("the info is saved")
-                        }
+                    infoUserCollection.document(firebaseUser?.uid!!)
+                        .set(person).addOnSuccessListener {
+                        showToast("the info is saved")
+                    }
 
                     showToast("the account is create ")
                     val action = RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment()
                     naveController.navigate(action)
                 }else{
-                    showToast("there is something wrong")
+
+                    showToast("there is something wrong, the account cont be init")
                     Log.e(TAG,"",task.exception)
+
                 }
             }
         val updateProfile = userProfileChangeRequest {
@@ -126,15 +124,10 @@ class RegisterFragment : Fragment() {
         }
         firebaseAuth.currentUser?.updateProfile(updateProfile)
 
-
     }
-
-
 
     private fun showToast(msg:String){
         Toast.makeText(requireContext(),msg, Toast.LENGTH_LONG).show()
     }
-
-
 
 }

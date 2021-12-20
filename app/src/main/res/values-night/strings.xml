@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="email">email</string>
-    <string name="password">password</string>
-    <string name="no_account">if you don\'t have account Register here!</string>
+
     <string name="setting">Setting</string>
     <string name="logout">logout</string>
     <string name="profile_name">profile name</string>
+    <string name="conform_password">conform_password</string>
+    <string name="log_in">log_in</string>
+    <string name="password">password</string>
+    <string name="user_name">user_name</string>
+    <string name="email">email</string>
+    <string name="last_chapter">last chapter:</string>
+    <string name="description">Description</string>
+    <string name="manga_name">manga name</string>
+    <string name="last_ch">last ch</string>
+    <string name="the_story">the story</string>
+    <string name="read">read</string>
+    <string name="manga_title">manga title</string>
+    <string name="most_popular_manga">most popular manga</string>
+    <string name="change_photo">change photo</string>
 </resources>

@@ -1,13 +1,28 @@
 <resources>
     <string name="app_name">Manga Reader</string>
-    <string name="email">email</string>
-    <string name="password">password</string>
-    <string name="no_account">if you don\'t have account <b>Register here!</b> </string>
+
+    <string name="no_account">if you don\'t have account <b>Register here!</b> \n</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="favorite">favorite</string>
     <string name="upload">upload</string>
     <string name="setting">Setting</string>
     <string name="logout">logout</string>
     <string name="profile_name">profile name</string>
+    <string name="conform_password">conform_password</string>
+    <string name="log_in">log in</string>
+    <string name="password">password</string>
+    <string name="user_name">user_name</string>
+    <string name="email">email</string>
+    <string name="last_chapter">Read last chapter:</string>
+    <string name="description">Description</string>
+    <string name="manga_name">manga name</string>
+    <string name="last_ch">last ch</string>
+    <string name="the_story">the story</string>
+    <string name="read">read</string>
+    <string name="manga_title">manga title</string>
+    <string name="most_popular_manga">most popular manga</string>
+    <string name="change_photo">change photo</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>

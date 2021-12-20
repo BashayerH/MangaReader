@@ -1,7 +1,10 @@
 package com.tuwaiq.mangareader
 
-data class InfoUser (
-        val userName:String ="",
-      val   emil :String="",
-      val img:String =""
+import com.tuwaiq.mangareader.mangaApi.models.DataManga
+
+data class InfoUser(
+    var userName:String ="",
+    var emil:String="",
+    var imgProfile:String ="",
+    var favManga: List<String> = listOf()
         )
