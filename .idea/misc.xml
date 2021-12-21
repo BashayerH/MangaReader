@@ -16,8 +16,8 @@
         <entry key="app/src/main/res/layout/change_photo_fragment.xml" value="0.1175925925925926" />
         <entry key="app/src/main/res/layout/download_page_fragment.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/drawble_layout.xml" value="0.14722222222222223" />
-        <entry key="app/src/main/res/layout/favorit_item.xml" value="0.18541666666666667" />
-        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/favorit_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_sign_out_dilog.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/header.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_page_fragment.xml" value="0.165" />

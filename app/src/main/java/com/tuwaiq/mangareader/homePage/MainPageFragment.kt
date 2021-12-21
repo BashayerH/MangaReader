@@ -78,7 +78,6 @@ class MainPageFragment : Fragment() {
             binding.mangaTitle.text = currentManga.title
             binding.mangaImg.setOnClickListener {
                 val action = MainPageFragmentDirections.actionMainPageFragmentToMangaPageDetailsFragment(currentManga)
-
                 navController.navigate(action)
 //
             }

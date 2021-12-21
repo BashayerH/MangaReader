@@ -28,12 +28,11 @@ import java.util.*
 class MangaPageDetailsFragment : Fragment() {
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
-
+    private val navArgs by navArgs <MangaPageDetailsFragmentArgs>()
      var infoUserCollection = Firebase.firestore.collection("InfoUser")
     private  val pageDetailsViewModel: MangaPageDetailsViewModel by lazy { ViewModelProvider(this)[MangaPageDetailsViewModel::class.java] }
     private lateinit var binding:MangaPageDetailsFragmentBinding
     private lateinit var databaseReference: DatabaseReference
-    private val navArgs by navArgs <MangaPageDetailsFragmentArgs>()
     private lateinit var navController: NavController
 
 
@@ -47,10 +46,10 @@ class MangaPageDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = MangaPageDetailsFragmentBinding.inflate(layoutInflater)
-
+        val currentManga = navArgs.currentManga
         navController = findNavController()
         //provide the information for selected manga
-        val currentManga = navArgs.currentManga
+
         if (currentManga != null) {
             binding.nameTxtView.setText(currentManga.title)
             binding.imageViewDetil.load(currentManga.img)
@@ -62,42 +61,35 @@ class MangaPageDetailsFragment : Fragment() {
 
         binding.favBtn.setOnClickListener {
             val firebaseUser = firebaseAuth.currentUser!!.uid
-            val person = InfoUser(favManga = listOf(currentManga!!.id))
+            val person = InfoUser(favManga = mutableListOf(currentManga!!.title))
 
-            infoUserCollection.document(firebaseUser.toString())
+            infoUserCollection.document(firebaseUser)
                 .update("favManga", person.favManga  )
                 .addOnSuccessListener {
-                Toast.makeText(context,"added to favorit sucess",Toast.LENGTH_LONG).show()
-            }
+                    Toast.makeText(context,"added to favorit sucess",Toast.LENGTH_LONG).show()
+
+                }
+
+            // addToFav()
             val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoriteFragment(currentManga)
             navController.navigate(action)
-            addToFav()
-        }
-
-
+            }
 
         return  binding.root
-
     }
 
 
-    //try add to favorite
-    fun addToFav(){
-       // val timeSt =System.currentTimeMillis()
-        databaseReference = FirebaseDatabase.getInstance().getReference("favManga")
-        val reference = binding.nameTxtView.text
-        firebaseAuth.uid?.let {
-            databaseReference.child(it).setValue(reference).addOnSuccessListener {
-
-
-            }
-        }
-
-
-
-
-
-    }
+//    fun addToFav(){
+//        val firebaseUser = firebaseAuth.currentUser!!.uid
+//        val person = InfoUser(favManga = mutableListOf(currentManga!!.id))
+//
+//        infoUserCollection.document(firebaseUser)
+//            .update("favManga", person.favManga  )
+//            .addOnSuccessListener {
+//                Toast.makeText(context,"added to favorit sucess",Toast.LENGTH_LONG).show()
+//
+//            }
+//        }
 
 
 
