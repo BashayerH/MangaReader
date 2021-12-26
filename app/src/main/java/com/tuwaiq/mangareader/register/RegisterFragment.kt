@@ -7,21 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
-import java.util.*
-import kotlin.collections.HashMap
 
 private const val TAG = "RegisterFragment"
  var infoUserCollection = Firebase.firestore.collection("InfoUser")

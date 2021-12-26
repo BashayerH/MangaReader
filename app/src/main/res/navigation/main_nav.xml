@@ -16,9 +16,6 @@
             android:id="@+id/action_mainPageFragment_to_signPageFragment"
             app:destination="@id/signPageFragment" />
         <action
-            android:id="@+id/action_mainPageFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
             android:id="@+id/action_mainPageFragment_to_uploadMangaFragment"
             app:destination="@id/uploadMangaFragment" />
         <action
@@ -47,16 +44,6 @@
             app:destination="@id/mainPageFragment" />
     </fragment>
     <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.tuwaiq.mangareader.favorite.FavoriteFragment"
-        android:label="Favorite">
-        <argument
-            android:name="currentManga"
-            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
-    <fragment
         android:id="@+id/uploadMangaFragment"
         android:name="com.tuwaiq.mangareader.UploadManga.UploadMangaFragment"
         android:label="UploadManga" />
@@ -70,8 +57,11 @@
             app:nullable="true"
             android:defaultValue="@null" />
         <action
-            android:id="@+id/action_mangaPageDetailsFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
+            android:id="@+id/action_mangaPageDetailsFragment_to_favoritFragment"
+            app:destination="@id/FavoriteFragment" />
+        <action
+            android:id="@+id/action_mangaPageDetailsFragment_to_readWebVeiwFragment"
+            app:destination="@id/readWebVeiwFragment" />
 
     </fragment>
     <fragment
@@ -79,6 +69,29 @@
         android:name="com.tuwaiq.mangareader.downlodPage.downloadPageFragment"
         android:label="download_page_fragment"
         tools:layout="@layout/download_page_fragment" />
+    <fragment
+        android:id="@+id/FavoriteFragment"
+        android:name="com.tuwaiq.mangareader.favorite.FavoriteFragment"
+        android:label="FavoritFragment" >
+
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/readWebVeiwFragment"
+        android:name="com.tuwaiq.mangareader.readWeb.ReadWebVeiwFragment"
+        android:label="ReadWebVeiwFragment" >
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null" />
+
+    </fragment>
 
 
 </navigation>

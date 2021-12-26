@@ -1,107 +1,117 @@
 package com.tuwaiq.mangareader.favorite
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.InfoUser
+import com.tuwaiq.mangareader.databinding.FavoritFragmentBinding
 import com.tuwaiq.mangareader.databinding.FavoritItemBinding
-import com.tuwaiq.mangareader.databinding.FragmentFavoriteBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 
-
+private const val TAG = "FavoriteFragment"
 class FavoriteFragment : Fragment() {
+
+
+    private val favoriteViewModel: FavoriteViewModel by lazy { ViewModelProvider(this)[FavoriteViewModel::class.java] }
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    val db:FirebaseFirestore = FirebaseFirestore.getInstance()
-
-    private val favoriteViewModel:FavoriteViewModel by lazy { ViewModelProvider(this)[FavoriteViewModel::class.java] }
-
-    private lateinit var binding:FragmentFavoriteBinding
-    private lateinit var databaseReference:DatabaseReference
+    private lateinit var binding:FavoritFragmentBinding
     private lateinit var navController: NavController
-    val firebaseUser = firebaseAuth.currentUser!!.uid
     var infoUserCollection = Firebase.firestore.collection("InfoUser")
+    var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
 
-
-    private val navArgs by navArgs <FavoriteFragmentArgs>()
+    private val navArgs by navArgs<FavoriteFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        }
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        favoriteViewModel.fetchFav(navArgs.currentManga!!.id).observe(
+            viewLifecycleOwner, Observer {
+                binding.favoritRv.adapter = FavAdapter(it)
+                Log.d(TAG,"from fav $it")
+            }
+        )
+    }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       binding = FragmentFavoriteBinding.inflate(layoutInflater)
-        binding.favoritRv.layoutManager = LinearLayoutManager(requireContext())
-        navController=findNavController()
+        binding = FavoritFragmentBinding.inflate(layoutInflater)
+        binding.favoritRv.layoutManager=LinearLayoutManager(context)
+
+        var currentUser = firebaseAuth.currentUser
+    loadData(currentUser?.uid.toString())
+
 
         return binding.root
     }
 
-    private inner class FavoriteHolder(val binding:FavoritItemBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(currentFav: DataManga) {
-            binding.favImg.load(currentFav.img)
-            binding.favTitle.setText(currentFav.title)
 
-        }
-    }
 
-    private inner class FavoriteAdapter(val fav:List<DataManga>):RecyclerView.Adapter<FavoriteHolder>(){
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder {
+    private inner class FavAdapter(val list:List<DataManga>):RecyclerView.Adapter<FavAdapter.FavHolder>(){
+        inner class FavHolder(val binding:FavoritItemBinding):RecyclerView.ViewHolder(binding.root)
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavHolder {
             val binding = FavoritItemBinding.inflate(
                 layoutInflater,
                 parent,
                 false
             )
-            return FavoriteHolder(binding)
-        }
-
-        override fun onBindViewHolder(holder: FavoriteHolder, position: Int) {
-          val currentFav = fav[position]
-          holder.bind(currentFav)
+            return FavHolder(binding)
 
         }
 
-        override fun getItemCount(): Int = fav.size
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        favoriteViewModel.favLiveData().observe(
-            viewLifecycleOwner, Observer {
-                binding.favoritRv.adapter = FavoriteAdapter(it)
+        override fun onBindViewHolder(holder: FavHolder, position: Int) {
+            val currentFav = list[position]
+            with(holder){
+                binding.favTitle.setText(currentFav.title)
+               binding.favImg.load(currentFav.img)
             }
-        )
+
+        }
+
+        override fun getItemCount(): Int {
+          return  list.size
+        }
     }
 
-}
 
-//    fun getAllFav(favManga: String) {
-//        val person=InfoUser()
-//        infoUserCollection
-//            .whereEqualTo("favManga",person.favManga)
-//            .get()
-//            .addOnSuccessListener {
-//
-//        }
-//
-//
-//    }
+
+    fun loadData(favManga:String){
+        val list = listOf<DataManga>()
+        //infoUserCollection
+                mangaFavCollection
+           // .whereEqualTo("FavMangaUser",id)
+            .get().addOnSuccessListener {
+            if (it!=null){
+                for (doc in it){
+                    var favList = doc.toObject(DataManga::class.java)
+
+                }
+            }
+//            binding.favoritRv.apply {
+//                layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL,false)
+//                adapter = FavAdapter(list)
+            }
+        }
+    }
+

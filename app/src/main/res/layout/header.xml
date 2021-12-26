@@ -11,19 +11,17 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <com.google.android.material.imageview.ShapeableImageView
+    <ImageView
         android:id="@+id/navHeaderImg"
         android:layout_width="88dp"
         android:layout_height="73dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-       app:shapeAppearanceOverlay="@style/Circle"
         android:padding="6dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chick"
-        app:strokeColor="@color/black" />
+        app:srcCompat="@drawable/chick" />
 
     <TextView
         android:id="@+id/profileName"

@@ -1,5 +1,7 @@
 package com.tuwaiq.mangareader
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,16 +17,17 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
-import com.tuwaiq.mangareader.favorite.FavoriteFragment
-import com.tuwaiq.mangareader.favorite.FavoriteViewModel
-import com.tuwaiq.mangareader.homePage.MainPageFragment
 
 import com.tuwaiq.mangareader.register.infoUserCollection
+import java.net.URI
 
 
 val firebaseStore = Firebase.firestore
@@ -32,6 +35,7 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val storgeImg = FirebaseStorage.getInstance().reference
 
 
     private lateinit var binding: ActivityMainBinding
@@ -41,7 +45,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var titleChange: TextView
     private lateinit var naveController: NavController
 
-    //rivate lateinit var bottomNav:BottomNavigationView
+//    private  var chngePhoto:TextView = findViewById(R.id.changePhoto)
+    private lateinit var imgUri: Uri
+    private lateinit var bottomNav: BottomNavigationView
     private lateinit var appBar: AppBarConfiguration
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
@@ -54,15 +60,22 @@ class MainActivity : AppCompatActivity() {
         drawerLayout = binding.drawerNavLayout
         navigationView = binding.navDrawXml
         imgViewList = binding.imgViewActionBar
-        // bottomNav = binding.menuBottom
+         bottomNav = binding.menuBottom
 
         naveController = findNavController(R.id.fragmentNavContainerView)
 
+//        chngePhoto= findViewById(R.id.changePhoto)
 
         //to connect img on app bar with drawer
         imgViewList.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
+        //to change img profile
+//        chngePhoto.setOnClickListener {
+//            // var dilog = SignOutDialogFragment()
+//            //   dilog.show(supportFragmentManager, "signOutDialog")
+//           // changeImg()
+//        }
         //to change app bar title
         titleChange = binding.titleAppBar
         //to connect home img on app bar with home fragment
@@ -70,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         //to show bottom navigation
         appBar = AppBarConfiguration(naveController.graph, drawerLayout)
+        bottomNav.setupWithNavController(naveController)
 
 
         //to show navigation draw
@@ -88,21 +102,25 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun navDistnation() {
         naveController.addOnDestinationChangedListener { _, destnation, _ ->
             titleChange.text = destnation.label
-            // profileName.text = destnation.arguments.toString()
-            //   profileName.text = destnation.arguments.toString()
+
             when (destnation.id) {
                 R.id.mainPageFragment -> {
                     binding.appBar.visibility = View.VISIBLE
+                    binding.menuBottom.visibility=View.VISIBLE
                 }
                 R.id.signPageFragment -> {
                     binding.appBar.visibility = View.GONE
                     //  binding.navDrawXml.visibility =View.GONE
+                    binding.menuBottom.visibility=View.GONE
                 }
                 R.id.registerFragment -> {
                     binding.appBar.visibility = View.GONE
+                    binding.menuBottom.visibility =View.GONE
                 }
             }
         }
@@ -115,13 +133,13 @@ class MainActivity : AppCompatActivity() {
                    // var dilog = SignOutDialogFragment()
                  //   dilog.show(supportFragmentManager, "signOutDialog")
                     firebaseAuth.signOut()
-                    naveController.navigate(R.id.action_mainPageFragment_to_signPageFragment)
+                    naveController.navigate(R.id.signPageFragment)
                     drawerLayout.close()
 
                     true
                 }
-                R.id.favoriteFragment -> {
-                    naveController.navigate(R.id.favoriteFragment)
+                R.id.FavoriteFragment -> {
+                    naveController.navigate(R.id.FavoriteFragment)
                     drawerLayout.close()
                     true
                 }
