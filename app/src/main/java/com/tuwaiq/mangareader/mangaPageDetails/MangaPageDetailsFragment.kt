@@ -61,9 +61,12 @@ class MangaPageDetailsFragment : Fragment() {
             val firebaseUser = firebaseAuth.currentUser!!.uid
             val person= (DataManga(currentManga!!.id,currentManga.title,currentManga.img))
             Log.d(TAG,"fav manga list $person")
-            mangaFavCollection.document(firebaseUser)
+
+            mangaFavCollection
+                .document(UUID.randomUUID().toString())
+                //.update("favManga",person)
                 .set(person)
-                //.update("FavMangaUser",person)
+
                 .addOnSuccessListener {
                     Toast.makeText(context,"added to favorite success",Toast.LENGTH_LONG).show()
                     Log.d(TAG,"fav manga list $mangaFavCollection")

@@ -41,7 +41,7 @@ open class MangaRepo {
 
 
     suspend fun getFav(currentUser: String): List<DataManga> {
-        val person= InfoUser()
+       // val person= InfoUser()
       //  currentUser.let{
           var x = mangaFavCollection
                // .whereEqualTo("favManga",person.favManga)
