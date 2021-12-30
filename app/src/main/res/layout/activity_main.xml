@@ -6,22 +6,23 @@
 
 
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_nav_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/eggPlant"
-        android:id="@+id/drawer_nav_layout">
+        android:background="@color/darkGreen">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/eggPlant"
+            android:background="@color/darkGreen"
             android:orientation="vertical">
+
             <LinearLayout
+                android:id="@+id/appBar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
+                android:background="@color/darkGreen"
                 android:elevation="16dp"
-                android:id="@+id/appBar"
-                android:background="@color/eggPlant"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -60,35 +61,34 @@
 
         </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/menu_bottom"
-                    android:background="@color/eggPlant"
-            app:menu="@menu/bottom_nav_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"/>
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/menu_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/darkGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:menu="@menu/bottom_nav_menu" />
 
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_draw_xml"
-            android:background="@color/eggPlant"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:background="@color/darkGreen"
             app:headerLayout="@layout/header"
             app:menu="@menu/drawer_nav_menu" />
-<!--        <include layout="@layout/drawble_layout"-->
-<!--            />-->
+        <!--        <include layout="@layout/drawble_layout"-->
+        <!--            />-->
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

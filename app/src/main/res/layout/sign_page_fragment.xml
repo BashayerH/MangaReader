@@ -35,7 +35,7 @@
             android:layout_marginTop="43dp"
             android:text="@string/no_account"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/overWite"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password_toggle" />
@@ -60,7 +60,7 @@
             android:layout_height="71dp"
 
             android:layout_marginTop="177dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginEnd="37dp"
             android:background="@drawable/text_filed"
             android:hint="@string/email"
             android:inputType="textEmailAddress"

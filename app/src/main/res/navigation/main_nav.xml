@@ -62,6 +62,9 @@
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_readWebVeiwFragment"
             app:destination="@id/readWebVeiwFragment" />
+        <action
+            android:id="@+id/action_mangaPageDetailsFragment_to_commentsPageFragment"
+            app:destination="@id/commentsPageFragment" />
 
     </fragment>
     <fragment
@@ -95,6 +98,31 @@
             android:defaultValue="@null" />
 
     </fragment>
+    <fragment
+        android:id="@+id/commentsPageFragment"
+        android:name="com.tuwaiq.mangareader.comments.CommentsPageFragment"
+        android:label="comments_page_fragment"
+        tools:layout="@layout/comments_page_fragment" >
+        <action
+            android:id="@+id/action_commentsPageFragment_to_addCommentDioalogFragment"
+            app:destination="@id/addCommentDioalogFragment" />
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <dialog
+        android:id="@+id/addCommentDioalogFragment"
+        android:name="com.tuwaiq.mangareader.Dialogs.AddCommentDioalogFragment"
+        android:label="AddCommentDioalogFragment" >
+
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </dialog>
 
 
 </navigation>

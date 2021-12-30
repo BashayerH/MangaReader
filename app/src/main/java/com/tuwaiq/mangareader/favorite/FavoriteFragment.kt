@@ -24,6 +24,7 @@ import com.tuwaiq.mangareader.databinding.FavoritFragmentBinding
 import com.tuwaiq.mangareader.databinding.FavoritItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val TAG = "FavoriteFragment"
 class FavoriteFragment : Fragment() {
@@ -42,13 +43,12 @@ class FavoriteFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteViewModel.fetchFav(mangaFavCollection.id).observe(
+        favoriteViewModel.fetchFav(infoUserCollection.document("favManga").id).observe(
             viewLifecycleOwner, Observer {
                 binding.favoritRv.adapter = FavAdapter(it)
                 Log.d(TAG,"from fav $it")
@@ -73,8 +73,6 @@ class FavoriteFragment : Fragment() {
             }
                     loadData(currentUser!!.uid)
             }
-
-
 
 
 
@@ -121,7 +119,7 @@ class FavoriteFragment : Fragment() {
 //                            .addOnSuccessListener {
 //
 //                            }
-                      //  unFav()
+
                     }
                 }
                 binding.itemFav.setOnClickListener {
@@ -142,9 +140,9 @@ class FavoriteFragment : Fragment() {
 
     fun loadData(favManga:String){
         val list = listOf<DataManga>()
-        //infoUserCollection
-                mangaFavCollection
-         //   .whereEqualTo("userId",id)
+        infoUserCollection
+               // mangaFavCollection
+            .whereEqualTo("favManga",id)
             .get().addOnSuccessListener {
             if (it!=null){
                 for (doc in it){

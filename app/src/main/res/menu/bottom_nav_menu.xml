@@ -2,8 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:icon="@drawable/ic_baseline_star_24"
         android:id="@+id/FavoriteFragment"
+        android:icon="@drawable/ic_baseline_star_24"
+        android:iconTint="@color/blue_cry"
         android:title="favorit" />
     <item
         android:icon="@drawable/ic_baseline_home_24"

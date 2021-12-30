@@ -6,7 +6,7 @@ import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.tuwaiq.mangareader.InfoUser
+import com.tuwaiq.mangareader.comments.CommentData
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -19,6 +19,7 @@ open class MangaRepo {
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var infoUserCollection = Firebase.firestore.collection("InfoUser")
     var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
+    var commentCollection = Firebase.firestore.collection("CommentManga")
 
 
     private val retrofit:Retrofit = Retrofit.Builder()
@@ -41,8 +42,6 @@ open class MangaRepo {
 
 
     suspend fun getFav(currentUser: String): List<DataManga> {
-       // val person= InfoUser()
-      //  currentUser.let{
           var x = mangaFavCollection
                // .whereEqualTo("favManga",person.favManga)
                 .get()
@@ -53,17 +52,22 @@ open class MangaRepo {
         return x
    }
 
-//       liveData  (Dispatchers.IO){
-//           val person= InfoUser()
-//           val datalist = infoUserCollection
-//               .whereEqualTo("favManga",person.favManga)
-//               .get().await()
-//           if (datalist != null){
-//               emit(datalist.toObjects(DataManga::class.java))
-//
-//           }
-//       }
-//   }
+
+
+
+    suspend fun getComment(com: String):List<CommentData>{
+    val comm = commentCollection
+        .get()
+        .await()
+        .toObjects(CommentData::class.java)
+        return comm
+    }
+
+    suspend fun showCommManga(com: String){
+        commentCollection
+            .add(com).await()
+
+    }
 
 
     fun fetchManga ():LiveData<List<DataManga>> {

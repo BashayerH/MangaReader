@@ -4,9 +4,11 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     android:shape="rectangle">
     <solid
-        android:color="#F8EAEA"/>
+        android:color="@color/overWite"/>
     <corners
         android:topLeftRadius="40sp"
-        android:topRightRadius="40sp"/>
+        android:topRightRadius="40sp"
+        android:bottomRightRadius="40sp"
+        android:bottomLeftRadius="40sp"/>
 
 </shape>

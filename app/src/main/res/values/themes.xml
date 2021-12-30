@@ -2,14 +2,14 @@
     <!-- Base application theme. -->
     <style name="Theme.MangaReader" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/bink_patten</item>
-        <item name="colorPrimaryVariant">@color/eggPlant</item>
-        <item name="colorOnPrimary">@color/peggy_pink</item>
+        <item name="colorPrimary">@color/overWite</item>
+        <item name="colorPrimaryVariant">@color/darkGreen</item>
+        <item name="colorOnPrimary">@color/isablin</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/indigo</item>
+        <item name="colorSecondary">@color/mornGreen</item>
         <item name="colorSecondaryVariant">@color/blue_cry</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/cadiGreen</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

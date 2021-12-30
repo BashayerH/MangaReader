@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="154dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="36dp"
+            android:text="TextView"
+            android:textColor="@color/overWite"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="92dp"
+            android:layout_height="78dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="39dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/chick" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="230dp"
+            android:layout_height="31dp"
+            android:hint="time"
+            android:textColor="@color/isablin"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+        <TextView
+            android:id="@+id/commentDecs"
+            android:layout_width="230dp"
+            android:layout_height="53dp"
+            android:layout_margin="5sp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="write a comment"
+            android:inputType="textMultiLine"
+            android:textColor="@color/overWite"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/time" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="339dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="36dp"
+            android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/mornGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/commentDecs" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

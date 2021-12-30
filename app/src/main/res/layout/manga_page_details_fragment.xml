@@ -13,140 +13,108 @@
         android:layout_marginTop="60sp"
         android:paddingTop="60sp">
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="126dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/advent_pro_semibold"
-            android:text="@string/last_chapter"
-            android:textColor="#101010"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView_detil"
-            app:layout_constraintTop_toBottomOf="@+id/name_txt_view" />
 
         <ImageView
-            android:id="@+id/imageView_detil"
-            android:layout_width="182dp"
-            android:layout_height="128dp"
-            android:layout_marginBottom="8dp"
-            android:scaleType="fitCenter"
+            android:id="@+id/commentBtn"
+            android:layout_width="53dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginEnd="94dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.928"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/descr_txt"
-            android:layout_width="158dp"
-            android:layout_height="41dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/description"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/desc_txt_view"
-            app:layout_constraintStart_toStartOf="@+id/desc_txt_view"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <TextView
-            android:id="@+id/name_txt_view"
-            android:layout_width="402dp"
-            android:layout_height="54dp"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="3dp"
-            android:fontFamily="@font/advent_pro_semibold"
-            android:hint="@string/manga_name"
-            android:textAlignment="center"
-            android:textColor="#3F51B5"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/readBtn"
+            app:srcCompat="@drawable/ic_baseline_insert_comment_24" />
 
-        <TextView
-            android:id="@+id/last_ch_txt_view2"
-            android:layout_width="219dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="40dp"
-            android:fontFamily="@font/advent_pro_semibold"
-            android:hint="@string/last_ch"
-            android:textColor="#3F51B5"
-            android:textSize="20sp"
-            android:textStyle="bold"
+        <ImageView
+            android:id="@+id/readBtn"
+            android:layout_width="62dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toTopOf="@+id/divider"
-            app:layout_constraintStart_toEndOf="@+id/imageView_detil" />
-
-        <Button
-            android:id="@+id/favBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="64dp"
-            android:text="@string/favorite"
-            app:icon="@drawable/ic_baseline_star_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/desc_txt_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="183dp"
-            android:ems="10"
-            android:fontFamily="@font/advent_pro_semibold"
-            android:gravity="start|top"
-            android:hint="@string/the_story"
-            android:inputType="textMultiLine"
-            android:textColor="#673AB7"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descr_txt" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="404dp"
-            android:layout_height="5dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="224dp"
-            android:layout_marginEnd="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/favBtn"
+            app:srcCompat="@drawable/ic_baseline_menu_book_24" />
 
         <View
             android:id="@+id/divider2"
             android:layout_width="409dp"
             android:layout_height="1dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginTop="2dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_txt_view" />
+
+        <ImageView
+            android:id="@+id/favBtn"
+            android:layout_width="66dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="17dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/readBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_baseline_star_border_24" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="68dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/desc_txt_view" />
-
-        <Button
-            android:id="@+id/readBtn"
-            android:layout_width="126dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="12dp"
-            android:text="@string/read"
-            app:icon="@drawable/ic_baseline_menu_book_24"
-            app:layout_constraintEnd_toStartOf="@+id/favBtn"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <ImageView
+            android:id="@+id/imageView_detil"
+            android:layout_width="406dp"
+            android:layout_height="216dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@+id/name_txt_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/desc_txt_view"
+            android:layout_width="393dp"
+            android:layout_height="189dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="9dp"
+            android:ems="10"
+            android:fontFamily="@font/advent_pro_semibold"
+            android:gravity="start|top"
+            android:hint="@string/the_story"
+            android:inputType="textMultiLine"
+            android:textColor="@color/overWite"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/name_txt_view"
+            android:layout_width="416dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/advent_pro_semibold"
+            android:hint="@string/manga_name"
+            android:textAlignment="center"
+            android:textColor="#7D88C8"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_detil" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

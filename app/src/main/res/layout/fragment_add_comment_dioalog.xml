@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".Dialogs.AddCommentDioalogFragment">
+
+        <EditText
+            android:id="@+id/addCommentTxt"
+            android:layout_width="344dp"
+            android:layout_height="126dp"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="36dp"
+            android:layout_marginRight="30sp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="what do you think about this maga!!"
+            android:inputType="textMultiLine"
+            android:padding="10sp"
+            android:textColor="#1C0606"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="add"
+            android:textColor="@color/darkGreen"
+            app:iconTint="@color/darkGreen"
+            app:layout_constraintStart_toEndOf="@+id/cancelBtn"
+            app:layout_constraintTop_toBottomOf="@+id/addCommentTxt" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="158dp"
+            android:layout_marginTop="32dp"
+            android:text="cancel!"
+            android:textColor="@color/darkGreen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addCommentTxt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

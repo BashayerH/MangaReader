@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
 
 import com.tuwaiq.mangareader.register.infoUserCollection
@@ -130,10 +131,10 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logout -> {
-                   // var dilog = SignOutDialogFragment()
-                 //   dilog.show(supportFragmentManager, "signOutDialog")
-                    firebaseAuth.signOut()
-                    naveController.navigate(R.id.signPageFragment)
+                    var dilog = SignOutDialogFragment()
+                    dilog.show(supportFragmentManager, "signOutDialog")
+//                    firebaseAuth.signOut()
+//                    naveController.navigate(R.id.signPageFragment)
                     drawerLayout.close()
 
                     true
