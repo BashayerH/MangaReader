@@ -66,25 +66,38 @@ class SignPageFragment : Fragment() {
         }
 
         binding.registerTxt.setOnClickListener {
-            findNavController().navigate(R.id.action_signPageFragment_to_registerFragment)
+            naveController.navigate(R.id.action_signPageFragment_to_registerFragment)
 
 
         }
         return binding.root
     }
 
-
+// في مشكلة بالتسجيل 
     private fun validateUser() {
         //check if the user put correct pass and emil
 
         emil = binding.emilTxt.text.toString().trim()
         password = binding.passwordTxt.toString()
-        if (!Patterns.EMAIL_ADDRESS.matcher(data.emil).matches()) {
-            binding.emilTxt.error = "worng emil format"
-        } else if (TextUtils.isEmpty(data.password)) {
-            binding.passwordTxt.error = "enter password"
-        } else {
-            loginUser()
+        if(emil.isNotEmpty() && password.isNotEmpty()){
+           firebaseAuth.signInWithEmailAndPassword(emil,password)
+               .addOnSuccessListener {
+                   progressDialog.dismiss()
+                   //هنا حربط المعلومات بعدين مع البروفايل
+                   //why
+//                val firbaseUser = firebaseAuth.currentUser
+//                val emil = firbaseUser!!.email
+//                val displayName = userName
+                   naveController.navigate(R.id.action_registerFragment_to_mainPageFragment)
+               }
+               .addOnFailureListener {
+                   progressDialog.dismiss()
+                   Toast.makeText(context, "login failed ", Toast.LENGTH_LONG).show()
+               }
+          // loginUser()
+
+        }else{
+            Toast.makeText(context, "login somthing wrong ", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -96,11 +109,10 @@ class SignPageFragment : Fragment() {
                 progressDialog.dismiss()
                 //هنا حربط المعلومات بعدين مع البروفايل
                 //why
-                val firbaseUser = firebaseAuth.currentUser
-                val emil = firbaseUser!!.email
-                val displayName = userName
+//                val firbaseUser = firebaseAuth.currentUser
+//                val emil = firbaseUser!!.email
+//                val displayName = userName
                 naveController.navigate(R.id.action_registerFragment_to_mainPageFragment)
-
             }
             .addOnFailureListener {
                 progressDialog.dismiss()

@@ -1,6 +1,8 @@
 package com.tuwaiq.mangareader.mangaApi
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
@@ -8,13 +10,18 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.comments.CommentData
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import com.tuwaiq.mangareader.mangaApi.models.MangaResponse
+import com.tuwaiq.mangareader.modelsCatg.CatgMangData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val TAG = "MangaRepo"
-open class MangaRepo {
+open class MangaRepo() {
 
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     var infoUserCollection = Firebase.firestore.collection("InfoUser")
@@ -29,15 +36,14 @@ open class MangaRepo {
 
    private val mangaApi : ApiManga = retrofit.create(ApiManga::class.java)
 
+//    private val catgRetrofit:Retrofit =Retrofit.Builder()
+//        .baseUrl("https://grabr-dev.herokuapp.com/")
+//        .addConverterFactory(GsonConverterFactory.create())
+//        .build()
+//
+//    private val catgApi : ApiManga = catgRetrofit.create(ApiManga::class.java)
 
-//fun getFav()=CoroutineScope(Dispatchers.IO).launch {
-//    val querySnapshot = infoUserCollection.get().await()
-//
-//    for (doc in querySnapshot.documents){
-//        val person =doc.toObject(InfoUser::class.java)
-//    }
-//
-//}
+
 
 
 
@@ -70,16 +76,38 @@ open class MangaRepo {
     }
 
 
-    fun fetchManga ():LiveData<List<DataManga>> {
-        return liveData (Dispatchers.IO ) {
+  suspend fun fetchManga ():List<DataManga> {
+            var result:List<DataManga> = emptyList()
             val response = mangaApi.getManga()
             if (response.isSuccessful){
                 Log.e(TAG,"it's work ${response.body()}")
-                response.body()?.data?.let { emit(it) }
+               result = response.body()?.data!!
             }else{
                 Log.e(TAG,"there is an error ${response.errorBody()}")
             }
 
-        }
+        return result
     }
+
+//     fun searchManga(query:String): List<MangaResponse> {
+////        Log.e(TAG," from repo search ${searchManga(query)} ")
+//        return mangaApi.searchForManga(query)
+//
+//    }
+
+    suspend fun searchManga(query:String): List<DataManga>{
+
+               var result:List<DataManga> = emptyList()
+                val response = mangaApi.searchForManga(query)
+                if (response.isSuccessful){
+                    Log.e(TAG," from repo search ${response.body()}")
+                   result =  response.body()?.data ?: emptyList()
+                }else{
+
+                    Log.e(TAG,"there is an error in search from repo ${response.errorBody()}")
+                }
+       return result
+
+    }
+
 }

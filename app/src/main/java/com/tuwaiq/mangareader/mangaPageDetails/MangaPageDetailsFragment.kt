@@ -1,5 +1,9 @@
 package com.tuwaiq.mangareader.mangaPageDetails
 
+import android.app.DownloadManager
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.getSystemService
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -71,7 +77,7 @@ class MangaPageDetailsFragment : Fragment() {
             Log.d(TAG,"fav manga list $person")
 
         lifecycleScope.launch(Dispatchers.IO){
-    
+
     val infoUserFav:MutableList<String> = (infoUserCollection.document(Firebase.auth.currentUser!!.uid)
         .get()
         .await()
@@ -112,32 +118,38 @@ class MangaPageDetailsFragment : Fragment() {
              navController.navigate(action)
 
          }
-//        binding.favBtn.setOnClickListener {
-//            val firebaseUser = firebaseAuth.currentUser!!.uid
-//            val person = InfoUser(favManga= mutableListOf(currentManga!!.id))
-//
-//            infoUserCollection.document(firebaseUser)
-//                .update("favManga",person.favManga)
-//                //.set(person )
-//                .addOnSuccessListener {
-//                    Toast.makeText(context,"added to favorit sucess",Toast.LENGTH_LONG).show()
-//
-//                    Log.d(TAG,"fav manga list $infoUserCollection")
-//                }
-//
-//            // addToFav()
-//            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoritFragment(currentManga)
-//            navController.navigate(action)
-//            }
+
 
         binding.readBtn.setOnClickListener {
+        //    gotUrl(currentManga!!.latest_chapter_url)
 
-            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToReadWebVeiwFragment(currentManga)
-            navController.navigate(action)
+
+
+
+//            val url = currentManga?.latest_chapter_url
+//            val request = DownloadManager.Request(Uri.parse(url))
+//                .setTitle("File")
+//                .setDescription("Downloading....")
+//                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+//                .setAllowedOverMetered(true)
+//              //for download the file..
+//            val dm = activity?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+//            dm.enqueue(request)
+//
+//
+//            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToReadWebVeiwFragment(currentManga)
+//            navController.navigate(action)
         }
 
         return  binding.root
     }
+    private fun gotUrl(s:String){
+        val uri:Uri = Uri.parse(s)
+        val intent = Intent(Intent.ACTION_VIEW,uri)
+        startActivity(intent)
+
+    }
+
 
 
 //    fun addToFav(){

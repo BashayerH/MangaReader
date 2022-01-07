@@ -46,7 +46,11 @@
     <fragment
         android:id="@+id/uploadMangaFragment"
         android:name="com.tuwaiq.mangareader.UploadManga.UploadMangaFragment"
-        android:label="UploadManga" />
+        android:label="UploadManga" >
+        <action
+            android:id="@+id/action_uploadMangaFragment_to_readWebVeiwFragment"
+            app:destination="@id/readWebVeiwFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mangaPageDetailsFragment"
         android:name="com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragment"

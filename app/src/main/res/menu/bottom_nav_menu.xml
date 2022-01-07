@@ -12,8 +12,8 @@
         android:title="home" />
     <item
         android:id="@+id/downloadPageFragment"
-        android:icon="@drawable/ic_baseline_cloud_download_24"
-        android:title="download" />
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="search" />
 
 
 <!--    <item-->

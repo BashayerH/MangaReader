@@ -10,6 +10,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.FragmentSignOutDilogBinding
@@ -35,17 +36,32 @@ class SignOutDialogFragment :DialogFragment() {
         binding = FragmentSignOutDilogBinding.inflate(layoutInflater)
         naveController = findNavController()
 
+        MaterialAlertDialogBuilder(requireContext(),R.style.ThemeOverlay_AppCompat_Dialog_Alert)
+            .setTitle("Sign out!")
+            .setMessage("are you sure!!")
+//            .setNeutralButton(resources.getString(R.string.cancel)) { dialog, which ->
+//                // Respond to neutral button press
+//            }
+            .setNegativeButton("no by mistake") { dialog, which ->
 
-        binding.yesBtn.setOnClickListener {
-            firebaseAuth.signOut()
-            naveController.navigate(R.id.signPageFragment)
-            dismiss()
-        }
+                dialog.dismiss()
+            }
+            .setPositiveButton("yes i'am") { dialog, which ->
+                firebaseAuth.signOut()
+                naveController.navigate(R.id.signPageFragment)
+          dismiss()
+            }
+            .show()
 
-        binding.NoBtn.setOnClickListener {
-            View.INVISIBLE
-            dismiss()
-        }
+//        binding.yesBtn.setOnClickListener {
+//
+//
+//        }
+//
+//        binding.NoBtn.setOnClickListener {
+//            View.INVISIBLE
+//            dismiss()
+//        }
         return binding.root
     }
 

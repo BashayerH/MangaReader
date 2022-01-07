@@ -20,6 +20,9 @@ class FavoriteViewModel : ViewModel() {
     val liveDataFav:LiveData<List<DataManga>>
     get()= _favList
 
+
+
+
     fun fetchFav(currentUser: String):LiveData<List<DataManga>> = liveData {
 
         emit(repo.getFav(currentUser))

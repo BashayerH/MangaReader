@@ -35,7 +35,7 @@ class ReadWebVeiwFragment : Fragment() {
 
         val currentUrl = navArgs.currentManga
        // val url = binding.webView.get[currentUrl.latest_chapter_title]
-        val url = "https://grabr-dev.herokuapp.com/${currentUrl!!.latest_chapter_url}"
+        val url = navArgs.currentManga!!.latest_chapter_url
 
         binding.progressBar.max=100
         webView = WebView(requireContext())
@@ -52,7 +52,18 @@ class ReadWebVeiwFragment : Fragment() {
           }
        }
         webView.settings.javaScriptEnabled =true
-        webView.loadUrl(currentUrl.latest_chapter_url)
+        webView.loadUrl(url)
+//        webView.setPictureListener { webView, picture ->
+//            if (picture !=null){
+//                try {
+////                    bmp = pictureDrawable2Bitmap(new PictureDrawable(
+////                            picture))
+//
+//                }catch (Exption){
+//                Exption
+//                }
+//        }
+//        }
 
 
         return binding.root

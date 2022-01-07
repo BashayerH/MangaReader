@@ -23,6 +23,6 @@
     <color name="greenBlue">#A6B5C1</color>
     <color name="cadiGreen">#596465</color>
     <color name="isablin">#F7F3F0</color>
-
+<color name="sss">@drawable/splash</color>
 
 </resources>

@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
@@ -19,12 +21,15 @@ import androidx.navigation.navArgs
 import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.work.*
 import coil.load
 import com.tuwaiq.mangareader.R
+import com.tuwaiq.mangareader.WorkManager
 import com.tuwaiq.mangareader.databinding.MainPageFragmentBinding
 import com.tuwaiq.mangareader.databinding.MangaListItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import com.tuwaiq.mangareader.register.infoUserCollection
+import java.util.concurrent.TimeUnit
 
 
 class MainPageFragment : Fragment() {
@@ -42,8 +47,6 @@ class MainPageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
-
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,8 @@ class MainPageFragment : Fragment() {
     ): View? {
         binding = MainPageFragmentBinding.inflate(layoutInflater)
          binding.recyclerManga.getCarouselLayoutManager()
+     //   worker()
+        myWorkerManager()
 
       //  binding.mangaRv.layoutManager = GridLayoutManager(requireContext(),2)
         navController = findNavController()
@@ -60,12 +65,34 @@ class MainPageFragment : Fragment() {
         return binding.root
     }
 
+    private fun myWorkerManager() {
+        val constraint = Constraints.Builder()
+            .setRequiresCharging(false)
+            .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+            .setRequiresBatteryNotLow(true)
+            .build()
+        val myRequest = PeriodicWorkRequest.Builder(
+            WorkManager::class.java,
+            15,
+            TimeUnit.MINUTES
+        ).setConstraints(constraint)
+            .build()
+        context?.let {
+            androidx.work.WorkManager.getInstance(it)
+                .enqueueUniquePeriodicWork(
+                    "my_id",
+                    ExistingPeriodicWorkPolicy.KEEP,
+                    myRequest
+                )
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainPageViewModel.dataLiveData.observe(
+        mainPageViewModel.dataLiveData().observe(
             viewLifecycleOwner,
            Observer {
-                binding.recyclerManga.adapter = MangaAdapter(it)
+                   binding.recyclerManga.adapter = MangaAdapter(it)
             }
         )
     }
@@ -102,6 +129,16 @@ class MainPageFragment : Fragment() {
         override fun getItemCount(): Int = manga.size
 
 
+    }
+
+    private fun worker(){
+        val workRequest:WorkRequest = OneTimeWorkRequestBuilder<WorkManager>()
+            .build()
+
+        context?.let {
+            androidx.work.WorkManager.getInstance(it)
+                .enqueue(workRequest)
+        }
     }
 
 }
