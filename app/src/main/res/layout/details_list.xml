@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/geners"
+            android:layout_width="191dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="198dp"
+            android:hint="geners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/chCont"
+            android:layout_width="190dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginEnd="199dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/geners" />
+
+        <TextView
+            android:id="@+id/lastUp"
+            android:layout_width="188dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="22dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chCont" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="185dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="22dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lastUp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

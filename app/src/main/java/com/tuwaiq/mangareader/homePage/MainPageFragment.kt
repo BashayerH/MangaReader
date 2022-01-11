@@ -54,8 +54,7 @@ class MainPageFragment : Fragment() {
     ): View? {
         binding = MainPageFragmentBinding.inflate(layoutInflater)
          binding.recyclerManga.getCarouselLayoutManager()
-     //   worker()
-        myWorkerManager()
+
 
       //  binding.mangaRv.layoutManager = GridLayoutManager(requireContext(),2)
         navController = findNavController()
@@ -65,27 +64,7 @@ class MainPageFragment : Fragment() {
         return binding.root
     }
 
-    private fun myWorkerManager() {
-        val constraint = Constraints.Builder()
-            .setRequiresCharging(false)
-            .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
-            .setRequiresBatteryNotLow(true)
-            .build()
-        val myRequest = PeriodicWorkRequest.Builder(
-            WorkManager::class.java,
-            15,
-            TimeUnit.MINUTES
-        ).setConstraints(constraint)
-            .build()
-        context?.let {
-            androidx.work.WorkManager.getInstance(it)
-                .enqueueUniquePeriodicWork(
-                    "my_id",
-                    ExistingPeriodicWorkPolicy.KEEP,
-                    myRequest
-                )
-        }
-    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -131,14 +110,6 @@ class MainPageFragment : Fragment() {
 
     }
 
-    private fun worker(){
-        val workRequest:WorkRequest = OneTimeWorkRequestBuilder<WorkManager>()
-            .build()
 
-        context?.let {
-            androidx.work.WorkManager.getInstance(it)
-                .enqueue(workRequest)
-        }
-    }
 
 }

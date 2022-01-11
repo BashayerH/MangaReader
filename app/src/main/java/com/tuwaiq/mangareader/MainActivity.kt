@@ -3,13 +3,9 @@ package com.tuwaiq.mangareader
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
+import android.app.Activity
+import android.content.res.Configuration
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,46 +17,37 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
+import androidx.appcompat.app.AlertDialog
 
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
-import androidx.work.Constraints
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequestBuilder
+import androidx.preference.PreferenceManager.getDefaultSharedPreferences
+import androidx.work.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
-import com.tuwaiq.mangareader.comments.CommentsPageFragment
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
-import com.tuwaiq.mangareader.downlodPage.downloadPageFragment
-import com.tuwaiq.mangareader.homePage.MainPageFragment
 
 import com.tuwaiq.mangareader.register.infoUserCollection
+import java.util.*
 
-import java.net.URI
 import java.util.concurrent.TimeUnit
 
 
 //val firebaseStore = Firebase.firestore
 private const val TAG = "MainActivity"
 const val   Work_ID =   "1"
+const val KEY_LANG="key_lang"
 
 class MainActivity : AppCompatActivity() {
 
@@ -86,7 +73,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        loadLocate()
         super.onCreate(savedInstanceState)
         // for splash screen
         installSplashScreen().apply {
@@ -94,12 +84,6 @@ class MainActivity : AppCompatActivity() {
                 viewModelMain.isLoding.value
             }
         }
-
-        //for notifgation
-
-//        findViewById<Button>(R.id.addBtnComm).setOnClickListener {
-//            sendNotif()
-//        }
 
 
 
@@ -112,12 +96,6 @@ class MainActivity : AppCompatActivity() {
          bottomNav = binding.menuBottom
 
 
-
-//        val currentNavigationFragment: Fragment?
-//
-//        supportFragmentManager.findFragmentById(R.id.fragmentNavContainerView)
-//            ?.childFragmentManager
-//            ?.fragments
 
         naveController = findNavController(R.id.fragmentNavContainerView)
 
@@ -159,28 +137,27 @@ class MainActivity : AppCompatActivity() {
      //   onMenuItemClick()
 
 
+
     }
-//    private fun hideBottomAppBar() {
-//        binding.run {
-//            bottomNav.perf
-//            // Get a handle on the animator that hides the bottom app bar so we can wait to hide
-//            // the fab and bottom app bar until after it's exit animation finishes.
-//            bottomAppBar.animate().setListener(object : AnimatorListenerAdapter() {
-//                var isCanceled = false
-//                override fun onAnimationEnd(animation: Animator?) {
-//                    if (isCanceled) return
-//
-//                    // Hide the BottomAppBar to avoid it showing above the keyboard
-//                    // when composing a new email.
-//                    bottomAppBar.visibility = View.GONE
-//                    fab.visibility = View.INVISIBLE
-//                }
-//                override fun onAnimationCancel(animation: Animator?) {
-//                    isCanceled = true
-//                }
-//            })
-//        }
-//    }
+    private fun hideBottomAppBar() {
+        binding.run {
+
+            // Get a handle on the animator that hides the bottom app bar so we can wait to hide
+            // the fab and bottom app bar until after it's exit animation finishes.
+            bottomNav.animate().setListener(object : AnimatorListenerAdapter() {
+                var isCanceled = false
+                override fun onAnimationEnd(animation: Animator?) {
+                    if (isCanceled) return
+                    // Hide the BottomAppBar to avoid it showing above the keyboard
+                    // when composing a new email.
+                    bottomNav.visibility = View.GONE
+                }
+                override fun onAnimationCancel(animation: Animator?) {
+                    isCanceled = true
+                }
+            })
+        }
+    }
 
 
 
@@ -203,18 +180,16 @@ class MainActivity : AppCompatActivity() {
                     binding.appBar.visibility = View.GONE
                     binding.menuBottom.visibility =View.GONE
                 }
-             //   R.id.downloadPageFragment ->
+                R.id.searchPageFragment ->{
+                   //a binding.menuBottom.visibility =View.GONE
+                    hideBottomAppBar()
+                }
+
             }
         }
     }
 
-    fun onMenuItemClick(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            R.id.downloadPageFragment ->findViewById<Button>(R.id.addBtnComm)
 
-        }
-        return true
-    }
 
     private fun toSearch() {
 
@@ -223,13 +198,14 @@ class MainActivity : AppCompatActivity() {
         }
 //        val direction = downloadPageFragment
 
-        naveController.navigate(R.id.downloadPageFragment)
+        naveController.navigate(R.id.searchPageFragment)
     }
 
     private fun drawerOnClick() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logout -> {
+
 
                    var dilog = SignOutDialogFragment()
                     dilog.show(supportFragmentManager, "signOutDialog")
@@ -249,11 +225,53 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.close()
                     true
                 }
+                R.id.lang -> {
+                    val langList = arrayOf("English","عربي")
+                    val builder = AlertDialog.Builder(this)
+                    builder.setTitle("change the language!")
+
+                    builder.setSingleChoiceItems(langList,-1) { dialog, lang ->
+                        if (lang ==0){
+                            setLocate("en")
+                          //  recreate()
+                        }
+                        else if (lang ==1){
+                            setLocate("ar")
+                           // recreate()
+                        }
+                        dialog.dismiss()
+                    }
+                    val creatD = builder.create()
+                    creatD.show()
+
+                    true
+                }
 
                 else -> true
             }
         }
         updateUserName()
+    }
+
+    private fun setLocate(lang: String) {
+        val local =Locale(lang)
+        Locale.setDefault(local)
+        val config = Configuration()
+        config.locale =local
+        baseContext.resources.updateConfiguration(config,baseContext.resources.displayMetrics)
+
+        getDefaultSharedPreferences(baseContext).edit()
+
+        .putString("language",lang)
+            .apply()
+    }
+    private fun loadLocate(){
+
+        val sharedP=  getDefaultSharedPreferences(baseContext)
+        val language =sharedP.getString(KEY_LANG,"")
+        if (language != null) {
+            setLocate(language)
+        }
     }
 
     private fun updateUserName() {
@@ -290,28 +308,7 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.fragmentNavContainerView)
         return NavigationUI.navigateUp(navController, drawerLayout)
     }
-//     fun creatNotif(){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            val name = "Notification Title"
-//            val descriptionText = "description"
-//            val importance = NotificationManager.IMPORTANCE_DEFAULT
-//            val channel = NotificationChannel(CHANNEL_ID,name,importance).apply {
-//                description = descriptionText
-//            }
-//            val notifManager : NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//            notifManager.createNotificationChannel(channel)
-//
-//        }
-//    }
-//     fun sendNotif(){
-//        val builder = NotificationCompat.Builder(this,CHANNEL_ID)
-//            .setContentTitle("test")
-//            .setContentText("just for show")
-//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//        with(NotificationManagerCompat.from(this)){
-//            notify(notificationId,builder.build())
-//        }
-//    }
+
 
      fun showNotification() {
          val constraints = Constraints.Builder()

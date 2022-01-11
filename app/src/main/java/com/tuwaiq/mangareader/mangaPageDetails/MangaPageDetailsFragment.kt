@@ -13,10 +13,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.getSystemService
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +31,9 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.InfoUser
+import com.tuwaiq.mangareader.databinding.DetailsListBinding
 import com.tuwaiq.mangareader.databinding.MangaPageDetailsFragmentBinding
+import com.tuwaiq.mangareader.databinding.SearchItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -49,65 +54,56 @@ class MangaPageDetailsFragment : Fragment() {
     private lateinit var navController: NavController
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = MangaPageDetailsFragmentBinding.inflate(layoutInflater)
-         val currentManga = navArgs.currentManga
+      //  binding.detailRV.layoutManager = LinearLayoutManager(context)
+        val currentManga = navArgs.currentManga
+        val mangaId = currentManga!!.id
         navController = findNavController()
         //provide the information for selected manga
 
-        if (currentManga != null) {
-            binding.nameTxtView.text = currentManga.title
-            binding.imageViewDetil.load(currentManga.img)
-           // binding.    lastChTxtView2.setText(currentManga.latest_chapter_title)
-            binding.descTxtView.setText(currentManga.description)
-        }else{
-            Toast.makeText(requireContext(),"some thing wrong in load information", Toast.LENGTH_LONG).show()
+        binding.nameTxtView.text = currentManga.title
+        binding.imageViewDetil.load(currentManga.img)
+
+        binding.decsBtn.setOnClickListener {
+                val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga)
+            navController.navigate(action)
         }
 
         binding.favBtn.setOnClickListener{
-            val firebaseUser = firebaseAuth.currentUser!!.uid
-            val person= (DataManga(currentManga!!.id,currentManga.title,currentManga.img))
-            Log.d(TAG,"fav manga list $person")
 
-        lifecycleScope.launch(Dispatchers.IO){
+                val firebaseUser = firebaseAuth.currentUser!!.uid
+                val person = (DataManga(currentManga!!.id, currentManga.title, currentManga.img))
+                Log.d(TAG, "fav manga list $person")
 
-    val infoUserFav:MutableList<String> = (infoUserCollection.document(Firebase.auth.currentUser!!.uid)
-        .get()
-        .await()
-        .toObject(InfoUser::class.java)
-        ?.favManga ?: emptyList()) as MutableList<String>
-    if (!infoUserFav.contains(person.id)){
-        infoUserFav+= person.id
-    }
+                lifecycleScope.launch(Dispatchers.IO) {
 
-    infoUserCollection.document(firebaseUser).update("favManga",infoUserFav)
-          //  mangaFavCollection.document(firebaseUser).set(person)
-               val idee=     mangaFavCollection.document().id
-            mangaFavCollection.document(idee).set(person)
+                    val infoUserFav: MutableList<String> =
+                        (infoUserCollection.document(Firebase.auth.currentUser!!.uid)
+                            .get()
+                            .await()
+                            .toObject(InfoUser::class.java)
+                            ?.favManga ?: emptyList()) as MutableList<String>
+                    if (!infoUserFav.contains(person.id)) {
+                        infoUserFav += person.id
+                    }
 
-
-//دي حتنفع للكومنت
-//        .addOnSuccessListener {
-//                    Toast.makeText(context,"added to favorite success",Toast.LENGTH_LONG).show()
-//                    Log.d(TAG,"fav manga list $mangaFavCollection")
-//                }
-}
+                    infoUserCollection.document(firebaseUser).update("favManga", infoUserFav)
+                    //  mangaFavCollection.document(firebaseUser).set(person)
+                    val idee = mangaFavCollection.document().id
+                    mangaFavCollection.document(idee).set(person)
 
 
+            }
 
-//            mangaFavCollection
-//                .document(UUID.randomUUID().toString())
-//                //.update("favManga",person)
-//                .set(person)
-//
-//
+
             // addToFav()
             val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoritFragment(currentManga)
             navController.navigate(action)
@@ -119,11 +115,8 @@ class MangaPageDetailsFragment : Fragment() {
 
          }
 
-
-        binding.readBtn.setOnClickListener {
-        //    gotUrl(currentManga!!.latest_chapter_url)
-
-
+        binding.lastChBtn.setOnClickListener {
+            gotUrl(currentManga!!.latest_chapter_url)
 
 
 //            val url = currentManga?.latest_chapter_url
@@ -143,33 +136,57 @@ class MangaPageDetailsFragment : Fragment() {
 
         return  binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+//
+//        pageDetailsViewModel.detailsData().observe(
+//            viewLifecycleOwner, {
+//                binding.detailRV.adapter = DetailsAdapter(it)
+//                Log.d(TAG," current manga id ${navArgs.currentManga!!.id}")
+//            }
+//        )
+
+    }
+
+
+    private inner class DetailsAdapter(val dit: List<DataManga>) :
+        RecyclerView.Adapter<DetailsAdapter.DetailsHloder>() {
+        inner class DetailsHloder(val binding: DetailsListBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailsHloder {
+            val binding = DetailsListBinding.inflate(
+                layoutInflater,
+                parent,
+                false
+            )
+            return DetailsHloder(binding)
+        }
+
+        override fun onBindViewHolder(holder: DetailsHloder, position: Int) {
+            val query = dit[position]
+            with(holder) {
+
+                binding.geners.setText(query.genres)
+                binding.lastUp.setText(query.last_updated)
+                binding.rating.setText(query.rating.toString())
+
+
+            }
+        }
+
+        override fun getItemCount(): Int = dit.size
+    }
+
     private fun gotUrl(s:String){
         val uri:Uri = Uri.parse(s)
         val intent = Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)
 
     }
-
-
-
-//    fun addToFav(){
-//        val firebaseUser = firebaseAuth.currentUser!!.uid
-//        val person = InfoUser(favManga = mutableListOf(currentManga!!.id))
-//
-//        infoUserCollection.document(firebaseUser)
-//          //  .update("favManga", person.favManga  )
-//            .addSnapshotListener{value,error ->
-//                if (value != null) {
-//                    value.data?.forEach{
-//                        when(it.key){
-//                            "favManga" -> person.favManga.text(it.value.toString())
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
-
 
 
 }

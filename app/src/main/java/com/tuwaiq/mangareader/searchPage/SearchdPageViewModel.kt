@@ -1,11 +1,8 @@
-package com.tuwaiq.mangareader.downlodPage
+package com.tuwaiq.mangareader.searchPage
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.tuwaiq.mangareader.mangaApi.MangaRepo
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 private const val TAG = "DownloadPageViewModel"
 class DownloadPageViewModel : ViewModel() {
@@ -24,7 +21,6 @@ class DownloadPageViewModel : ViewModel() {
         searchTermLiveData.value = query
         }
     fun mangaSearch():LiveData<List<DataManga>>{
-
 
         val tempLiveData:MutableLiveData<List<DataManga>> = MutableLiveData()
 

@@ -42,6 +42,7 @@ class SignPageFragment : Fragment() {
         firebaseAuth = FirebaseAuth.getInstance()
        // firebaseAuth = Firebase.auth
         checkUser()
+
     }
 
 
@@ -124,7 +125,7 @@ class SignPageFragment : Fragment() {
     val firebaseUser =firebaseAuth.currentUser
         Log.d("fromSignPage", "fff $firebaseUser")
     if (firebaseUser != null) {
-        //كيف اسوي انتقال مباشر??
+
             val action = SignPageFragmentDirections.actionSignPageFragmentToMainPageFragment()
         findNavController().navigate(action)
 

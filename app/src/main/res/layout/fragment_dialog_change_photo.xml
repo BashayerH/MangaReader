@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="146dp"
-            android:text="select Img"
+            android:text="@string/select_img"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageSelect" />
 
@@ -38,7 +38,7 @@
             android:layout_width="128dp"
             android:layout_height="48dp"
             android:layout_marginEnd="144dp"
-            android:text="Done!"
+            android:text="@string/done"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/selectPhoto" />
     </androidx.constraintlayout.widget.ConstraintLayout>

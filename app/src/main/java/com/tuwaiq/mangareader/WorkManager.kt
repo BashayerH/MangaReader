@@ -34,12 +34,12 @@ class WorkManager(context: Context,workerParameters: WorkerParameters):Worker(co
         val  notifChannel = NotificationChannel("1","channel",NotificationManager.IMPORTANCE_DEFAULT)
         notifiManager.createNotificationChannel(notifChannel)
 
-        val builder = NotificationCompat.Builder(applicationContext,"cahnnel_id")
-            .setContentTitle("just test")
-            .setContentText("try to notify")
+        val builder = NotificationCompat.Builder(applicationContext,"1")
+            .setContentTitle("Manga Reader")
+            .setContentText("welcome to the manga world")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
-            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setSmallIcon(R.drawable.icon_manga)
 
         with(NotificationManagerCompat.from(applicationContext)){
             notify(1,builder.build())
@@ -50,11 +50,6 @@ class WorkManager(context: Context,workerParameters: WorkerParameters):Worker(co
 
     }
 
-    companion object{
-        const val  NOTIFICATION_ACTION = "com.tuwaiq.photosgallery.SHOW_NOTIFICATION"
-        const val  NOTIFICATION_PERM = "com.tuwaiq.photogallery.PRIVATE"
-        const val NOTIFICATION_KEY = "NOTIFICATION_KEY"
-    }
 
 
 }

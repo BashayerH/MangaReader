@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frameLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Dialogs.DescrDialogFragment">
+
+        <Button
+            android:id="@+id/buttonDone"
+            android:layout_width="136dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="137dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="138dp"
+            android:layout_marginBottom="373dp"
+            android:text="@string/done"
+            android:textColor="@color/darkGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descTxtView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/descTxtView"
+            android:layout_width="286dp"
+            android:layout_height="149dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="111dp"
+            android:layout_marginEnd="36dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/the_story"
+            android:isScrollContainer="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

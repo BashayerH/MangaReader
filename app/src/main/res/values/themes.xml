@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/overWite</item>
         <item name="colorPrimaryVariant">@color/darkGreen</item>
         <item name="colorOnPrimary">@color/isablin</item>
+        <item name="android:textColor">@color/isablin</item>
+        <item name="android:textColorPrimary">@color/isablin</item>
+        <item name="itemTextColor">@color/isablin</item>
+        <item name="android:textColorAlertDialogListItem">@color/darkGreen</item>
+        <item name="textOutlineColor">@color/isablin</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/mornGreen</item>

@@ -36,28 +36,15 @@ open class MangaRepo() {
 
    private val mangaApi : ApiManga = retrofit.create(ApiManga::class.java)
 
-//    private val catgRetrofit:Retrofit =Retrofit.Builder()
-//        .baseUrl("https://grabr-dev.herokuapp.com/")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    private val catgApi : ApiManga = catgRetrofit.create(ApiManga::class.java)
-
-
-
-
 
     suspend fun getFav(currentUser: String): List<DataManga> {
           var x = mangaFavCollection
-               // .whereEqualTo("favManga",person.favManga)
+
                 .get()
                 .await()
               .toObjects(DataManga::class.java)
-
-     //   }
         return x
    }
-
 
 
 
@@ -108,6 +95,18 @@ open class MangaRepo() {
                 }
        return result
 
+    }
+
+    suspend fun detailsManga(idM:String):List<DataManga>{
+        var details:List<DataManga> = emptyList()
+        val response = mangaApi.detailsManga(idM)
+        if (response.isSuccessful){
+            Log.e(TAG,"it's work with details ${response.body()}")
+            details = response.body()?.data!!
+        }else{
+            Log.e(TAG,"there is an error with details in repo ${response.errorBody()!!.string()}")
+        }
+        return details
     }
 
 }

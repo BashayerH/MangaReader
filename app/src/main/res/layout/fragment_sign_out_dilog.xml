@@ -18,7 +18,7 @@
             android:layout_width="269dp"
             android:layout_height="69dp"
             android:layout_marginTop="104dp"
-            android:text="Are you sure !!"
+            android:text="@string/are_you_sure"
             android:textAlignment="center"
             android:textColor="#121111"
             android:textSize="24sp"
@@ -30,24 +30,24 @@
         <Button
             android:id="@+id/yesBtn"
             android:layout_width="121dp"
-            android:layout_height="47dp"
+            android:layout_height="48dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="48dp"
-            android:text="yes I'm"
+            android:text="@string/yes_i_m"
             android:textColor="@color/darkGreen"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.951"
-            app:layout_constraintStart_toEndOf="@+id/NoBtn"
+            app:layout_constraintHorizontal_bias="0.851"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
             android:id="@+id/NoBtn"
-            android:layout_width="169dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="32dp"
+            android:layout_width="142dp"
+            android:layout_height="48dp"
             android:layout_marginTop="24dp"
-            android:text="No,by mistake"
+            android:text="@string/no_by_mistake"
             android:textColor="@color/darkGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.144"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
     </androidx.constraintlayout.widget.ConstraintLayout>

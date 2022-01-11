@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/signPageFragment"
         android:name="com.tuwaiq.mangareader.signUpPage.SignPageFragment"
-        android:label="sign_page_fragment"
+        android:label="sign page"
         tools:layout="@layout/sign_page_fragment">
         <action
             android:id="@+id/action_signPageFragment_to_registerFragment"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/uploadMangaFragment"
         android:name="com.tuwaiq.mangareader.UploadManga.UploadMangaFragment"
-        android:label="UploadManga" >
+        android:label="Upload" >
         <action
             android:id="@+id/action_uploadMangaFragment_to_readWebVeiwFragment"
             app:destination="@id/readWebVeiwFragment" />
@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/mangaPageDetailsFragment"
         android:name="com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragment"
-        android:label="MangaPageDetailsFragment" >
+        android:label="MangaDetails" >
         <argument
     android:name="currentManga"
     app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
@@ -69,17 +69,20 @@
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_commentsPageFragment"
             app:destination="@id/commentsPageFragment" />
+        <action
+            android:id="@+id/action_mangaPageDetailsFragment_to_descrDialogFragment"
+            app:destination="@id/descrDialogFragment" />
 
     </fragment>
     <fragment
-        android:id="@+id/downloadPageFragment"
-        android:name="com.tuwaiq.mangareader.downlodPage.downloadPageFragment"
-        android:label="download_page_fragment"
-        tools:layout="@layout/download_page_fragment" />
+        android:id="@+id/searchPageFragment"
+        android:name="com.tuwaiq.mangareader.searchPage.downloadPageFragment"
+        android:label="Search"
+        tools:layout="@layout/search_page_fragment" />
     <fragment
         android:id="@+id/FavoriteFragment"
         android:name="com.tuwaiq.mangareader.favorite.FavoriteFragment"
-        android:label="FavoritFragment" >
+        android:label="Favorit" >
 
         <argument
             android:name="currentManga"
@@ -105,7 +108,7 @@
     <fragment
         android:id="@+id/commentsPageFragment"
         android:name="com.tuwaiq.mangareader.comments.CommentsPageFragment"
-        android:label="comments_page_fragment"
+        android:label="comments"
         tools:layout="@layout/comments_page_fragment" >
         <action
             android:id="@+id/action_commentsPageFragment_to_addCommentDioalogFragment"
@@ -119,13 +122,24 @@
     <dialog
         android:id="@+id/addCommentDioalogFragment"
         android:name="com.tuwaiq.mangareader.Dialogs.AddCommentDioalogFragment"
-        android:label="AddCommentDioalogFragment" >
+        android:label="comments" >
 
         <argument
             android:name="currentManga"
             app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
             app:nullable="true"
             android:defaultValue="@null" />
+    </dialog>
+    <dialog
+        android:id="@+id/descrDialogFragment"
+        android:name="com.tuwaiq.mangareader.Dialogs.DescrDialogFragment"
+        android:label="DescrDialogFragment" >
+
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null"/>
     </dialog>
 
 

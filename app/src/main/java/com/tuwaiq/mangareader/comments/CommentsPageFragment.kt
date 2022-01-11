@@ -3,10 +3,12 @@ package com.tuwaiq.mangareader.comments
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +32,7 @@ import com.tuwaiq.mangareader.databinding.CommentsPageFragmentBinding
 import com.tuwaiq.mangareader.databinding.FavoritItemBinding
 import com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragmentArgs
 
+private const val TAG = "CommentsPageFragment"
 class CommentsPageFragment : Fragment() {
 
 
@@ -43,6 +46,7 @@ class CommentsPageFragment : Fragment() {
     val firebaseUser = firebaseAuth.currentUser!!.uid
     var commentCollection = Firebase.firestore.collection("CommentManga")
     private lateinit var navController: NavController
+
 
 
     override fun onCreateView(
@@ -63,14 +67,11 @@ class CommentsPageFragment : Fragment() {
         }
         binding.addComment.setOnClickListener {
 
-          //  val dioalog = AddCommentDioalogFragment()
-           // dioalog.navArgs<CommentsPageFragmentArgs>()
-          //  navArgs.currentManga!!.id
-          //  fragmentManager?.let { it1 -> dioalog.show(it1,"add comment") }
             val action = CommentsPageFragmentDirections.actionCommentsPageFragmentToAddCommentDioalogFragment(navArgs.currentManga)
            navController.navigate(action)
 
         }
+
 
         return binding.root
     }
@@ -101,12 +102,12 @@ class CommentsPageFragment : Fragment() {
             val com:CommentData =list[position]
             with(holder){
                 if (navArgs.currentManga!!.id == com.mangaId){
+
                     binding.userName.setText(com.userEmail)
                     binding.commentDecs.setText(com.msg)
                     binding.time.setText(com.time.toDate().toString())
                     binding.commentItem.visibility = View.VISIBLE
                 }else{
-                    //binding.commentItem.visibility = View.INVISIBLE
                         //دا الكود يخلي الايتم مخفي
                    // binding.commentItem.removeView(View(context))
                     binding.commentItem.removeAllViewsInLayout()
@@ -119,46 +120,7 @@ class CommentsPageFragment : Fragment() {
 
         override fun getItemCount(): Int= list.size
     }
-    private fun showNotification() {
-        val  intent = Intent(context, MainActivity::class.java).apply {
-            flags= Intent.FLAG_ACTIVITY_NEW_TASK or
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent = PendingIntent.getActivity(
-            context,0,intent,0
-        )
-        val builder = context?.let {
-            NotificationCompat.Builder(it,"cahnnel_id")
-                .setContentTitle("test for comment")
-                .setContentText("some one comment on your comment")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-        }
 
-        with(NotificationManagerCompat.from(requireContext())){
-            notify(0,builder!!.build())
-            creatFunChannel()
-        }
-
-    }
-
-    private fun creatFunChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val name =getString(R.string.app_name)
-            val descriptionTxt = getString(R.string.app_name)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("CHANNEL_ID",name,importance).apply {
-                description =descriptionTxt
-            }
-           //  val notificationManager:NotificationManager =
-
-
-
-
-        }
-    }
 
 
 

@@ -5,15 +5,15 @@
         android:id="@+id/FavoriteFragment"
         android:icon="@drawable/ic_baseline_star_24"
         android:iconTint="@color/blue_cry"
-        android:title="favorit" />
+        android:title="@string/favorite" />
     <item
         android:icon="@drawable/ic_baseline_home_24"
         android:id="@+id/mainPageFragment"
-        android:title="home" />
+        android:title="@string/home" />
     <item
-        android:id="@+id/downloadPageFragment"
+        android:id="@+id/searchPageFragment"
         android:icon="@drawable/ic_baseline_search_24"
-        android:title="search" />
+        android:title="@string/search" />
 
 
 <!--    <item-->

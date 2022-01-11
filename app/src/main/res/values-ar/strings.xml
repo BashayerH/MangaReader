@@ -21,4 +21,23 @@
     <string name="manga_title">عنوان المانجا</string>
     <string name="most_popular_manga">المانجا الأكثر شهرة</string>
     <string name="change_photo">تغيير صورة العرض</string>
+    <string name="open">مفتوح</string>
+    <string name="close">مغلق</string>
+    <string name="next">التالي</string>
+    <string name="previous">قبل</string>
+    <string name="textview">القصة</string>
+    <string name="story">القصة</string>
+    <string name="comment">التعليقات</string>
+    <string name="to_read_last_ch">قراءة آخر فصل</string>
+    <string name="are_you_sure">هل انت متأكد</string>
+    <string name="yes_i_m">اجل</string>
+    <string name="no_by_mistake">لا، بالخطأ</string>
+    <string name="done">انتهى</string>
+    <string name="select_img">اختيار صورة</string>
+    <string name="what_do_you_think_about_this_maga">مارأيك بالقصة؟</string>
+    <string name="cancel">الغاء</string>
+    <string name="add">إضافة</string>
+    <string name="title">العنوان</string>
+    <string name="time">الوقت</string>
+    <string name="write_a_comment">اكتب تعليقا</string>
 </resources>

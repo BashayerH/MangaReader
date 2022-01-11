@@ -19,8 +19,8 @@ interface ApiManga {
      suspend fun searchForManga(@Query("keyword") keyword:String): Response<MangaResponse>
 
 
-    @GET("api/mangakakalot/popular?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
-    suspend fun getpopular():Response<MangaResponse>
+    @GET("api/mangakakalot/details?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
+    suspend fun detailsManga(@Query("id") id:String): Response<MangaResponse>
 }
 
 
