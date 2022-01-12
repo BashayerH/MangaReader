@@ -11,6 +11,6 @@ data class CommentData(
     val msg:String="",
     val rating:Float=0F,
     val time: Timestamp = Timestamp(Date(System.currentTimeMillis())),
-    var expand:Boolean =false
+    var imgP:String =""
 
 )

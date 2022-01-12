@@ -1,6 +1,7 @@
 package com.tuwaiq.mangareader.mangaApi
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
@@ -8,6 +9,7 @@ import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.tuwaiq.mangareader.comments.CommentData
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import com.tuwaiq.mangareader.mangaApi.models.MangaResponse
@@ -27,6 +29,7 @@ open class MangaRepo() {
     var infoUserCollection = Firebase.firestore.collection("InfoUser")
     var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
     var commentCollection = Firebase.firestore.collection("CommentManga")
+    var imgFile = FirebaseStorage.getInstance().getReference("/photos/${firebaseAuth.currentUser?.uid}")
 
 
     private val retrofit:Retrofit = Retrofit.Builder()
@@ -107,6 +110,20 @@ open class MangaRepo() {
             Log.e(TAG,"there is an error with details in repo ${response.errorBody()!!.string()}")
         }
         return details
+    }
+
+    suspend fun changePhoto(imgUri:Uri){
+
+        val ref = imgFile.putFile(imgUri).await()
+
+        if (ref.task.isComplete){
+            val upload = ref.storage.downloadUrl.await()
+            infoUserCollection.document(firebaseAuth.currentUser!!.uid)
+                .update("imgProfile",upload.toString())
+
+
+        }
+
     }
 
 }

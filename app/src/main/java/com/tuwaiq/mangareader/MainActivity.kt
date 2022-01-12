@@ -4,15 +4,16 @@ package com.tuwaiq.mangareader
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.util.Log.*
-import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -30,6 +31,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import androidx.work.*
+import coil.load
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.transition.MaterialSharedAxis
@@ -39,6 +41,7 @@ import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
 
 import com.tuwaiq.mangareader.register.infoUserCollection
+import java.lang.Exception
 import java.util.*
 
 import java.util.concurrent.TimeUnit
@@ -48,6 +51,7 @@ import java.util.concurrent.TimeUnit
 private const val TAG = "MainActivity"
 const val   Work_ID =   "1"
 const val KEY_LANG="key_lang"
+const val PHOTO =0
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var titleChange: TextView
     private lateinit var naveController: NavController
 
-//    private  var chngePhoto:TextView = findViewById(R.id.changePhoto)
+
     private lateinit var imgUri: Uri
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var appBar: AppBarConfiguration
@@ -99,18 +103,18 @@ class MainActivity : AppCompatActivity() {
 
         naveController = findNavController(R.id.fragmentNavContainerView)
 
-//        chngePhoto= findViewById(R.id.changePhoto)
+        //to change img profile
+//        val v =  findViewById<TextView>(R.id.changePhoto).setOnClickListener {
+//            var dilog = DialogChangePhotoFragment()
+//            dilog.show(supportFragmentManager, "PhotoDialog")
+//        }
 
         //to connect img on app bar with drawer
         imgViewList.setOnClickListener {
             drawerLayout.openDrawer(GravityCompat.START)
         }
-        //to change img profile
-//        chngePhoto.setOnClickListener {
-//            // var dilog = SignOutDialogFragment()
-//            //   dilog.show(supportFragmentManager, "signOutDialog")
-//           // changeImg()
-//        }
+
+
         //to change app bar title
         titleChange = binding.titleAppBar
         //to connect home img on app bar with home fragment
@@ -206,11 +210,9 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.logout -> {
 
-
                    var dilog = SignOutDialogFragment()
                     dilog.show(supportFragmentManager, "signOutDialog")
-//                    firebaseAuth.signOut()
-//                    naveController.navigate(R.id.signPageFragment)
+
                     drawerLayout.close()
 
                     true
@@ -225,6 +227,11 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.close()
                     true
                 }
+                R.id.changePhoto ->{
+                    toChange()
+                    true
+                }
+
                 R.id.lang -> {
                     val langList = arrayOf("English","عربي")
                     val builder = AlertDialog.Builder(this)
@@ -252,6 +259,37 @@ class MainActivity : AppCompatActivity() {
         }
         updateUserName()
     }
+
+    private fun toChange() {
+
+
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PHOTO)
+    }
+
+
+     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+            super.onActivityResult(requestCode, resultCode, data)
+            if (requestCode == PHOTO && resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    val imgP = findViewById<ImageView>(R.id.navHeaderImg)
+                    val  imageUri:Uri = data.data!!
+                    try {
+                        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(
+                           contentResolver, imageUri
+                        )
+                        imgP.setImageBitmap(bitmap)
+                        viewModelMain.uploadPhoto(imageUri)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+          return
+        }
+
+
 
     private fun setLocate(lang: String) {
         val local =Locale(lang)
@@ -292,6 +330,8 @@ class MainActivity : AppCompatActivity() {
                                         it.value.toString()
                                     )
                                     "emil" -> findViewById<TextView>(R.id.emilProfil).setText(it.value.toString())
+                                    "imgProfile" -> findViewById<ImageView>(R.id.navHeaderImg).load(it.value.toString())
+
                                 }
 
 
@@ -327,39 +367,7 @@ class MainActivity : AppCompatActivity() {
      }
 
 
-//        val builder = this?.let {
-//            NotificationCompat.Builder(it,"cahnnel_id")
-//                .setContentTitle("test for comment")
-//                .setContentText("some one comment on your comment")
-//                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-//                .setAutoCancel(true)
-//              //  .setContentIntent(pendingIntent)
-//                .setSmallIcon(R.mipmap.ic_launcher_round)
-//        }
-//
-//        with(NotificationManagerCompat.from(this)){
-//            notify(0,builder!!.build())
-//            creatFunChannel()
-//        }
-//
-//    }
-//
-//     fun creatFunChannel(){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            val name =getString(R.string.app_name)
-//            val descriptionTxt = getString(R.string.app_name)
-//            val importance = NotificationManager.IMPORTANCE_DEFAULT
-//            val channel = NotificationChannel("CHANNEL_ID",name,importance).apply {
-//                description =descriptionTxt
-//            }
-//              val notificationManager:NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//          notificationManager.createNotificationChannel(channel)
-//
-//
-//
-//
-//        }
-//    }
+
 
 
 }

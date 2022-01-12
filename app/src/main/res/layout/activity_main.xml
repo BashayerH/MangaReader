@@ -89,6 +89,7 @@
             android:background="@color/darkGreen"
             app:headerLayout="@layout/header"
             app:itemTextColor="@color/isablin"
+            app:itemIconTint="@color/greenBlue"
             app:menu="@menu/drawer_nav_menu" />
         <!--        <include layout="@layout/drawble_layout"-->
         <!--            />-->

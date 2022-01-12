@@ -21,10 +21,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.Dialogs.AddCommentDioalogFragment
+import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.MainActivity
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.CommentItemBinding
@@ -100,10 +102,13 @@ class CommentsPageFragment : Fragment() {
 
         override fun onBindViewHolder(holder: CommentHolder, position: Int) {
             val com:CommentData =list[position]
+            val imgN = InfoUser(imgProfile = firebaseUser)
+
             with(holder){
                 if (navArgs.currentManga!!.id == com.mangaId){
 
                     binding.userName.setText(com.userEmail)
+                    binding.imageView4.load(imgN.imgProfile)
                     binding.commentDecs.setText(com.msg)
                     binding.time.setText(com.time.toDate().toString())
                     binding.commentItem.visibility = View.VISIBLE

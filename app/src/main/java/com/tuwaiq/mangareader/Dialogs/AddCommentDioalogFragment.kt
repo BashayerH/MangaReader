@@ -43,6 +43,7 @@ class AddCommentDioalogFragment : DialogFragment() {
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     val firebaseUser = firebaseAuth.currentUser!!.uid
     var commentCollection = Firebase.firestore.collection("CommentManga")
+    var infoUserCollection = Firebase.firestore.collection("InfoUser")
    private val navArgs by navArgs <CommentsPageFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +60,8 @@ class AddCommentDioalogFragment : DialogFragment() {
         binding= FragmentAddCommentDioalogBinding.inflate(layoutInflater)
         binding.addBtnComm.setOnClickListener {
             val manga=DataManga()
-        val comment=CommentData(userEmail = firebaseAuth.currentUser!!.email.toString(),userId = firebaseAuth.currentUser!!.uid
-            ,msg = binding.addCommentTxt.text.toString(),mangaId =navArgs.currentManga!!.id,time = Timestamp.now())
+        val comment=CommentData(userEmail = firebaseAuth.currentUser!!.email.toString(),userId = firebaseUser
+            ,msg = binding.addCommentTxt.text.toString(),mangaId =navArgs.currentManga!!.id,time = Timestamp.now(),imgP = "")
 
             val coomId = commentCollection.document().id
       commentCollection.document(coomId).set(comment)

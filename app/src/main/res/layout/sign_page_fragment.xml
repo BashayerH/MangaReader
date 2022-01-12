@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="46dp"
-            android:layout_height="35dp"
+            android:layout_width="62dp"
+            android:layout_height="36dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="74dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,16 +42,17 @@
 
         <TextView
             android:id="@+id/login_btn"
-            android:layout_width="77dp"
-            android:layout_height="33dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="89dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="116dp"
             android:fontFamily="@font/advent_pro_semibold"
             android:text="@string/log_in"
             android:textAlignment="center"
             android:textColor="#D8C5C5"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_txt" />
 
         <EditText
@@ -59,13 +60,15 @@
             android:layout_width="334dp"
             android:layout_height="71dp"
 
+            android:layout_marginStart="8dp"
             android:layout_marginTop="177dp"
-            android:layout_marginEnd="37dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/text_filed"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="10sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -73,10 +76,12 @@
             android:id="@+id/password_toggle"
             android:layout_width="336dp"
             android:layout_height="69dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="37dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/text_filed"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emil_txt"
             app:passwordToggleEnabled="true">
 

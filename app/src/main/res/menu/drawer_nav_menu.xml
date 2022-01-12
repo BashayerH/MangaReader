@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:icon="@drawable/ic_baseline_add_a_photo_24"
+        android:title="change profile photo"
+        android:id="@+id/changePhoto"/>
     <group>
 
 <item
@@ -26,12 +30,13 @@
             android:title="@string/language"/>
 
     </group>
-<item android:title="@string/logout">
+<item android:title=" ">
     <menu>
 
         <item
             android:id="@+id/logout"
             android:icon="@drawable/ic_baseline_login_24"
+            android:iconTint="@color/greenBlue"
             android:title="@string/logout"
 
             />

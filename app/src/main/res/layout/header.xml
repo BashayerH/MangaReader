@@ -11,16 +11,17 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/navHeaderImg"
-        android:layout_width="88dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="82dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
         android:padding="6dp"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/Circle"
         app:srcCompat="@drawable/chick" />
 
     <TextView
@@ -37,25 +38,17 @@
 
     <TextView
         android:id="@+id/emilProfil"
-        android:layout_width="116dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="39dp"
         android:hint="@string/email"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/changePhoto"
-        app:layout_constraintTop_toBottomOf="@+id/profileName" />
-
-    <TextView
-        android:id="@+id/changePhoto"
-        android:layout_width="102dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:text="@string/change_photo"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navHeaderImg" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/navHeaderImg"
+        app:layout_constraintTop_toBottomOf="@+id/profileName"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

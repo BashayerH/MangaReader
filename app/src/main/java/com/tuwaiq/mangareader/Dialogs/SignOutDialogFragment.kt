@@ -41,6 +41,7 @@ class SignOutDialogFragment :DialogFragment() {
         }
         binding.yesBtn.setOnClickListener {
             firebaseAuth.signOut()
+            naveController.navigate(R.id.signPageFragment)
             dismiss()
         }
 

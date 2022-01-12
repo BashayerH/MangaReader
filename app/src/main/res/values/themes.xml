@@ -5,16 +5,18 @@
         <item name="colorPrimary">@color/overWite</item>
         <item name="colorPrimaryVariant">@color/darkGreen</item>
         <item name="colorOnPrimary">@color/isablin</item>
-        <item name="android:textColor">@color/isablin</item>
-        <item name="android:textColorPrimary">@color/isablin</item>
-        <item name="itemTextColor">@color/isablin</item>
-        <item name="android:textColorAlertDialogListItem">@color/darkGreen</item>
-        <item name="textOutlineColor">@color/isablin</item>
+        <item name="android:textColor">@color/blue_yendo</item>
+        <item name="android:textColorPrimary">@color/blue_yendo</item>
+
+        <item name="fontFamily">@font/shadows_into_light_font</item>
+
+
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/mornGreen</item>
         <item name="colorSecondaryVariant">@color/blue_cry</item>
         <item name="colorOnSecondary">@color/cadiGreen</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
