@@ -77,43 +77,67 @@ class MangaPageDetailsFragment : Fragment() {
             navController.navigate(action)
         }
 
-        binding.favBtn.setOnClickListener{
+        binding.favBtn.apply {
+            this. setOnClickListener {
+                animate().apply {
+                    duration =500
+                    translationXBy(-1000f)
+                    // rotationYBy(360f)
+                }.withEndAction{
+                    val firebaseUser = firebaseAuth.currentUser!!.uid
+                    val person =
+                        (DataManga(currentManga!!.id, currentManga.title, currentManga.img))
+                    Log.d(TAG, "fav manga list $person")
 
-                val firebaseUser = firebaseAuth.currentUser!!.uid
-                val person = (DataManga(currentManga!!.id, currentManga.title, currentManga.img))
-                Log.d(TAG, "fav manga list $person")
+                    lifecycleScope.launch(Dispatchers.IO) {
 
-                lifecycleScope.launch(Dispatchers.IO) {
+                        val infoUserFav: MutableList<String> =
+                            (infoUserCollection.document(Firebase.auth.currentUser!!.uid)
+                                .get()
+                                .await()
+                                .toObject(InfoUser::class.java)
+                                ?.favManga ?: emptyList()) as MutableList<String>
+                        if (!infoUserFav.contains(person.id)) {
+                            infoUserFav += person.id
+                        }
 
-                    val infoUserFav: MutableList<String> =
-                        (infoUserCollection.document(Firebase.auth.currentUser!!.uid)
-                            .get()
-                            .await()
-                            .toObject(InfoUser::class.java)
-                            ?.favManga ?: emptyList()) as MutableList<String>
-                    if (!infoUserFav.contains(person.id)) {
-                        infoUserFav += person.id
+                        infoUserCollection.document(firebaseUser).update("favManga", infoUserFav)
+                        //  mangaFavCollection.document(firebaseUser).set(person)
+                        val idee = mangaFavCollection.document().id
+                        mangaFavCollection.document(idee).set(person)
+                            .addOnSuccessListener {
+                                Toast.makeText(context,"added to favorite",Toast.LENGTH_LONG).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(context,"you don't have an account",Toast.LENGTH_LONG).show()
+                            }
                     }
 
-                    infoUserCollection.document(firebaseUser).update("favManga", infoUserFav)
-                    //  mangaFavCollection.document(firebaseUser).set(person)
-                    val idee = mangaFavCollection.document().id
-                    mangaFavCollection.document(idee).set(person)
+                    val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoritFragment(currentManga)
+                    navController.navigate(action)
+                }
+        }}
 
 
+
+
+
+        binding.commentBtn.apply {
+           this. setOnClickListener {
+                animate().apply {
+                    duration =500
+                    translationXBy(-1000f)
+                   // rotationYBy(360f)
+                }.withEndAction {
+                    val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToCommentsPageFragment(currentManga = navArgs.currentManga)
+
+                    navController.navigate(action)
+
+                }
             }
 
-
-            // addToFav()
-            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoritFragment(currentManga)
-            navController.navigate(action)
         }
 
-         binding.commentBtn.setOnClickListener {
-             val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToCommentsPageFragment(currentManga = navArgs.currentManga)
-             navController.navigate(action)
-
-         }
 
         binding.lastChBtn.setOnClickListener {
             gotUrl(currentManga!!.latest_chapter_url)

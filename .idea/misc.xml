@@ -38,10 +38,10 @@
         <entry key="app/src/main/res/layout/download_page_fragment.xml" value="0.165" />
         <entry key="app/src/main/res/layout/drawble_layout.xml" value="0.14722222222222223" />
         <entry key="app/src/main/res/layout/favorit_fragment.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/favorit_item.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/favorit_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_add_comment_dioalog.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/fragment_change_photo_dilog.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_descr_dialog.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_descr_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dialog_change_photo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.18541666666666667" />
@@ -54,7 +54,7 @@
         <entry key="app/src/main/res/layout/manga_page_details_fragment.xml" value="0.1424731182795699" />
         <entry key="app/src/main/res/layout/read_web_veiw_fragment.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/search_item.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/search_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/search_page_fragment.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/sighn_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/sign_out_dialog.xml" value="0.1875" />
@@ -66,7 +66,7 @@
         <entry key="app/src/main/res/layout/uploud_item_fragment.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/uploud_page_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/drawer_nav_menu.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/drawer_nav_menu.xml" value="0.2832369942196532" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.165" />
       </map>

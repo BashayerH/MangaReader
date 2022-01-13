@@ -17,8 +17,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60sp"
-            android:paddingTop="60sp">
+            android:layout_marginTop="30sp"
+            android:paddingTop="15sp">
 
 
             <View
@@ -46,18 +46,18 @@
                 android:layout_width="137dp"
                 android:layout_height="196dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="100dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/name_txt_view"
-                android:layout_width="387dp"
-                android:layout_height="43dp"
+                android:layout_width="385dp"
+                android:layout_height="66dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"

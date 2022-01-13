@@ -15,6 +15,7 @@ import androidx.core.os.bundleOf
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navArgs
@@ -83,6 +84,7 @@ class MainPageFragment : Fragment() {
 
             binding.mangaTitle.text = currentManga.title
             binding.mangaImg.setOnClickListener {
+                val extras = FragmentNavigatorExtras()
                 val action = MainPageFragmentDirections.actionMainPageFragmentToMangaPageDetailsFragment(currentManga)
                 navController.navigate(action)
 //

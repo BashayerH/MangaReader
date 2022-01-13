@@ -3,7 +3,7 @@
 
     <item
         android:icon="@drawable/ic_baseline_add_a_photo_24"
-        android:title="change profile photo"
+        android:title="@string/change_profile_photo"
         android:id="@+id/changePhoto"/>
     <group>
 

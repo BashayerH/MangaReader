@@ -29,9 +29,10 @@
     <solid
         android:color="#a6b5c1"/>
     <corners
-        android:topLeftRadius="0sp"
+
         android:topRightRadius="20sp"
-        android:bottomLeftRadius="0sp"
+        android:bottomLeftRadius="20sp"
+        android:topLeftRadius="20sp"
         android:bottomRightRadius="20sp"
 
         />

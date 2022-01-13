@@ -108,10 +108,14 @@ class CommentsPageFragment : Fragment() {
                 if (navArgs.currentManga!!.id == com.mangaId){
 
                     binding.userName.setText(com.userEmail)
-                    binding.imageView4.load(imgN.imgProfile)
+                 //   binding.imageView4.load(imgN.imgProfile)
                     binding.commentDecs.setText(com.msg)
                     binding.time.setText(com.time.toDate().toString())
                     binding.commentItem.visibility = View.VISIBLE
+                    commentViewModel.getPhoto().observe(this@CommentsPageFragment){
+                        binding.imageView4.load(it)
+                    }
+
                 }else{
                         //دا الكود يخلي الايتم مخفي
                    // binding.commentItem.removeView(View(context))

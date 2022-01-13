@@ -9,5 +9,9 @@
 
         <item name="cornerSize">50%</item>
     </style>
+    <style name="roundF">
+
+        <item name="cornerSize">20%</item>
+    </style>
 
 </resources>

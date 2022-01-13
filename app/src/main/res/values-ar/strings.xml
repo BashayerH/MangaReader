@@ -40,4 +40,8 @@
     <string name="title">العنوان</string>
     <string name="time">الوقت</string>
     <string name="write_a_comment">اكتب تعليقا</string>
+    <string name="language">اللغة</string>
+    <string name="search">بحث</string>
+    <string name="home">الرئيسية</string>
+    <string name="change_profile_photo">تغيير صورة العرض</string>
 </resources>

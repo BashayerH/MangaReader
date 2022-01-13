@@ -166,6 +166,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
     private fun navDistnation() {
         naveController.addOnDestinationChangedListener { _, destnation, _ ->
             titleChange.text = destnation.label
@@ -228,7 +229,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.changePhoto ->{
-                    toChange()
+                    toChangePhoto()
                     true
                 }
 
@@ -260,7 +261,7 @@ class MainActivity : AppCompatActivity() {
         updateUserName()
     }
 
-    private fun toChange() {
+    private fun toChangePhoto() {
 
 
         val intent = Intent(Intent.ACTION_GET_CONTENT)

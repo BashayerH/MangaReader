@@ -9,8 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout9"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:context=".Dialogs.DescrDialogFragment">
 
         <Button
@@ -32,15 +32,18 @@
 
         <TextView
             android:id="@+id/descTxtView"
-            android:layout_width="286dp"
-            android:layout_height="149dp"
+            android:layout_width="318dp"
+            android:layout_height="318dp"
             android:layout_marginStart="38dp"
             android:layout_marginTop="111dp"
             android:layout_marginEnd="36dp"
             android:ems="10"
+            android:fontFamily="sans-serif-thin"
             android:gravity="start|top"
             android:hint="@string/the_story"
             android:isScrollContainer="true"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

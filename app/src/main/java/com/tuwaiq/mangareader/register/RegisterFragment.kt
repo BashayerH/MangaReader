@@ -74,7 +74,7 @@ class RegisterFragment : Fragment() {
         }
 
     }
-    private fun validateRegister() {
+     fun validateRegister() {
             userName = binding.userNameETRg.text.toString()
              emil = binding.emilTxtRg.text.toString().trim()
               password =  binding.passRg.text.toString()

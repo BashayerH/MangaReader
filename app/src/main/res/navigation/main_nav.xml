@@ -17,10 +17,12 @@
             app:destination="@id/signPageFragment" />
         <action
             android:id="@+id/action_mainPageFragment_to_uploadMangaFragment"
-            app:destination="@id/uploadMangaFragment" />
+            app:destination="@id/uploadMangaFragment"
+            app:enterAnim="@anim/anim_btw_nav" />
         <action
             android:id="@+id/action_mainPageFragment_to_mangaPageDetailsFragment"
-            app:destination="@id/mangaPageDetailsFragment" />
+            app:destination="@id/mangaPageDetailsFragment"
+            app:enterAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -62,13 +64,15 @@
             android:defaultValue="@null" />
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_favoritFragment"
-            app:destination="@id/FavoriteFragment" />
+            app:destination="@id/FavoriteFragment"
+            app:enterAnim="@anim/slide_to_right" />
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_readWebVeiwFragment"
             app:destination="@id/readWebVeiwFragment" />
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_commentsPageFragment"
-            app:destination="@id/commentsPageFragment" />
+            app:destination="@id/commentsPageFragment"
+            app:enterAnim="@anim/slide_in_up" />
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_descrDialogFragment"
             app:destination="@id/descrDialogFragment" />

@@ -14,8 +14,8 @@
         tools:context=".searchPage.downloadPageFragment">
 
         <ScrollView
-            android:layout_width="410dp"
-            android:layout_height="546dp"
+            android:layout_width="402dp"
+            android:layout_height="523dp"
             android:layout_marginTop="9dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="60dp"
@@ -29,8 +29,9 @@
                 android:id="@+id/searchRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10sp"
                 android:layout_marginTop="60dp"
-                android:padding="10sp" />
+                android:padding="15sp" />
         </ScrollView>
 
         <SearchView
