@@ -10,12 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 
 import com.tuwaiq.mangareader.databinding.SearchItemBinding
 import com.tuwaiq.mangareader.databinding.SearchPageFragmentBinding
+import com.tuwaiq.mangareader.homePage.MainPageFragmentDirections
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import java.util.*
 import kotlin.collections.ArrayList
@@ -29,6 +33,7 @@ class downloadPageFragment : Fragment() {
     lateinit var binding: SearchPageFragmentBinding
     lateinit var filterArrayList: ArrayList<DataManga>
     lateinit var orginalList: ArrayList<DataManga>
+    private lateinit var navController: NavController
 
 
 
@@ -38,9 +43,10 @@ class downloadPageFragment : Fragment() {
     ): View? {
 
         binding = SearchPageFragmentBinding.inflate(layoutInflater)
-        binding.searchRV.layoutManager = GridLayoutManager(context, 2)
+        binding.searchRV.layoutManager = GridLayoutManager(context, 3)
         filterArrayList = ArrayList()
         orginalList = ArrayList()
+        navController = findNavController()
 
 
 
@@ -110,6 +116,16 @@ class downloadPageFragment : Fragment() {
         RecyclerView.Adapter<SearchAdapter.SearchHolder>() {
         inner class SearchHolder(val binding: SearchItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
+            fun bind(currentManga:DataManga){
+                binding.imgSearch.load(currentManga.img)
+                binding.titleSearch.setText(currentManga.title)
+                binding.imgSearch.setOnClickListener {
+                    val extras = FragmentNavigatorExtras(binding.imgSearch to "sec_img")
+                    val action = downloadPageFragmentDirections.actionSearchPageFragmentToMangaPageDetailsFragment(currentManga)
+                    navController.navigate(action,extras)
+                }
+
+            }
 
         }
 
@@ -123,11 +139,14 @@ class downloadPageFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: SearchHolder, position: Int) {
-            val query = list[position]
-            with(holder) {
-                binding.imgSearch.load(query.img)
-                binding.titleSearch.setText(query.title)
-            }
+
+            val currentManga = list[position]
+            holder.bind(currentManga )
+//            with(holder) {
+//                binding.imgSearch.load(query.img)
+//                binding.titleSearch.setText(query.title)
+//
+//            }
         }
 
         override fun getItemCount(): Int = list.size

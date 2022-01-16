@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
+import com.tuwaiq.mangareader.mangaApi.models.DataManga
 
 private const val TAG = "RegisterFragment"
  var infoUserCollection = Firebase.firestore.collection("InfoUser")
@@ -90,7 +91,7 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun registerUser(emil: String, password: String,username:String) {
+    private fun registerUser(emil: String, password: String, username:String) {
         firebaseAuth.createUserWithEmailAndPassword(emil,password)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -98,14 +99,15 @@ class RegisterFragment : Fragment() {
 
                    val person =InfoUser(
                  binding.userNameETRg.text.toString()
-                       , binding.emilTxtRg.text.toString()
-                   )
+                       , binding.emilTxtRg.text.toString())
                     infoUserCollection.document(firebaseUser?.uid!!)
                         .set(person).addOnSuccessListener {
                         showToast("the info is saved")
+                            Log.d(TAG,"info $it")
                     }
 
                     showToast("the account is create ")
+
                     val action = RegisterFragmentDirections.actionRegisterFragmentToMainPageFragment()
                     naveController.navigate(action)
                 }else{

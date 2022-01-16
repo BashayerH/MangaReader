@@ -6,6 +6,7 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_draw.xml" value="0.2015625" />
         <entry key="app/src/main/res/drawable/botton_corn.xml" value="0.125" />
+        <entry key="app/src/main/res/drawable/ctr_pg.xml" value="0.2015625" />
         <entry key="app/src/main/res/drawable/down_corn.xml" value="0.14629629629629629" />
         <entry key="app/src/main/res/drawable/fav_checked.xml" value="0.20520833333333333" />
         <entry key="app/src/main/res/drawable/fav_uncheck.xml" value="0.2015625" />
@@ -27,7 +28,7 @@
         <entry key="app/src/main/res/drawable/up_corn.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/drawable/up_small_corn.xml" value="0.14629629629629629" />
         <entry key="app/src/main/res/layout-v31/upload_manga_fragment.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main_login.xml" value="0.125" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/change_photo_fragment.xml" value="0.1175925925925926" />
@@ -49,16 +50,16 @@
         <entry key="app/src/main/res/layout/fragment_sign_out_dilog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/header.xml" value="0.335" />
         <entry key="app/src/main/res/layout/main_page_fragment.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/manga_list_item.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/manga_list_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/manga_page_details.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/manga_page_details_fragment.xml" value="0.1424731182795699" />
+        <entry key="app/src/main/res/layout/manga_page_details_fragment.xml" value="0.11235955056179775" />
         <entry key="app/src/main/res/layout/read_web_veiw_fragment.xml" value="0.23703703703703705" />
         <entry key="app/src/main/res/layout/register_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/search_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/search_page_fragment.xml" value="0.14402173913043478" />
         <entry key="app/src/main/res/layout/sighn_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/sign_out_dialog.xml" value="0.1875" />
-        <entry key="app/src/main/res/layout/sign_page_fragment.xml" value="0.18996415770609318" />
+        <entry key="app/src/main/res/layout/sign_page_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/splash.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/text_field.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/tset_pdf.xml" value="0.1875" />
@@ -66,7 +67,7 @@
         <entry key="app/src/main/res/layout/uploud_item_fragment.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/uploud_page_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
-        <entry key="app/src/main/res/menu/drawer_nav_menu.xml" value="0.2832369942196532" />
+        <entry key="app/src/main/res/menu/drawer_nav_menu.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.10462962962962963" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.165" />
       </map>

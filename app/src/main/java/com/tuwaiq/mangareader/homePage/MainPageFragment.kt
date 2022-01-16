@@ -80,13 +80,15 @@ class MainPageFragment : Fragment() {
     private inner class MangaHolder(val binding: MangaListItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(currentManga:DataManga){
 
-            binding.mangaImg.load(currentManga.img)
 
+            binding.mangaImg.apply {
+               this. load(currentManga.img)
+            }
             binding.mangaTitle.text = currentManga.title
             binding.mangaImg.setOnClickListener {
-                val extras = FragmentNavigatorExtras()
+                val extras = FragmentNavigatorExtras(binding.mangaImg to "sec_img")
                 val action = MainPageFragmentDirections.actionMainPageFragmentToMangaPageDetailsFragment(currentManga)
-                navController.navigate(action)
+                navController.navigate(action,extras)
 //
             }
         }

@@ -8,7 +8,7 @@
         <item name="android:textColor">@color/blue_yendo</item>
         <item name="android:textColorPrimary">@color/blue_yendo</item>
 
-        <item name="fontFamily">@font/shadows_into_light_font</item>
+        <item name="fontFamily">@font/mochiy_regular</item>
 
 
 
@@ -25,6 +25,12 @@
     <style name="Theme.MangaReader.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="expandBar" parent="Theme.MangaReader">
+        <item name="android:textSize">0sp</item>
+        <item name="android:textColor">@color/isablin</item>
+
     </style>
 
 </resources>

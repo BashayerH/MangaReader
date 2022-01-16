@@ -37,20 +37,20 @@ class ReadWebVeiwFragment : Fragment() {
        // val url = binding.webView.get[currentUrl.latest_chapter_title]
         val url = navArgs.currentManga!!.latest_chapter_url
 
-        binding.progressBar.max=100
+      //  binding.progressBar.max=100
         webView = WebView(requireContext())
-
-      webView.webChromeClient = object :WebChromeClient(){
-          override fun onProgressChanged(view: WebView?, newProgress: Int) {
-              super.onProgressChanged(view, newProgress)
-              if (newProgress==100){
-                  binding.progressBar.visibility= View.GONE
-              }else{
-                  binding.progressBar.visibility =View.VISIBLE
-              }
-
-          }
-       }
+//
+//      webView.webChromeClient = object :WebChromeClient(){
+//          override fun onProgressChanged(view: WebView?, newProgress: Int) {
+//              super.onProgressChanged(view, newProgress)
+//              if (newProgress==100){
+//                  binding.progressBar.visibility= View.GONE
+//              }else{
+//                  binding.progressBar.visibility =View.VISIBLE
+//              }
+//
+//          }
+//       }
         webView.settings.javaScriptEnabled =true
         webView.loadUrl(url)
 //        webView.setPictureListener { webView, picture ->

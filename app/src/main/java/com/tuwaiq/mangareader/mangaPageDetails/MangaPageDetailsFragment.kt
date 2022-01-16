@@ -45,6 +45,7 @@ class MangaPageDetailsFragment : Fragment() {
     val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
     private val navArgs by navArgs <MangaPageDetailsFragmentArgs>()
+
      var infoUserCollection = Firebase.firestore.collection("InfoUser")
     var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
 
@@ -63,14 +64,14 @@ class MangaPageDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = MangaPageDetailsFragmentBinding.inflate(layoutInflater)
-      //  binding.detailRV.layoutManager = LinearLayoutManager(context)
+       // binding.detRV.layoutManager = LinearLayoutManager(context)
         val currentManga = navArgs.currentManga
         val mangaId = currentManga!!.id
         navController = findNavController()
         //provide the information for selected manga
-
-        binding.nameTxtView.text = currentManga.title
-        binding.imageViewDetil.load(currentManga.img)
+        binding.mangaName.title = currentManga.title
+      //  binding.nameTxtView.text = currentManga.title
+        binding.ImgD.load(currentManga.img)
 
         binding.decsBtn.setOnClickListener {
                 val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga)
@@ -142,7 +143,7 @@ class MangaPageDetailsFragment : Fragment() {
         binding.lastChBtn.setOnClickListener {
             gotUrl(currentManga!!.latest_chapter_url)
 
-
+//
 //            val url = currentManga?.latest_chapter_url
 //            val request = DownloadManager.Request(Uri.parse(url))
 //                .setTitle("File")
@@ -163,10 +164,10 @@ class MangaPageDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//
+
 //        pageDetailsViewModel.detailsData().observe(
 //            viewLifecycleOwner, {
-//                binding.detailRV.adapter = DetailsAdapter(it)
+//                binding.detRV.adapter = DetailsAdapter(it)
 //                Log.d(TAG," current manga id ${navArgs.currentManga!!.id}")
 //            }
 //        )

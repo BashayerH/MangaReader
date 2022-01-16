@@ -19,6 +19,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.alpha
 
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.GravityCompat
@@ -32,6 +33,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import androidx.work.*
 import coil.load
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.transition.MaterialSharedAxis
@@ -72,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var imgUri: Uri
-    private lateinit var bottomNav: BottomNavigationView
+    private lateinit var bottomNav: MeowBottomNavigation
     private lateinit var appBar: AppBarConfiguration
     private lateinit var drawerToggle: ActionBarDrawerToggle
 
@@ -122,7 +124,14 @@ class MainActivity : AppCompatActivity() {
 
         //to show bottom navigation
         appBar = AppBarConfiguration(naveController.graph, drawerLayout)
-        bottomNav.setupWithNavController(naveController)
+      //  bottomNav.setupWithNavController(naveController)
+
+        bottomNav.show(1)
+        bottomNav.add(MeowBottomNavigation.Model(0,R.drawable.ic_baseline_star_24))
+        bottomNav.add(MeowBottomNavigation.Model(1,R.drawable.ic_baseline_home_24))
+        bottomNav.add(MeowBottomNavigation.Model(2,R.drawable.ic_baseline_search_24))
+
+        bottomNavOnClick()
 
 
         //to show navigation draw
@@ -143,6 +152,25 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    private fun bottomNavOnClick() {
+        bottomNav.setOnClickMenuListener {
+            when(it.id){
+                0 ->{
+                    naveController.navigate(R.id.FavoriteFragment)
+
+                }
+                1 ->{
+                    naveController.navigate(R.id.mainPageFragment)
+                }
+                2 ->{
+                    naveController.navigate(R.id.searchPageFragment)
+                    bottomNav.visibility = View.INVISIBLE
+                }
+            }
+        }
+    }
+
     private fun hideBottomAppBar() {
         binding.run {
 
@@ -154,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                     if (isCanceled) return
                     // Hide the BottomAppBar to avoid it showing above the keyboard
                     // when composing a new email.
-                    bottomNav.visibility = View.GONE
+                    bottomNav.visibility = View.INVISIBLE
                 }
                 override fun onAnimationCancel(animation: Animator?) {
                     isCanceled = true
@@ -174,20 +202,22 @@ class MainActivity : AppCompatActivity() {
             when (destnation.id) {
                 R.id.mainPageFragment -> {
                     binding.appBar.visibility = View.VISIBLE
-                    binding.menuBottom.visibility=View.VISIBLE
+                   bottomNav.visibility=View.VISIBLE
                 }
                 R.id.signPageFragment -> {
                     binding.appBar.visibility = View.GONE
                     //  binding.navDrawXml.visibility =View.GONE
-                    binding.menuBottom.visibility=View.GONE
+                    bottomNav.visibility=View.GONE
                 }
                 R.id.registerFragment -> {
                     binding.appBar.visibility = View.GONE
-                    binding.menuBottom.visibility =View.GONE
+                    bottomNav.visibility =View.GONE
                 }
                 R.id.searchPageFragment ->{
-                   //a binding.menuBottom.visibility =View.GONE
                     hideBottomAppBar()
+                   // bottomNav.visibility = View.FOCUS_DOWN.alpha
+                  //  bottomNav.overScrollMode
+
                 }
 
             }
@@ -220,6 +250,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.FavoriteFragment -> {
                     naveController.navigate(R.id.FavoriteFragment)
+                    drawerLayout.close()
+                    true
+                }
+                R.id.mainPageFragment -> {
+                    naveController.navigate(R.id.mainPageFragment)
                     drawerLayout.close()
                     true
                 }

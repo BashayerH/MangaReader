@@ -21,8 +21,7 @@
             app:enterAnim="@anim/anim_btw_nav" />
         <action
             android:id="@+id/action_mainPageFragment_to_mangaPageDetailsFragment"
-            app:destination="@id/mangaPageDetailsFragment"
-            app:enterAnim="@anim/fade_out" />
+            app:destination="@id/mangaPageDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -82,7 +81,11 @@
         android:id="@+id/searchPageFragment"
         android:name="com.tuwaiq.mangareader.searchPage.downloadPageFragment"
         android:label="Search"
-        tools:layout="@layout/search_page_fragment" />
+        tools:layout="@layout/search_page_fragment" >
+        <action
+            android:id="@+id/action_searchPageFragment_to_mangaPageDetailsFragment"
+            app:destination="@id/mangaPageDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/FavoriteFragment"
         android:name="com.tuwaiq.mangareader.favorite.FavoriteFragment"

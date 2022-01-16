@@ -66,16 +66,23 @@
             android:layout_height="match_parent"
             tools:context=".MainActivity">
 
-            <com.google.android.material.bottomnavigation.BottomNavigationView
+            <com.etebarian.meowbottomnavigation.MeowBottomNavigation
                 android:id="@+id/menu_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/darkGreen"
                 app:itemTextColor="@color/blue_alice"
+
+                app:mbn_countBackgroundColor="@color/darkGreen"
+                app:mbn_countTextColor="#000"
+                app:mbn_defaultIconColor="#909090"
+                app:mbn_rippleColor="@color/grayGreen"
+                app:mbn_selectedIconColor="@color/darkGreen"
+                app:mbn_shadowColor="#5000"
+                app:mbn_backgroundBottomColor="@color/isablin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:menu="@menu/bottom_nav_menu" />
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -88,10 +95,11 @@
             android:layout_gravity="start"
             android:background="@color/darkGreen"
             app:headerLayout="@layout/header"
-            app:itemTextColor="@color/isablin"
+            app:itemTextColor="@color/chaines_red"
             app:itemIconTint="@color/greenBlue"
             app:menu="@menu/drawer_nav_menu" />
         <!--        <include layout="@layout/drawble_layout"-->
         <!--            />-->
     </androidx.drawerlayout.widget.DrawerLayout>
+
 </layout>

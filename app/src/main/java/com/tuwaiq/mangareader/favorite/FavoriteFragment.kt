@@ -79,7 +79,7 @@ class FavoriteFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 when(direction){
                     ItemTouchHelper.LEFT ->{
-
+                      viewHolder.itemView.visibility = View.GONE
                     }
                 }
                 val position = viewHolder.adapterPosition
@@ -122,16 +122,20 @@ class FavoriteFragment : Fragment() {
             with(holder) {
                     binding.favTitle.setText(currentFav.title)
                     binding.favImg.load(currentFav.img)
+                    binding.checkBoxFav.apply {
+                        setOnCheckedChangeListener { _, isChecked ->
+                            if (isChecked) {
+                                this.animate().apply {
+                                    duration =500
+                                    translationZBy(1000f)
+                                }.withEndAction {
+                                    deleteFav(currentFav)
+                                }
 
-
-                binding.checkBoxFav.setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-
-
-                        deleteFav(currentFav)
-
+                            }
+                        }
                     }
-                }
+
                 binding.itemFav.setOnClickListener {
                     val action =
                         FavoriteFragmentDirections.actionFavoriteFragmentToMangaPageDetailsFragment(
