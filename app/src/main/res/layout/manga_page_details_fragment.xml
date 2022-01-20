@@ -61,7 +61,7 @@
                 android:layout_width="313dp"
                 android:layout_height="45dp"
                 android:layout_marginTop="30dp"
-                android:text="TextView"
+                android:text="@string/manga_name"
                 android:textAlignment="center"
                 android:textColor="@color/blue_alice"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,9 @@
                 android:layout_height="31dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
-                android:text="rating"
+                android:text="@string/rating"
+                android:textAlignment="center"
+                android:textColor="@color/chaines_red"
                 app:layout_constraintStart_toEndOf="@+id/imageView11"
                 app:layout_constraintTop_toBottomOf="@+id/decB" />
 
@@ -139,7 +141,7 @@
                 android:layout_marginStart="31dp"
                 android:layout_marginTop="27dp"
                 android:layout_marginEnd="19dp"
-                android:text="status"
+                android:text="@string/status"
                 app:layout_constraintEnd_toStartOf="@+id/statusView2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -151,7 +153,9 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="14dp"
                 android:layout_marginEnd="36dp"
-                android:textColor="@color/blue_alice"
+                android:text="@string/unavailable"
+                android:textAlignment="center"
+                android:textColor="@color/chaines_red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/status3"
                 app:layout_constraintTop_toBottomOf="@+id/divider2" />
@@ -163,7 +167,7 @@
                 android:layout_marginStart="31dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:text="last update"
+                android:text="@string/last_update"
                 app:layout_constraintEnd_toStartOf="@+id/last_upV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/status3" />
@@ -175,7 +179,9 @@
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
-                android:textColor="@color/blue_alice"
+                android:text="@string/unavailable"
+                android:textAlignment="center"
+                android:textColor="@color/chaines_red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/lastUp"
                 app:layout_constraintTop_toBottomOf="@+id/statusView2" />
@@ -186,7 +192,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="24dp"
-                android:text="genres"
+                android:text="@string/genres"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lastUp" />
 
@@ -200,20 +206,23 @@
                 android:ems="10"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
-                android:textColor="@color/blue_alice"
+                android:text= "@string/unavailable"
+                android:textAlignment="center"
+                android:textColor="@color/chaines_red"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/genres"
                 app:layout_constraintTop_toBottomOf="@+id/last_upV" />
 
             <Button
                 android:id="@+id/last_ch"
-                android:layout_width="170dp"
-                android:layout_height="52dp"
+                android:layout_width="182dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="44dp"
-                android:layout_marginEnd="14dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/last_chapter"
                 android:textColor="@color/grayGreen"
+                android:textSize="13dp"
                 app:layout_constraintEnd_toStartOf="@+id/chapter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/genresView" />
@@ -225,7 +234,7 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="44dp"
                 android:layout_marginEnd="36dp"
-                android:text="chapters"
+                android:text="@string/chapters"
                 android:textColor="@color/grayGreen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/last_ch"

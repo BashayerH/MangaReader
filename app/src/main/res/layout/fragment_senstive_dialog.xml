@@ -14,16 +14,16 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="337dp"
-            android:layout_height="102dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="252dp"
             android:layout_marginEnd="32dp"
             android:text="@string/senstive_material"
             android:textAlignment="center"
             android:textColor="#121111"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

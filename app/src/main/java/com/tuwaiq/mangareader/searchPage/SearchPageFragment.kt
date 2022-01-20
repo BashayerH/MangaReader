@@ -104,7 +104,9 @@ class downloadPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         downViewModel.mangaSearch().observe(
             viewLifecycleOwner, Observer {
+
                 binding.searchRV.adapter = SearchAdapter(it)
+
 
                 val sharedP = context?.getSharedPreferences("search",Context.MODE_PRIVATE)
                 val saveSearch = sharedP?.edit()
@@ -126,11 +128,12 @@ class downloadPageFragment : Fragment() {
             fun bind(currentManga:DataManga){
                 binding.titleSearch.setText(currentManga.title)
                 binding.imgSearch.apply {
-                    if (currentManga.img.isNotEmpty()){
-                        this. load(currentManga.img)
-                    }else{
+                    if (currentManga.img.isNullOrBlank()){
                         this.load(R.raw.error)
                         Toast.makeText(context,"SORRY, try again later!!", Toast.LENGTH_LONG).show()
+                        }
+                    else{
+                        this. load(currentManga.img)
                     }
                 }
                 binding.imgSearch.setOnClickListener {

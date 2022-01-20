@@ -78,7 +78,6 @@ class RegisterFragment : Fragment() {
     }
      fun validateRegister() {
             userName = binding.userNameETRg.text.toString()
-
              emil = binding.emilTxtRg.text.toString().trim()
               password =  binding.passRg.text.toString()
              confPassword =  binding.conformPassRg.text.toString()
@@ -88,20 +87,16 @@ class RegisterFragment : Fragment() {
                       binding.userNameETRg.text ->{}
                       binding.passRg.text ->{}
                       binding.conformPassRg.text ->{}
-
                   }
-
-
-
               }
         when{
             userName.isEmpty() -> showToast("enter username")
-
             emil.isEmpty() ->showToast("enter a correct emil")
             password.isEmpty() -> showToast("enter password")
             password.length < 6 -> showToast("the password must be at least 6 digit")
             password != confPassword -> showToast("passwords not match")
             else -> registerUser(emil,password,userName)
+
         }
     }
 

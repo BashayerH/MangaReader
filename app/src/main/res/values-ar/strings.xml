@@ -44,4 +44,13 @@
     <string name="search">بحث</string>
     <string name="home">الرئيسية</string>
     <string name="change_profile_photo">تغيير صورة العرض</string>
+    <string name="senstive_material">" عذراً، لايمكنك الوصول لهذه الصفحة!!"</string>
+    <string name="back_to_home">العودة للرئيسية</string>
+    <string name="rating">التقييم</string>
+    <string name="status">الحالة</string>
+    <string name="unavailable">..غير متاح..</string>
+    <string name="last_update">اخر تحديث</string>
+    <string name="genres">النوع</string>
+    <string name="chapters">الفصول</string>
+    <string name="uploaded_file">تحميل ملف:</string>
 </resources>

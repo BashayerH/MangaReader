@@ -48,8 +48,8 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         favoriteViewModel.fetchFav(infoUserCollection.document("favManga").id).observe(
             viewLifecycleOwner, Observer {
-                binding.favoritRv.adapter = FavAdapter(it)
-              val list =it
+                    binding.favoritRv.adapter = FavAdapter(it)
+
 
                 Log.d(TAG, "from fav $it")
             }

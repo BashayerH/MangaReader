@@ -9,6 +9,6 @@ data class InfoUser(
     var emil:String="",
     var imgProfile:String ="",
     var favManga: List<String> = listOf(),
-    var uplodedFile:String= ""
+    var uplodedFile:List<String> = listOf()
         )
 

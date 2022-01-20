@@ -53,6 +53,13 @@
     <string name="search">search</string>
     <string name="home">home</string>
     <string name="change_profile_photo">change profile photo</string>
-    <string name="senstive_material">sorry you can\'t access this page!!cause it contain senstive material!</string>
+    <string name="senstive_material">sorry you can\'t access this page!!cause it contain  sensitive material!</string>
     <string name="back_to_home">back to home!</string>
+    <string name="rating">rating</string>
+    <string name="status">status</string>
+    <string name="unavailable">..unavailable..</string>
+    <string name="last_update">last update</string>
+    <string name="genres">genres</string>
+    <string name="chapters">chapters</string>
+    <string name="uploaded_file">uploaded file</string>
 </resources>

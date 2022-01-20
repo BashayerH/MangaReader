@@ -105,7 +105,7 @@ open class MangaRepo() {
                    result =  response.body()?.data ?: emptyList()
                 }else{
                     Log.e(TAG,"there is an error in search from repo ${response.errorBody()}")
-                    return emptyList()
+
 
 
                 }

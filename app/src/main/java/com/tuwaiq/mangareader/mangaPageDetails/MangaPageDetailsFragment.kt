@@ -95,9 +95,12 @@ class MangaPageDetailsFragment : Fragment() {
                         binding.decB.setOnClickListener {
                             val currentManga = navArgs.currentManga
                             var desc = itList.data.description.toString()
-
-                            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga,desc = "")
+                            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga,desc = desc)
                             navController.navigate(action)
+                        }
+                        binding.favB.setOnClickListener {
+                        
+
                         }
                     }
                 }
@@ -113,7 +116,10 @@ class MangaPageDetailsFragment : Fragment() {
         navController = findNavController()
       //  provide the information for selected manga
         binding.mangaName.setText(currentManga.title)
-      //  binding.nameTxtView.text = currentManga.title
+        binding.decB.setOnClickListener {
+            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga,desc = "")
+            navController.navigate(action)
+        }
         binding.imageD.load(currentManga.img)
 
 

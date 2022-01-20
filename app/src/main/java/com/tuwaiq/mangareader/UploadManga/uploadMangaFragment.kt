@@ -82,6 +82,7 @@ class UploadMangaFragment : Fragment() {
             binding.pdfManga.setOnClickListener {
                 navController.navigate(R.id.pdfViewFragment)
             }
+            binding.pdfManga.setText(" PDF FILE")
         }
 
 
@@ -128,11 +129,11 @@ class UploadMangaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        uploadViewModel.getCatg.observe(
-            viewLifecycleOwner, Observer {
-                binding.catgRV.adapter = CatgMangaAdabter(it)
-            }
-        )
+//        uploadViewModel.getCatg.observe(
+//            viewLifecycleOwner, Observer {
+//                binding.catgRV.adapter = CatgMangaAdabter(it)
+//            }
+//        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
