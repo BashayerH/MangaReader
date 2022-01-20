@@ -19,7 +19,6 @@ class MainViewModel:ViewModel() {
         viewModelScope.launch {
             repo.changePhoto(imageUri)
         }
-
     }
 
     private val _isLoding = MutableStateFlow(true)

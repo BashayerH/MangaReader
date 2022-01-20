@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -16,11 +17,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.etebarian.meowbottomnavigation.MeowBottomNavigation
+import com.tuwaiq.mangareader.R
 
 import com.tuwaiq.mangareader.databinding.SearchItemBinding
 import com.tuwaiq.mangareader.databinding.SearchPageFragmentBinding
 import com.tuwaiq.mangareader.homePage.MainPageFragmentDirections
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -47,6 +51,26 @@ class downloadPageFragment : Fragment() {
         filterArrayList = ArrayList()
         orginalList = ArrayList()
         navController = findNavController()
+      val  bottmBar= view?.findViewById<MeowBottomNavigation>(R.id.menu_bottom)
+
+        binding.searchRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0 || dy < 0 && bottmBar?.isShown() == true) {
+                    bottmBar?.setVisibility(View.GONE)
+                }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (bottmBar != null) {
+                        bottmBar.setVisibility(View.VISIBLE)
+                    }
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
+
+
 
 
 
@@ -66,25 +90,9 @@ class downloadPageFragment : Fragment() {
                 if (p0 != null) {
 
                     downViewModel.setSearch(p0)
+                    UIUtil.hideKeyboard(context,binding.searchView)
                 }
-//                if (p0 != null) {
-//                    if (p0.isNotBlank()) {
-//                        filterArrayList.clear()
-//                        val search = p0.lowercase(Locale.getDefault())
-//
-//                        orginalList.forEach {
-//                            if (it.title.lowercase(Locale.getDefault()).contains(search)) {
-//                                filterArrayList.add(it)
-//                            }
-//                            binding.searchRV.adapter = SearchAdapter(filterArrayList)
-//                        }
-//
-//                    } else {
-//                        filterArrayList.clear()
-//                        binding.searchRV.adapter = SearchAdapter(orginalList)
-//                    }
-//
-//                }
+
                 return true
             }
 
@@ -106,7 +114,6 @@ class downloadPageFragment : Fragment() {
                     apply()
                 }
 
-
                 Log.d(TAG, "from search $it")
             }
         )
@@ -117,8 +124,15 @@ class downloadPageFragment : Fragment() {
         inner class SearchHolder(val binding: SearchItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
             fun bind(currentManga:DataManga){
-                binding.imgSearch.load(currentManga.img)
                 binding.titleSearch.setText(currentManga.title)
+                binding.imgSearch.apply {
+                    if (currentManga.img.isNotEmpty()){
+                        this. load(currentManga.img)
+                    }else{
+                        this.load(R.raw.error)
+                        Toast.makeText(context,"SORRY, try again later!!", Toast.LENGTH_LONG).show()
+                    }
+                }
                 binding.imgSearch.setOnClickListener {
                     val extras = FragmentNavigatorExtras(binding.imgSearch to "sec_img")
                     val action = downloadPageFragmentDirections.actionSearchPageFragmentToMangaPageDetailsFragment(currentManga)

@@ -14,7 +14,7 @@
     <string name="password">password</string>
     <string name="user_name">user_name</string>
     <string name="email">email</string>
-    <string name="last_chapter">Read last chapter:</string>
+    <string name="last_chapter">last chapter:</string>
     <string name="description">Description</string>
     <string name="manga_name">manga name</string>
     <string name="last_ch">last ch</string>
@@ -53,4 +53,6 @@
     <string name="search">search</string>
     <string name="home">home</string>
     <string name="change_profile_photo">change profile photo</string>
+    <string name="senstive_material">sorry you can\'t access this page!!cause it contain senstive material!</string>
+    <string name="back_to_home">back to home!</string>
 </resources>

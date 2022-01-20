@@ -4,13 +4,17 @@ package com.tuwaiq.mangareader
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.util.Log
 import android.util.Log.*
 import android.view.View
@@ -34,6 +38,7 @@ import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 import androidx.work.*
 import coil.load
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.transition.MaterialSharedAxis
@@ -43,6 +48,9 @@ import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
 
 import com.tuwaiq.mangareader.register.infoUserCollection
+import kotlinx.coroutines.withContext
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import java.lang.Exception
 import java.util.*
 
@@ -82,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        loadLocate()
+
         super.onCreate(savedInstanceState)
         // for splash screen
         installSplashScreen().apply {
@@ -90,8 +98,6 @@ class MainActivity : AppCompatActivity() {
                 viewModelMain.isLoding.value
             }
         }
-
-
 
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -149,10 +155,13 @@ class MainActivity : AppCompatActivity() {
         showNotification()
      //   onMenuItemClick()
 
-
-
     }
 
+    private fun keyboardChange(){
+        KeyboardVisibilityEvent.setEventListener(this, KeyboardVisibilityEventListener {
+
+        })
+    }
     private fun bottomNavOnClick() {
         bottomNav.setOnClickMenuListener {
             when(it.id){
@@ -165,7 +174,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 2 ->{
                     naveController.navigate(R.id.searchPageFragment)
-                    bottomNav.visibility = View.INVISIBLE
+
+
                 }
             }
         }
@@ -191,10 +201,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
-
-
-
     private fun navDistnation() {
         naveController.addOnDestinationChangedListener { _, destnation, _ ->
             titleChange.text = destnation.label
@@ -214,7 +220,7 @@ class MainActivity : AppCompatActivity() {
                     bottomNav.visibility =View.GONE
                 }
                 R.id.searchPageFragment ->{
-                    hideBottomAppBar()
+                  //  hideBottomAppBar()
                    // bottomNav.visibility = View.FOCUS_DOWN.alpha
                   //  bottomNav.overScrollMode
 
@@ -222,18 +228,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
-
-
-
-    private fun toSearch() {
-
-        val exsitTran = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
-            duration = resources.getInteger(R.integer.reply_motion_duration_large).toLong()
-        }
-//        val direction = downloadPageFragment
-
-        naveController.navigate(R.id.searchPageFragment)
     }
 
     private fun drawerOnClick() {
@@ -276,11 +270,20 @@ class MainActivity : AppCompatActivity() {
                     builder.setSingleChoiceItems(langList,-1) { dialog, lang ->
                         if (lang ==0){
                             setLocate("en")
-                          //  recreate()
+                            recreate()
+                            val resources =applicationContext.resources
+                            val config = resources.configuration
+                            config.locale = Locale("en")
+                            config.setLayoutDirection(Locale("en"))
+//
                         }
                         else if (lang ==1){
                             setLocate("ar")
-                           // recreate()
+                            recreate()
+                           val resources =applicationContext.resources
+                            val config = resources.configuration
+                            config.locale = Locale("ar")
+                            config.setLayoutDirection(Locale("ar"))
                         }
                         dialog.dismiss()
                     }
@@ -303,7 +306,6 @@ class MainActivity : AppCompatActivity() {
         intent.type = "*/*"
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PHOTO)
     }
-
 
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
@@ -328,25 +330,20 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setLocate(lang: String) {
-        val local =Locale(lang)
-        Locale.setDefault(local)
-        val config = Configuration()
-        config.locale =local
-        baseContext.resources.updateConfiguration(config,baseContext.resources.displayMetrics)
+        val sharedP = getSharedPreferences(KEY_LANG, Context.MODE_PRIVATE)
+        val sharEdit = sharedP.edit()
+        sharEdit.putString(getString(R.string.language), lang)
+        sharEdit.apply()
+        val resours: Resources = this.resources
+        val display: DisplayMetrics = resours.displayMetrics
+        val config: Configuration = resours.configuration
+        config.locale = Locale(lang)
+        resours.updateConfiguration(config, display)
 
-        getDefaultSharedPreferences(baseContext).edit()
-
-        .putString("language",lang)
-            .apply()
     }
-    private fun loadLocate(){
 
-        val sharedP=  getDefaultSharedPreferences(baseContext)
-        val language =sharedP.getString(KEY_LANG,"")
-        if (language != null) {
-            setLocate(language)
-        }
-    }
+
+
 
     private fun updateUserName() {
         val person = InfoUser()

@@ -109,6 +109,12 @@ dependencies {
     //
     implementation 'com.etebarian:meow-bottom-navigation:1.0.4'
 
+    //
+    implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
+    //
+        implementation 'com.tbuonomo:dotsindicator:4.2'
+
+
 
 
 }

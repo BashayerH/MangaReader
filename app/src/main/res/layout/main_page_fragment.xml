@@ -13,16 +13,19 @@
         android:layout_height="match_parent"
         tools:context=".homePage.MainPageFragment">
 
-        <ProgressBar
-            android:id="@+id/progressBar1"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="103dp"
-            android:layout_height="112dp"
-            android:layout_marginBottom="324dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/recycler_manga"
-            app:layout_constraintHorizontal_bias="0.475"
-            app:layout_constraintStart_toStartOf="parent" />
+
+
+
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progressBar1"-->
+<!--            style="?android:attr/progressBarStyle"-->
+<!--            android:layout_width="103dp"-->
+<!--            android:layout_height="112dp"-->
+<!--            android:layout_marginBottom="324dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/recycler_manga"-->
+<!--            app:layout_constraintHorizontal_bias="0.475"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
         <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
             android:id="@+id/recycler_manga"

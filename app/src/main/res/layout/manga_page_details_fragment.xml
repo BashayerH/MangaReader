@@ -6,264 +6,234 @@
     <data>
 
     </data>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/darkGreen">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/darkGreen">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="396dp"
+            android:layout_height="652dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp"
+            android:layoutDirection="inherit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="100dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="140dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageD"
+                app:srcCompat="@drawable/rating" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageD"
+                android:layout_width="155dp"
+                android:layout_height="158dp"
+
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="220dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mangaName"
+                app:shapeAppearanceOverlay="@style/roundF"
+                app:srcCompat="@drawable/bye"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/mangaName"
+                android:layout_width="313dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textColor="@color/blue_alice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/favB"
+                android:layout_width="46dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mangaName"
+                app:srcCompat="@drawable/heart56" />
+
+            <ImageView
+                android:id="@+id/comment"
+                android:layout_width="47dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="112dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/favB"
+                app:srcCompat="@drawable/speech_bubble" />
+
+            <ImageView
+                android:id="@+id/decB"
+                android:layout_width="47dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="64dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/comment"
+                app:srcCompat="@drawable/open_book" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="68dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="rating"
+                app:layout_constraintStart_toEndOf="@+id/imageView11"
+                app:layout_constraintTop_toBottomOf="@+id/decB" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="268dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+
+            <View
+                android:id="@+id/divider5"
+                android:layout_width="268dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="1dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genresView" />
+
+            <TextView
+                android:id="@+id/status3"
+                android:layout_width="78dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="19dp"
+                android:text="status"
+                app:layout_constraintEnd_toStartOf="@+id/statusView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/statusView2"
+                android:layout_width="232dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="36dp"
+                android:textColor="@color/blue_alice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/status3"
+                app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+            <TextView
+                android:id="@+id/lastUp"
+                android:layout_width="87dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="31dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="last update"
+                app:layout_constraintEnd_toStartOf="@+id/last_upV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status3" />
+
+            <TextView
+                android:id="@+id/last_upV"
+                android:layout_width="241dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:textColor="@color/blue_alice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/lastUp"
+                app:layout_constraintTop_toBottomOf="@+id/statusView2" />
+
+            <TextView
+                android:id="@+id/genres"
+                android:layout_width="78dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:text="genres"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastUp" />
+
+            <TextView
+                android:id="@+id/genresView"
+                android:layout_width="274dp"
                 android:layout_height="wrap_content"
-                android:background="@color/darkGreen"
-                app:expandedTitleTextAppearance="@style/expandBar"
-                android:id="@+id/manga_name"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                app:title="@string/manga_name">
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="24dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:textColor="@color/blue_alice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/genres"
+                app:layout_constraintTop_toBottomOf="@+id/last_upV" />
+
+            <Button
+                android:id="@+id/last_ch"
+                android:layout_width="170dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="14dp"
+                android:text="@string/last_chapter"
+                android:textColor="@color/grayGreen"
+                app:layout_constraintEnd_toStartOf="@+id/chapter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genresView" />
+
+            <Button
+                android:id="@+id/chapter"
+                android:layout_width="161dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="36dp"
+                android:text="chapters"
+                android:textColor="@color/grayGreen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/last_ch"
+                app:layout_constraintTop_toBottomOf="@+id/genresView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-
-                    android:orientation="vertical">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/ImgD"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="6dp"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:shapeAppearanceOverlay="@style/img_dt"
-                        tools:srcCompat="@tools:sample/avatars" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_gravity="bottom"
-                    android:layout_marginTop="70dp"
-                    android:background="#8B979292"
-
-                    android:textSize="16sp">
-
-                </TextView>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/darkGreen">
-
-                </androidx.appcompat.widget.Toolbar>
-
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="767dp"
-            android:transitionName="sec_img"
-
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center">
-
-                <Button
-                    android:id="@+id/decsBtn"
-                    android:layout_width="217dp"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="84dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/story"
-                    android:textColor="@color/darkGreen"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
-                    android:id="@+id/favBtn"
-                    android:layout_width="210dp"
-                    android:layout_height="54dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="108dp"
-                    android:text="@string/favorite"
-                    android:textColor="@color/darkGreen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/decsBtn" />
-
-                <Button
-                    android:id="@+id/commentBtn"
-                    android:layout_width="204dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="108dp"
-                    android:text="@string/comment"
-                    android:textColor="@color/darkGreen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/favBtn" />
-
-                <Button
-                    android:id="@+id/lastChBtn"
-                    android:layout_width="205dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="108dp"
-                    android:text="@string/to_read_last_ch"
-                    android:textColor="@color/darkGreen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/commentBtn" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.core.widget.NestedScrollView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--        android:id="@+id/appBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="30sp">-->
-
-<!--        <com.google.android.material.appbar.AppBarLayout-->
-<!--            android:id="@+id/appBarLayout"-->
-<!--            android:layout_width="411dp"-->
-<!--            android:layout_height="293dp"-->
-<!--            android:fitsSystemWindows="true"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-<!--            <com.google.android.material.appbar.CollapsingToolbarLayout-->
-<!--                android:id="@+id/coll_appbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="265dp"-->
-<!--                android:fitsSystemWindows="true"-->
-<!--                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/mangaImgD"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="304dp"-->
-<!--                    android:scaleType="fitXY"-->
-<!--                    android:transitionName="sec_img"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintHorizontal_bias="0.0"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    tools:srcCompat="@tools:sample/avatars" />-->
-
-<!--            </com.google.android.material.appbar.CollapsingToolbarLayout>-->
-
-
-<!--        </com.google.android.material.appbar.AppBarLayout>-->
-
-
-<!--        <androidx.core.widget.NestedScrollView-->
-<!--            android:layout_width="406dp"-->
-<!--            android:layout_height="525dp"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            android:background="@drawable/ctr_pg"-->
-<!--            android:padding="20sp"-->
-<!--            -->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="@+id/appBarLayout">-->
-
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/name_txt_view"-->
-<!--                    android:layout_width="363dp"-->
-<!--                    android:layout_height="77dp"-->
-<!--                    android:layout_gravity="bottom"-->
-<!--                    android:background="#74A59E9E"-->
-<!--                    android:fontFamily="@font/advent_pro_semibold"-->
-<!--                    android:hint="@string/manga_name"-->
-<!--                    android:textAlignment="textStart"-->
-<!--                    android:textColor="@color/black"-->
-<!--                    android:textSize="24sp"-->
-<!--                    android:textStyle="bold"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintHorizontal_bias="1.0"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/decsBtn"-->
-<!--                    android:layout_width="153dp"-->
-<!--                    android:layout_height="48dp"-->
-<!--                    android:layout_marginTop="104dp"-->
-<!--                    android:text="@string/story"-->
-<!--                    android:textColor="@color/darkGreen"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/favBtn"-->
-<!--                    android:layout_width="133dp"-->
-<!--                    android:layout_height="49dp"-->
-<!--                    android:layout_marginTop="4dp"-->
-<!--                    android:layout_marginEnd="20dp"-->
-<!--                    android:text="@string/favorite"-->
-<!--                    android:textColor="@color/darkGreen"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/decsBtn" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/commentBtn"-->
-<!--                    android:layout_width="133dp"-->
-<!--                    android:layout_height="49dp"-->
-<!--                    android:layout_marginTop="16dp"-->
-<!--                    android:layout_marginEnd="16dp"-->
-<!--                    android:text="@string/comment"-->
-<!--                    android:textColor="@color/darkGreen"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/favBtn" />-->
-
-<!--                <Button-->
-<!--                    android:id="@+id/lastChBtn"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="12dp"-->
-<!--                    android:layout_marginEnd="12dp"-->
-<!--                    android:text="@string/to_read_last_ch"-->
-<!--                    android:textColor="@color/darkGreen"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/commentBtn" />-->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
-<!--        </androidx.core.widget.NestedScrollView>-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView7"-->
-<!--            android:layout_width="94dp"-->
-<!--            android:layout_height="118dp"-->
-<!--            android:layout_gravity="right|bottom"-->
-<!--            android:paddingBottom="40dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="@+id/appBarLayout"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:srcCompat="@drawable/heart56" />-->
-
-
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

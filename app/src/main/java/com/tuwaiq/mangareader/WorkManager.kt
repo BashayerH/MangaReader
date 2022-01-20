@@ -39,7 +39,7 @@ class WorkManager(context: Context,workerParameters: WorkerParameters):Worker(co
             .setContentText("welcome to the manga world")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
-            .setSmallIcon(R.drawable.icon_manga)
+            .setSmallIcon(R.drawable.icon_m)
 
         with(NotificationManagerCompat.from(applicationContext)){
             notify(1,builder.build())

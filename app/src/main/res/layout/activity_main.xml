@@ -71,7 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:itemTextColor="@color/blue_alice"
-
+                app:layout_wrapBehaviorInParent="horizontal_only"
+                android:animateLayoutChanges="true"
                 app:mbn_countBackgroundColor="@color/darkGreen"
                 app:mbn_countTextColor="#000"
                 app:mbn_defaultIconColor="#909090"
@@ -80,6 +81,7 @@
                 app:mbn_shadowColor="#5000"
                 app:mbn_backgroundBottomColor="@color/isablin"
                 app:layout_constraintBottom_toBottomOf="parent"
+
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 />

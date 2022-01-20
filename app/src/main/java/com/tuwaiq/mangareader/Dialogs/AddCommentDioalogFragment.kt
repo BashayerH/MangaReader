@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.sdsmdg.harjot.vectormaster.utilities.Utils
 import com.tuwaiq.mangareader.MainActivity
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.comments.CommentData
@@ -31,6 +32,7 @@ import com.tuwaiq.mangareader.comments.CommentsPageFragment
 import com.tuwaiq.mangareader.comments.CommentsPageFragmentArgs
 import com.tuwaiq.mangareader.databinding.FragmentAddCommentDioalogBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
 private const val TAG = "AddCommentDioalogFragme"
 class AddCommentDioalogFragment : DialogFragment() {
@@ -56,12 +58,14 @@ class AddCommentDioalogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+//        UIUtil.hideKeyboard(context,binding.addCommentTxt)
+       // UIUtil.showKeyboard(context,binding.addCommentTxt)
         binding= FragmentAddCommentDioalogBinding.inflate(layoutInflater)
         binding.addBtnComm.setOnClickListener {
             val manga=DataManga()
         val comment=CommentData(userEmail = firebaseAuth.currentUser!!.email.toString(),userId = firebaseUser
             ,msg = binding.addCommentTxt.text.toString(),mangaId =navArgs.currentManga!!.id,time = Timestamp.now(),imgP = "")
+
 
             val coomId = commentCollection.document().id
       commentCollection.document(coomId).set(comment)
@@ -95,7 +99,7 @@ class AddCommentDioalogFragment : DialogFragment() {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.icon_manga)
+                .setSmallIcon(R.drawable.icon_m)
         }
 
         with(NotificationManagerCompat.from(requireContext())){

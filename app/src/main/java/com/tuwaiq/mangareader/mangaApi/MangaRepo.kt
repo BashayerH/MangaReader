@@ -1,26 +1,20 @@
 package com.tuwaiq.mangareader.mangaApi
 
-import android.content.Context
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.tuwaiq.mangareader.comments.CommentData
+import com.tuwaiq.mangareader.mangaApi.models.Data
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
-import com.tuwaiq.mangareader.mangaApi.models.MangaResponse
-import com.tuwaiq.mangareader.modelsCatg.CatgMangData
-import kotlinx.coroutines.Dispatchers
+import com.tuwaiq.mangareader.mangaApi.models.MangaDetials
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 private const val TAG = "MangaRepo"
 open class MangaRepo() {
@@ -30,6 +24,7 @@ open class MangaRepo() {
     var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
     var commentCollection = Firebase.firestore.collection("CommentManga")
     var imgFile = FirebaseStorage.getInstance().getReference("/photos/${firebaseAuth.currentUser?.uid}")
+    var mangaUpRef = Firebase.storage.reference.child("/pdfManga/${firebaseAuth.currentUser?.uid}")
 
 
     private val retrofit:Retrofit = Retrofit.Builder()
@@ -74,8 +69,23 @@ open class MangaRepo() {
                result = response.body()?.data!!
             }else{
                 Log.e(TAG,"there is an error ${response.errorBody()}")
+                return emptyList()
+
             }
 
+        return result
+    }
+
+    suspend fun randomManga ():List<DataManga> {
+        var result:List<DataManga>
+        val response = mangaApi.getRandomM()
+        if (response.isSuccessful){
+            Log.e(TAG,"it's work ${response.body()}")
+            result = response.body()?.data!!
+        }else{
+            Log.e(TAG,"there is an error ${response.errorBody()}")
+            return emptyList()
+        }
         return result
     }
 
@@ -89,24 +99,31 @@ open class MangaRepo() {
 
                var result:List<DataManga> = emptyList()
                 val response = mangaApi.searchForManga(query)
+               Log.e(TAG,"it's work with search77 ${response}")
                 if (response.isSuccessful){
                     Log.e(TAG," from repo search ${response.body()}")
                    result =  response.body()?.data ?: emptyList()
                 }else{
-
                     Log.e(TAG,"there is an error in search from repo ${response.errorBody()}")
+                    return emptyList()
+
+
                 }
        return result
 
     }
 
-    suspend fun detailsManga(idM:String):List<DataManga>{
-        var details:List<DataManga> = emptyList()
+
+    suspend fun detailsMangaById(idM:String):List<MangaDetials>{
+      var details:List<MangaDetials>  = emptyList()
         val response = mangaApi.detailsManga(idM)
+        Log.e(TAG,"it's work with details77 ${response}")
+
         if (response.isSuccessful){
-            Log.e(TAG,"it's work with details ${response.body()}")
-            details = response.body()?.data!!
-        }else{
+            details = listOf(response.body()!!)
+            Log.e(TAG,"it's work with details ${response.body()!!.data}")
+       }
+       else{
             Log.e(TAG,"there is an error with details in repo ${response.errorBody()!!.string()}")
         }
         return details
@@ -120,6 +137,20 @@ open class MangaRepo() {
             val upload = ref.storage.downloadUrl.await()
             infoUserCollection.document(firebaseAuth.currentUser!!.uid)
                 .update("imgProfile",upload.toString())
+
+
+        }
+
+    }
+
+    suspend fun uploadPdf(mangaPdf:Uri){
+
+        val refPdf = mangaUpRef.putFile(mangaPdf).await()
+
+        if (refPdf.task.isComplete){
+            val upload = refPdf.storage.downloadUrl.await()
+            infoUserCollection.document(firebaseAuth.currentUser!!.uid)
+                .update("uplodedFile",upload.toString())
 
 
         }

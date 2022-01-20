@@ -82,7 +82,12 @@ class MainPageFragment : Fragment() {
 
 
             binding.mangaImg.apply {
-               this. load(currentManga.img)
+                if (currentManga.img.isNotEmpty()){
+                    this. load(currentManga.img)
+                }else{
+                    this.load(R.raw.error)
+                    Toast.makeText(context,"SORRY, try agin later!!",Toast.LENGTH_LONG).show()
+                }
             }
             binding.mangaTitle.text = currentManga.title
             binding.mangaImg.setOnClickListener {

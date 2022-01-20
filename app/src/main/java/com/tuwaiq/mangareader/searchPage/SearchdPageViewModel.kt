@@ -27,7 +27,7 @@ class DownloadPageViewModel : ViewModel() {
         return Transformations.switchMap(searchTermLiveData){
             liveData{
                 if (it.isBlank()){
-                    emit(repo.fetchManga())
+                    emit(repo.randomManga())
                 }else{
                     emit(repo.searchManga(it))
                 }

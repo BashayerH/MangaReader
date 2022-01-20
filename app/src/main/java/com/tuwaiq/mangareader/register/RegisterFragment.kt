@@ -19,6 +19,7 @@ import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
 private const val TAG = "RegisterFragment"
  var infoUserCollection = Firebase.firestore.collection("InfoUser")
@@ -77,12 +78,25 @@ class RegisterFragment : Fragment() {
     }
      fun validateRegister() {
             userName = binding.userNameETRg.text.toString()
+
              emil = binding.emilTxtRg.text.toString().trim()
               password =  binding.passRg.text.toString()
              confPassword =  binding.conformPassRg.text.toString()
+              UIUtil.hideKeyboard(context,view).apply {
+                  when(view) {
+                      binding.emilTxtRg ->{}
+                      binding.userNameETRg.text ->{}
+                      binding.passRg.text ->{}
+                      binding.conformPassRg.text ->{}
 
+                  }
+
+
+
+              }
         when{
             userName.isEmpty() -> showToast("enter username")
+
             emil.isEmpty() ->showToast("enter a correct emil")
             password.isEmpty() -> showToast("enter password")
             password.length < 6 -> showToast("the password must be at least 6 digit")

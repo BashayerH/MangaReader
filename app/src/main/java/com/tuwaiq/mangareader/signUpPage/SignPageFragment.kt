@@ -42,8 +42,8 @@ class SignPageFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         firebaseAuth = FirebaseAuth.getInstance()
-       // firebaseAuth = Firebase.auth
-        checkUser()
+
+
 
     }
 
@@ -60,6 +60,8 @@ class SignPageFragment : Fragment() {
         progressDialog.setCanceledOnTouchOutside(false)
 
 
+
+        checkUser()
 
         //for log in
         binding.loginBtn.setOnClickListener {

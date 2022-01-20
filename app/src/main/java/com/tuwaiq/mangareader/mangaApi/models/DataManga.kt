@@ -16,9 +16,6 @@ data class DataManga(
     val description:String = " ",
     val url :String ="",
     val last_updated:String="",
-    val status:String="",
-    val genres:String ="",
-    val rating :Float = 0F,
-     val chapters:String= ""
+
 ): Parcelable
 

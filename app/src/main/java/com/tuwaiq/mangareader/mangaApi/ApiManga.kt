@@ -1,16 +1,18 @@
 package com.tuwaiq.mangareader.mangaApi
 
+import com.tuwaiq.mangareader.mangaApi.models.MangaDetials
 import com.tuwaiq.mangareader.mangaApi.models.MangaResponse
 import com.tuwaiq.mangareader.modelsCatg.ResponseCatg
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiManga {
-    @GET("api/mangakakalot/browse?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
+    @GET("api/mangakakalot/popular?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
     suspend fun getManga():Response<MangaResponse>
+
+    @GET("api/mangakakalot/browse?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
+    suspend fun getRandomM():Response<MangaResponse>
 
     @GET("api/mangakakalot/genres?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
     suspend fun getCatogManga():Response<ResponseCatg>
@@ -20,10 +22,10 @@ interface ApiManga {
 
 
     @GET("api/mangakakalot/details?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93")
-    suspend fun detailsManga(@Query("id") id:String): Response<MangaResponse>
+    suspend fun detailsManga(@Query("id") id:String): Response<MangaDetials>
 }
-
-
+//
+//"api/mangakakalot/browse?rapidapi-key=85707d71d8mshb1b402ea65d2e06p1e2a14jsn39b1098fcf93"
 
 
 

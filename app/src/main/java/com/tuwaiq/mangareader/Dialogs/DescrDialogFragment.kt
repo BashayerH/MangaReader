@@ -29,6 +29,7 @@ class DescrDialogFragment :DialogFragment() {
     val firebaseUser = firebaseAuth.currentUser!!.uid
     var commentCollection = Firebase.firestore.collection("CommentManga")
     private val navArgs by navArgs <MangaPageDetailsFragmentArgs>()
+   // private val navD by navArgs<MangaPageDetailsFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +45,10 @@ class DescrDialogFragment :DialogFragment() {
 
 
             val currentManga = navArgs.currentManga
+
+
             if (currentManga != null){
-                binding.descTxtView.setText(currentManga.description)
+                binding.descTxtView.setText(navArgs.currentManga!!.description)
             }
 
 

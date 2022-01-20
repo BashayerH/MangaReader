@@ -13,15 +13,19 @@
         android:layout_marginLeft="5sp"
         android:padding="5sp">
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="69dp"
-            android:layout_height="20dp"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/looding"
+            android:layout_width="106dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="84dp"
             app:layout_constraintBottom_toBottomOf="@+id/imgSearch"
-            app:layout_constraintEnd_toEndOf="@+id/imgSearch"
-            app:layout_constraintStart_toStartOf="@+id/imgSearch"
-            app:layout_constraintTop_toTopOf="@+id/imgSearch" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/lott_loading" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgSearch"

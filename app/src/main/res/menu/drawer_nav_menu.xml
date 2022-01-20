@@ -16,14 +16,14 @@
             android:id="@+id/mainPageFragment"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/home" />
+        <item
+            android:id="@+id/uploadMangaFragment"
+            android:icon="@drawable/ic_baseline_cloud_download_24"
+            android:title="@string/upload" />
     </group>
 
 
     <group >
-<!--        <item-->
-<!--            android:id="@+id/setting"-->
-<!--            android:icon="@drawable/ic_baseline_settings_24"-->
-<!--            android:title="@string/setting" />-->
         <item
             android:icon="@drawable/arabic"
             android:id="@+id/lang"

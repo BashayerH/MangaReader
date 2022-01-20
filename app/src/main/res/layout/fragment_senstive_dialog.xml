@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="399dp"
+        android:layout_height="442dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="337dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="42dp"
+            android:layout_marginTop="240dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/senstive_material"
+            android:textAlignment="center"
+            android:textColor="#121111"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/yesBtn"
+            android:layout_width="250dp"
+            android:layout_height="71dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="59dp"
+            android:text="@string/back_to_home"
+            android:textColor="@color/darkGreen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="367dp"
+            android:layout_height="167dp"
+            android:layout_marginTop="73dp"
+            android:layout_marginBottom="225dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/no_data_found" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

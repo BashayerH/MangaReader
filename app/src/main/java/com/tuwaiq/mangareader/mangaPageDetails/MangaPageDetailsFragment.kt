@@ -1,7 +1,6 @@
 package com.tuwaiq.mangareader.mangaPageDetails
 
-import android.app.DownloadManager
-import android.content.Context
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
@@ -12,8 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.getSystemService
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -21,24 +18,29 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.firestore.DocumentId
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.databinding.DetailsListBinding
 import com.tuwaiq.mangareader.databinding.MangaPageDetailsFragmentBinding
-import com.tuwaiq.mangareader.databinding.SearchItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
+import com.tuwaiq.mangareader.mangaApi.models.MangaDetials
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import java.util.*
+import android.content.DialogInterface
+import android.graphics.drawable.DrawableContainer
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import coil.clear
+import com.bumptech.glide.load.resource.drawable.DrawableResource
+import com.tuwaiq.mangareader.Dialogs.SenstiveDialogFragment
+import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
+
 
 private const val TAG = "MangaPageDetailsFragmen"
 class MangaPageDetailsFragment : Fragment() {
@@ -57,33 +59,73 @@ class MangaPageDetailsFragment : Fragment() {
 
 
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+        pageDetailsViewModel.detailsData(navArgs.currentManga!!.id).observe(
+            viewLifecycleOwner) {
+            it.forEach { itList ->
+                val currentManga = navArgs.currentManga
+                val senstive = arrayListOf("Adult","Ecchi" ,"Doujinshi","Gender bender","Josei","Manhwa",
+                    "Mature","Yaoi","Yuri","Smut","Shounen ai","")
+                senstive.forEach { it ->
+                    if (itList.data.genres.contains(it)){
+                        var dilog = SenstiveDialogFragment()
+                        fragmentManager?.let { it1 -> dilog.show(it1,"SenstiveDialog") }
+                        binding.genresView.visibility = View.GONE
+                        binding.rating.visibility = View.GONE
+                        binding.chapter.visibility = View.GONE
+                        binding.decB.visibility = View.GONE
+                        binding.favB.visibility = View.GONE
+                        binding.lastCh.visibility = View.GONE
+                        binding.chapter.visibility = View.GONE
+                        binding.comment.visibility = View.GONE
+                        binding.imageD.visibility = View.GONE
+                        binding.statusView2.visibility = View.GONE
+                        binding.lastUpV.visibility = View.GONE
+                    }else{
+                        binding.genresView.setText(itList.data.genres.toString())
+                        binding.rating.setText(itList.data.rating.toString())
+                       // binding.chapter.setText(itList.data.chapters.toString())
+                        binding.statusView2.setText(itList.data.status)
+                        binding.lastUpV.setText(itList.data.last_updated)
+                        binding.decB.setOnClickListener {
+                            val currentManga = navArgs.currentManga
+                            var desc = itList.data.description.toString()
+
+                            val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga,desc = "")
+                            navController.navigate(action)
+                        }
+                    }
+                }
+
+            }
+            Log.d(TAG," current manga id ${navArgs.currentManga!!.id}")
+        }
+
         binding = MangaPageDetailsFragmentBinding.inflate(layoutInflater)
-       // binding.detRV.layoutManager = LinearLayoutManager(context)
+      //  binding.detRv.layoutManager = LinearLayoutManager(context)
         val currentManga = navArgs.currentManga
         val mangaId = currentManga!!.id
         navController = findNavController()
-        //provide the information for selected manga
-        binding.mangaName.title = currentManga.title
+      //  provide the information for selected manga
+        binding.mangaName.setText(currentManga.title)
       //  binding.nameTxtView.text = currentManga.title
-        binding.ImgD.load(currentManga.img)
+        binding.imageD.load(currentManga.img)
 
-        binding.decsBtn.setOnClickListener {
-                val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(currentManga)
-            navController.navigate(action)
-        }
 
-        binding.favBtn.apply {
+
+
+
+        binding.favB.apply {
             this. setOnClickListener {
                 animate().apply {
                     duration =500
-                    translationXBy(-1000f)
-                    // rotationYBy(360f)
+                 //   translationXBy(-1000f)
+                     rotationYBy(360f)
                 }.withEndAction{
                     val firebaseUser = firebaseAuth.currentUser!!.uid
                     val person =
@@ -119,16 +161,12 @@ class MangaPageDetailsFragment : Fragment() {
                 }
         }}
 
-
-
-
-
-        binding.commentBtn.apply {
+        binding.comment.apply {
            this. setOnClickListener {
                 animate().apply {
                     duration =500
-                    translationXBy(-1000f)
-                   // rotationYBy(360f)
+                   // translationXBy(-1000f)
+                    rotationYBy(360f)
                 }.withEndAction {
                     val action = MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToCommentsPageFragment(currentManga = navArgs.currentManga)
 
@@ -140,9 +178,8 @@ class MangaPageDetailsFragment : Fragment() {
         }
 
 
-        binding.lastChBtn.setOnClickListener {
+        binding.lastCh.setOnClickListener {
             gotUrl(currentManga!!.latest_chapter_url)
-
 //
 //            val url = currentManga?.latest_chapter_url
 //            val request = DownloadManager.Request(Uri.parse(url))
@@ -165,20 +202,34 @@ class MangaPageDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        pageDetailsViewModel.detailsData().observe(
-//            viewLifecycleOwner, {
-//                binding.detRV.adapter = DetailsAdapter(it)
-//                Log.d(TAG," current manga id ${navArgs.currentManga!!.id}")
+//        pageDetailsViewModel.detailsData(navArgs.currentManga!!.id).observe(
+//            viewLifecycleOwner) {
+////                binding.detRv.adapter = DetailsAdapter(it)
+//            it.forEach {
+//                binding.gen.setText(it.data.genres.toString())
+//                binding.rating.setText(it.data.rating.toString())
+//                binding.decsBtn.setText(it.data.description)
 //            }
-//        )
+//
+//                Log.d(TAG," current manga id ${navArgs.currentManga!!.id}")
+//            Log.d(TAG," current manga info D ${it}")
+//
+//            }
 
     }
 
 
-    private inner class DetailsAdapter(val dit: List<DataManga>) :
+    private inner class DetailsAdapter(val dit: List<MangaDetials>) :
         RecyclerView.Adapter<DetailsAdapter.DetailsHloder>() {
         inner class DetailsHloder(val binding: DetailsListBinding) :
             RecyclerView.ViewHolder(binding.root) {
+                fun bind(mangaId:MangaDetials){
+                    binding.geners.setText(mangaId.data.genres.toString())
+                    binding.lastUp.setText(mangaId.data.last_updated)
+                    binding.rating.setText(mangaId.data.rating.toString())
+                    Log.d(TAG,"info ${bind(mangaId)}")
+                }
+
 
         }
 
@@ -193,14 +244,8 @@ class MangaPageDetailsFragment : Fragment() {
 
         override fun onBindViewHolder(holder: DetailsHloder, position: Int) {
             val query = dit[position]
-            with(holder) {
+            holder.bind(query)
 
-                binding.geners.setText(query.genres)
-                binding.lastUp.setText(query.last_updated)
-                binding.rating.setText(query.rating.toString())
-
-
-            }
         }
 
         override fun getItemCount(): Int = dit.size

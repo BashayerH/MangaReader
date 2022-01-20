@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_uploadMangaFragment_to_readWebVeiwFragment"
             app:destination="@id/readWebVeiwFragment" />
+        <action
+            android:id="@+id/action_uploadMangaFragment_to_pdfViewFragment"
+            app:destination="@id/pdfViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/mangaPageDetailsFragment"
@@ -147,7 +150,16 @@
             app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
             app:nullable="true"
             android:defaultValue="@null"/>
+        <argument
+            android:name="desc"
+            app:argType="string"
+            app:nullable="true" />
+
     </dialog>
+    <fragment
+        android:id="@+id/pdfViewFragment"
+        android:name="com.tuwaiq.mangareader.pdfView.PdfViewFragment"
+        android:label="PdfViewFragment" />
 
 
 </navigation>
