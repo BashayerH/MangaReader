@@ -8,21 +8,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.mangaApi.MangaRepo
 
 class CommentsPageViewModel : ViewModel() {
 
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val firebaseUser = firebaseAuth.currentUser?.uid
-    val repo: MangaRepo = MangaRepo()
+
+    private val firebaseUser = Constants.firebaseAuth.currentUser?.uid
+
 
 
      fun getComments(com: String):LiveData<List<CommentData>> = liveData {
-        emit(repo.getComment(com))
+        emit(Constants.repo.getComment(com))
     }
 
     fun showComment(com: String)= liveData {
-        emit(repo.showCommManga(com))
+        emit(Constants.repo.showCommManga(com))
     }
 
     fun getPhoto(img:String = firebaseUser.toString()):LiveData<Uri>{

@@ -22,7 +22,6 @@ class ReadWebVeiwFragment : Fragment() {
 
     private val navArgs by navArgs<ReadWebVeiwFragmentArgs>()
 
-    private lateinit var webViewModel: ReadWebVeiwViewModel
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(

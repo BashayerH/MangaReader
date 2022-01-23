@@ -18,8 +18,9 @@ class SenstiveDialogFragment : DialogFragment() {
 
 
     lateinit var binding: FragmentSenstiveDialogBinding
-
     private lateinit var naveController: NavController
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

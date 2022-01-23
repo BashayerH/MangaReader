@@ -18,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.SignPageFragmentBinding
@@ -27,12 +28,11 @@ private const val TAG = "SignPageFragment"
 class SignPageFragment : Fragment() {
 
 
-    private val signViewModel: SignPageViewModel by lazy { ViewModelProvider(this)[SignPageViewModel::class.java] }
 
     private lateinit var naveController: NavController
     private lateinit var binding: SignPageFragmentBinding
     private lateinit var progressDialog: ProgressDialog
-    private lateinit var firebaseAuth: FirebaseAuth
+
 
     var data = LoginData()
     var emil =data.emil
@@ -41,9 +41,8 @@ class SignPageFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        firebaseAuth = FirebaseAuth.getInstance()
 
-
+        Constants.firebaseAuth
 
     }
 
@@ -95,12 +94,12 @@ class SignPageFragment : Fragment() {
     }
     private fun loginUser() {
         progressDialog.show()
-        firebaseAuth.signInWithEmailAndPassword(emil,password)
+       Constants.firebaseAuth.signInWithEmailAndPassword(emil,password)
             .addOnSuccessListener {
                 progressDialog.dismiss()
                 //هنا حربط المعلومات بعدين مع البروفايل
                 //why
-                val firbaseUser = firebaseAuth.currentUser
+                val firbaseUser = Constants.firebaseAuth.currentUser
                 val emil = firbaseUser!!.email
                 Toast.makeText(context, "successes log in with$emil ", Toast.LENGTH_LONG).show()
                 naveController.navigate(R.id.action_registerFragment_to_mainPageFragment)
@@ -112,7 +111,7 @@ class SignPageFragment : Fragment() {
             }
     }
     private fun checkUser(){
-    val firebaseUser =firebaseAuth.currentUser
+    val firebaseUser =Constants.firebaseAuth.currentUser
         Log.d("fromSignPage", "fff $firebaseUser")
     if (firebaseUser != null) {
 

@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.LoginData
 import com.tuwaiq.mangareader.databinding.RegisterFragmentBinding
@@ -22,12 +23,10 @@ import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 
 private const val TAG = "RegisterFragment"
- var infoUserCollection = Firebase.firestore.collection("InfoUser")
+
 class RegisterFragment : Fragment() {
 
 
-
-    private val registerViewModel: RegisterViewModel by lazy { ViewModelProvider(this)[RegisterViewModel::class.java] }
 
 
     var data = LoginData()
@@ -37,7 +36,6 @@ class RegisterFragment : Fragment() {
     var confPassword=data.confPass
     private lateinit var binding:RegisterFragmentBinding
     private lateinit var progressDialog: ProgressDialog
-    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var naveController:NavController
 
 
@@ -45,7 +43,7 @@ class RegisterFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        firebaseAuth = FirebaseAuth.getInstance()
+       Constants.firebaseAuth
 
     }
 
@@ -101,15 +99,15 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser(emil: String, password: String, username:String) {
-        firebaseAuth.createUserWithEmailAndPassword(emil,password)
+      Constants.firebaseAuth.createUserWithEmailAndPassword(emil,password)
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    val firebaseUser = firebaseAuth.currentUser
+                    val firebaseUser = Constants.firebaseAuth.currentUser
 
                    val person =InfoUser(
                  binding.userNameETRg.text.toString()
                        , binding.emilTxtRg.text.toString())
-                    infoUserCollection.document(firebaseUser?.uid!!)
+                  Constants.infoUserCollection.document(firebaseUser?.uid!!)
                         .set(person).addOnSuccessListener {
                         showToast("the info is saved")
                             Log.d(TAG,"info $it")
@@ -129,7 +127,7 @@ class RegisterFragment : Fragment() {
         val updateProfile = userProfileChangeRequest {
             displayName = username
         }
-        firebaseAuth.currentUser?.updateProfile(updateProfile)
+       Constants.firebaseAuth.currentUser?.updateProfile(updateProfile)
 
     }
 

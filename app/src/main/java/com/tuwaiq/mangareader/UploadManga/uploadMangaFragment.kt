@@ -28,8 +28,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.InfoUser
-import com.tuwaiq.mangareader.PHOTO
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.UploudItemFragmentBinding
 import com.tuwaiq.mangareader.databinding.UploudPageFragmentBinding
@@ -43,18 +43,13 @@ import java.lang.Exception
 import java.net.URI
 
 private const val TAG = "uploadMangaFragment"
-private const val REQUEST_PDF =0
+
 class UploadMangaFragment : Fragment() {
 
 
     private val uploadViewModel: UploadMangaViewModel by lazy { ViewModelProvider(this)[UploadMangaViewModel::class.java] }
     lateinit var binding:UploudPageFragmentBinding
      var mangaPdfUri :Uri? = null
-    var userInfo:InfoUser = InfoUser()
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var infoUserCollection = Firebase.firestore.collection("InfoUser")
-    val firebaseUser= Firebase.auth.currentUser
-    var mangaUpRef = Firebase.storage.reference.child("/pdfManga/${firebaseAuth.currentUser?.uid}")
     private lateinit var navController: NavController
 
 
@@ -76,7 +71,7 @@ class UploadMangaFragment : Fragment() {
                 it.type= "application/pdf"
 
 
-                startActivityForResult(it, REQUEST_PDF)
+                startActivityForResult(it, Constants.REQUEST_PDF)
 
             }
             binding.pdfManga.setOnClickListener {
@@ -138,7 +133,7 @@ class UploadMangaFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode== Activity.RESULT_OK && requestCode == REQUEST_PDF ){
+        if (resultCode== Activity.RESULT_OK && requestCode == Constants.REQUEST_PDF ){
             if (data !=null){
                 val mPdf = binding.pdfManga
                 mangaPdfUri = data.data!!

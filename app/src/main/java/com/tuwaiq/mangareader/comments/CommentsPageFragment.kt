@@ -25,6 +25,7 @@ import coil.load
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.Dialogs.AddCommentDioalogFragment
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.MainActivity
@@ -37,16 +38,11 @@ import com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragmentArgs
 private const val TAG = "CommentsPageFragment"
 class CommentsPageFragment : Fragment() {
 
-
-
-
-
     private val commentViewModel: CommentsPageViewModel by lazy { ViewModelProvider(this)[CommentsPageViewModel::class.java] }
     private lateinit var binding:CommentsPageFragmentBinding
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private val navArgs by navArgs <CommentsPageFragmentArgs>()
-    val firebaseUser = firebaseAuth.currentUser!!.uid
-    var commentCollection = Firebase.firestore.collection("CommentManga")
+    val firebaseUser = Constants.firebaseAuth.currentUser!!.uid
+
     private lateinit var navController: NavController
 
 
@@ -64,7 +60,7 @@ class CommentsPageFragment : Fragment() {
             if (binding.refreshComm.isRefreshing) {
                 binding.refreshComm.isRefreshing = false
             }
-            commentViewModel.getComments(commentCollection.document().id)
+            commentViewModel.getComments(Constants.commentCollection.document().id)
            // loadData(currentUser!!.uid)
         }
         binding.addComment.setOnClickListener {
@@ -80,7 +76,7 @@ class CommentsPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        commentViewModel.getComments(commentCollection.document().id).observe(
+        commentViewModel.getComments(Constants.commentCollection.document().id).observe(
             viewLifecycleOwner, Observer {
                 binding.recyclerViewComment.adapter=CommentAdapter(it)
             }

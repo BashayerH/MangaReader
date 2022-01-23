@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -19,22 +21,18 @@ import com.tuwaiq.mangareader.databinding.FragmentAddCommentDioalogBinding
 import com.tuwaiq.mangareader.databinding.FragmentDescrDialogBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsFragmentArgs
+import com.tuwaiq.mangareader.mangaPageDetails.MangaPageDetailsViewModel
 
 private const val TAG = "DescrDialogFragment"
 class DescrDialogFragment :DialogFragment() {
 
 
     private lateinit var binding:FragmentDescrDialogBinding
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    val firebaseUser = firebaseAuth.currentUser!!.uid
-    var commentCollection = Firebase.firestore.collection("CommentManga")
+    private val dilogViewModel: DescrDialogVM by lazy { ViewModelProvider(this)[DescrDialogVM::class.java] }
     private val navArgs by navArgs <DescrDialogFragmentArgs>()
-   // private val navD by navArgs<MangaPageDetailsFragmentArgs>()
+    private val navD by navArgs<DescrDialogFragmentArgs>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,16 +41,19 @@ class DescrDialogFragment :DialogFragment() {
 
         binding= FragmentDescrDialogBinding.inflate(layoutInflater)
 
+            val currentManga = navArgs.currentManga!!.id
+        dilogViewModel.detailsData(currentManga).observe(
+            viewLifecycleOwner) { list ->
+            list.forEach{
+                    if (it.data.description.isEmpty()){
+                        binding.descTxtView.text = navD.currentManga!!.description
+                    }
+                    else{
+                        binding.descTxtView.text = it.data.description
 
-            val currentManga = navArgs.currentManga!!.description
-                val desc = navArgs.desc
+                    }
 
-
-
-            if (currentManga != null){
-                binding.descTxtView.setText(currentManga)
-            }else  {
-                binding.descTxtView.setText(desc)
+                }
             }
 
 

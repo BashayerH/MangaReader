@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.FragmentSignOutDilogBinding
 
@@ -19,7 +20,6 @@ import com.tuwaiq.mangareader.databinding.FragmentSignOutDilogBinding
 class SignOutDialogFragment :DialogFragment() {
 
     lateinit var binding:FragmentSignOutDilogBinding
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
     private lateinit var naveController: NavController
 
 
@@ -34,7 +34,7 @@ class SignOutDialogFragment :DialogFragment() {
             dismiss()
         }
         binding.yesBtn.setOnClickListener {
-            firebaseAuth.signOut()
+           Constants.firebaseAuth.signOut()
             naveController.navigate(R.id.signPageFragment)
             dismiss()
         }

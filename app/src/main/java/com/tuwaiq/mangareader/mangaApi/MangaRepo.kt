@@ -2,16 +2,13 @@ package com.tuwaiq.mangareader.mangaApi
 
 import android.net.Uri
 import android.util.Log
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.comments.CommentData
 import com.tuwaiq.mangareader.mangaApi.models.Data
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import com.tuwaiq.mangareader.mangaApi.models.MangaDetials
 import kotlinx.coroutines.tasks.await
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.Exception
@@ -19,12 +16,7 @@ import java.lang.Exception
 private const val TAG = "MangaRepo"
 open class MangaRepo() {
 
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var infoUserCollection = Firebase.firestore.collection("InfoUser")
-    var mangaFavCollection=Firebase.firestore.collection("FavMangaUser")
-    var commentCollection = Firebase.firestore.collection("CommentManga")
-    var imgFile = FirebaseStorage.getInstance().getReference("/photos/${firebaseAuth.currentUser?.uid}")
-    var mangaUpRef = Firebase.storage.reference.child("/pdfManga/${firebaseAuth.currentUser?.uid}")
+
 
 
     private val retrofit:Retrofit = Retrofit.Builder()
@@ -36,8 +28,7 @@ open class MangaRepo() {
 
 
     suspend fun getFav(currentUser: String): List<DataManga> {
-          var x = mangaFavCollection
-
+          var x = Constants.mangaFavCollection
                 .get()
                 .await()
               .toObjects(DataManga::class.java)
@@ -47,7 +38,7 @@ open class MangaRepo() {
 
 
     suspend fun getComment(com: String):List<CommentData>{
-    val comm = commentCollection
+    val comm = Constants.commentCollection
         .get()
         .await()
         .toObjects(CommentData::class.java)
@@ -55,7 +46,7 @@ open class MangaRepo() {
     }
 
     suspend fun showCommManga(com: String){
-        commentCollection
+       Constants.commentCollection
             .add(com).await()
 
     }
@@ -106,8 +97,6 @@ open class MangaRepo() {
                 }else{
                     Log.e(TAG,"there is an error in search from repo ${response.errorBody()}")
 
-
-
                 }
        return result
 
@@ -116,14 +105,16 @@ open class MangaRepo() {
 
     suspend fun detailsMangaById(idM:String):List<MangaDetials>{
       var details:List<MangaDetials>  = emptyList()
+        var result:List<DataManga> = emptyList()
         val response = mangaApi.detailsManga(idM)
+        val errorCase = mangaApi.getRandomM()
         Log.e(TAG,"it's work with details77 ${response}")
-
         if (response.isSuccessful){
             details = listOf(response.body()!!)
             Log.e(TAG,"it's work with details ${response.body()!!.data}")
        }
        else{
+           result = (errorCase.body()!!.data) as List<DataManga>
             Log.e(TAG,"there is an error with details in repo ${response.errorBody()!!.string()}")
         }
         return details
@@ -131,11 +122,11 @@ open class MangaRepo() {
 
     suspend fun changePhoto(imgUri:Uri){
 
-        val ref = imgFile.putFile(imgUri).await()
+        val ref = Constants.imgFile.putFile(imgUri).await()
 
         if (ref.task.isComplete){
             val upload = ref.storage.downloadUrl.await()
-            infoUserCollection.document(firebaseAuth.currentUser!!.uid)
+           Constants.infoUserCollection.document(Constants.firebaseAuth.currentUser!!.uid)
                 .update("imgProfile",upload.toString())
 
 
@@ -145,11 +136,11 @@ open class MangaRepo() {
 
     suspend fun uploadPdf(mangaPdf:Uri){
 
-        val refPdf = mangaUpRef.putFile(mangaPdf).await()
+        val refPdf = Constants.mangaUpRef.putFile(mangaPdf).await()
 
         if (refPdf.task.isComplete){
             val upload = refPdf.storage.downloadUrl.await()
-            infoUserCollection.document(firebaseAuth.currentUser!!.uid)
+           Constants.infoUserCollection.document(Constants.firebaseAuth.currentUser!!.uid)
                 .update("uplodedFile",upload.toString())
 
 

@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.sdsmdg.harjot.vectormaster.utilities.Utils
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.MainActivity
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.comments.CommentData
@@ -37,15 +38,9 @@ import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil
 private const val TAG = "AddCommentDioalogFragme"
 class AddCommentDioalogFragment : DialogFragment() {
 
-    private val CHANNEL_ID = "channel_id"
-    private val notification = 0
 
-    val main :MainActivity = MainActivity()
     private lateinit var binding:FragmentAddCommentDioalogBinding
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    val firebaseUser = firebaseAuth.currentUser!!.uid
-    var commentCollection = Firebase.firestore.collection("CommentManga")
-    var infoUserCollection = Firebase.firestore.collection("InfoUser")
+    val firebaseUser = Constants.firebaseAuth.currentUser!!.uid
    private val navArgs by navArgs <CommentsPageFragmentArgs>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,15 +58,15 @@ class AddCommentDioalogFragment : DialogFragment() {
         binding= FragmentAddCommentDioalogBinding.inflate(layoutInflater)
         binding.addBtnComm.setOnClickListener {
             val manga=DataManga()
-        val comment=CommentData(userEmail = firebaseAuth.currentUser!!.email.toString(),userId = firebaseUser
+        val comment=CommentData(userEmail = Constants.firebaseAuth.currentUser!!.email.toString(),userId = firebaseUser
             ,msg = binding.addCommentTxt.text.toString(),mangaId =navArgs.currentManga!!.id,time = Timestamp.now(),imgP = "")
 
 
-            val coomId = commentCollection.document().id
-      commentCollection.document(coomId).set(comment)
+            val coomId = Constants.commentCollection.document().id
+     Constants.commentCollection.document(coomId).set(comment)
                         .addOnSuccessListener {
                   //  Toast.makeText(context,"added to comment",Toast.LENGTH_LONG).show()
-                  Log.d(TAG,"fav manga list $commentCollection")
+                  Log.d(TAG,"fav manga list ${Constants.commentCollection}")
                 }
             dismiss()
             showNotification()

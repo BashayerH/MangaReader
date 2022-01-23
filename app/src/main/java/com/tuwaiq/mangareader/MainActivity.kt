@@ -47,7 +47,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.tuwaiq.mangareader.Dialogs.SignOutDialogFragment
 import com.tuwaiq.mangareader.databinding.ActivityMainBinding
 
-import com.tuwaiq.mangareader.register.infoUserCollection
 import kotlinx.coroutines.withContext
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
@@ -57,22 +56,14 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 
-//val firebaseStore = Firebase.firestore
+
 private const val TAG = "MainActivity"
-const val   Work_ID =   "1"
-const val KEY_LANG="key_lang"
-const val PHOTO =0
+
 
 class MainActivity : AppCompatActivity() {
 
-    private val CHANNEL_ID = "channel_id"
-    private val notificationId = 0
 
     private val viewModelMain :MainViewModel by viewModels()
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    private val storgeImg = FirebaseStorage.getInstance().reference
-
-
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
@@ -304,12 +295,12 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "*/*"
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PHOTO)
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), Constants.PHOTO)
     }
 
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             super.onActivityResult(requestCode, resultCode, data)
-            if (requestCode == PHOTO && resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constants.PHOTO && resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     val imgP = findViewById<ImageView>(R.id.navHeaderImg)
                     val  imageUri:Uri = data.data!!
@@ -330,7 +321,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setLocate(lang: String) {
-        val sharedP = getSharedPreferences(KEY_LANG, Context.MODE_PRIVATE)
+        val sharedP = getSharedPreferences(Constants.KEY_LANG, Context.MODE_PRIVATE)
         val sharEdit = sharedP.edit()
         sharEdit.putString(getString(R.string.language), lang)
         sharEdit.apply()
@@ -347,14 +338,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUserName() {
         val person = InfoUser()
-        val currentUser = firebaseAuth.currentUser
+        val currentUser = Constants.firebaseAuth.currentUser
 
         if (currentUser != null) {
             e(TAG, "updateUserName: ${currentUser.uid} " )
-            infoUserCollection.document(currentUser.uid)
+          Constants.infoUserCollection.document(currentUser.uid)
                 .get()
                 .addOnSuccessListener {
-                    infoUserCollection.document(currentUser!!.uid).get()
+                 Constants.infoUserCollection.document(currentUser!!.uid).get()
                         .addOnSuccessListener {
                             val infoUserList = it.data
                             infoUserList?.forEach {
@@ -392,7 +383,7 @@ class MainActivity : AppCompatActivity() {
              .build()
 
          androidx.work.WorkManager.getInstance(this).enqueueUniquePeriodicWork(
-             Work_ID,
+            Constants.Work_ID,
              ExistingPeriodicWorkPolicy.KEEP,
              workRequest
 

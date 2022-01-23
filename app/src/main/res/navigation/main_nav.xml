@@ -64,6 +64,7 @@
     app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
             app:nullable="true"
             android:defaultValue="@null" />
+
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_favoritFragment"
             app:destination="@id/FavoriteFragment"
@@ -151,9 +152,10 @@
             app:nullable="true"
             android:defaultValue="@null"/>
         <argument
-            android:name="desc"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="MangaIdDetails"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.Data"
+            app:nullable="true"
+            android:defaultValue="@null" />
 
     </dialog>
     <fragment

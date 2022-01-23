@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.InfoUser
 import com.tuwaiq.mangareader.R
 import com.tuwaiq.mangareader.databinding.FragmentSenstiveDialogBinding
@@ -27,11 +28,7 @@ class PdfViewFragment : Fragment() {
     private val pdfViewModel: PdfViewViewModel by lazy { ViewModelProvider(this)[PdfViewViewModel::class.java] }
 
     lateinit var binding: PdfViewFragmentBinding
-    var userInfo: InfoUser = InfoUser()
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    var infoUserCollection = Firebase.firestore.collection("InfoUser")
-    val firebaseUser= Firebase.auth.currentUser
-    var mangaUpRef = Firebase.storage.reference.child("/pdfManga/${firebaseAuth.currentUser?.uid}")
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +63,7 @@ class PdfViewFragment : Fragment() {
 
     private fun loadPdf(){
         var mangaPdfUri : Uri? = null
-        infoUserCollection.document(firebaseAuth.currentUser!!.uid).get()
+      Constants.infoUserCollection.document(Constants.firebaseAuth.currentUser!!.uid).get()
             .addOnSuccessListener {
              val  mangaUrl = it.get("uplodedFile")
                 getPdfFile(mangaUrl as String)

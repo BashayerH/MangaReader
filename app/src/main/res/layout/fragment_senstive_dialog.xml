@@ -8,8 +8,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="399dp"
-        android:layout_height="442dp">
+        android:layout_width="388dp"
+        android:layout_height="442dp"
+        android:layout_margin="10sp">
 
         <TextView
             android:id="@+id/textView"
@@ -18,28 +19,33 @@
             android:layout_marginStart="42dp"
             android:layout_marginTop="252dp"
             android:layout_marginEnd="32dp"
+            android:layout_marginBottom="25dp"
             android:text="@string/senstive_material"
             android:textAlignment="center"
             android:textColor="#121111"
             android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/yesBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/yesBtn"
-            android:layout_width="250dp"
-            android:layout_height="71dp"
+            android:layout_width="232dp"
+            android:layout_height="70dp"
             android:layout_marginStart="80dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="59dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/back_to_home"
             android:textColor="@color/darkGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="1.0" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:layout_width="367dp"

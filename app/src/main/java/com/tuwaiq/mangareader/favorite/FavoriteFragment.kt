@@ -19,6 +19,7 @@ import coil.load
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.databinding.FavoritFragmentBinding
 import com.tuwaiq.mangareader.databinding.FavoritItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
@@ -29,15 +30,10 @@ class FavoriteFragment : Fragment() {
 
 
     private val favoriteViewModel: FavoriteViewModel by lazy { ViewModelProvider(this)[FavoriteViewModel::class.java] }
-    val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
-    val firebaseUser = firebaseAuth.currentUser!!.uid
     private lateinit var binding: FavoritFragmentBinding
     private lateinit var navController: NavController
-    var infoUserCollection = Firebase.firestore.collection("InfoUser")
-    var mangaFavCollection = Firebase.firestore.collection("FavMangaUser")
-
-
     private val navArgs by navArgs<FavoriteFragmentArgs>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +42,7 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        favoriteViewModel.fetchFav(infoUserCollection.document("favManga").id).observe(
+        favoriteViewModel.fetchFav(Constants.infoUserCollection.document("favManga").id).observe(
             viewLifecycleOwner, Observer {
                     binding.favoritRv.adapter = FavAdapter(it)
 
@@ -64,7 +60,7 @@ class FavoriteFragment : Fragment() {
         binding = FavoritFragmentBinding.inflate(layoutInflater)
         binding.favoritRv.layoutManager = LinearLayoutManager(context)
         navController = findNavController()
-        var currentUser = firebaseAuth.currentUser
+        var currentUser = Constants.firebaseAuth.currentUser
         loadData(currentUser?.uid.toString())
 
         binding.refresh.setOnRefreshListener {
@@ -156,12 +152,13 @@ class FavoriteFragment : Fragment() {
      fun FavAdapter.FavHolder.deleteFav(
         currentFav: DataManga
     ) {
-        var deleteFav = mangaFavCollection
+        var deleteFav =Constants.mangaFavCollection
             .whereEqualTo("id", currentFav.id)
             .get()
         deleteFav.addOnSuccessListener {
             for (doc in it) {
-                mangaFavCollection.document(doc.id).delete()
+               Constants.mangaFavCollection.document(doc.id).delete()
+                    //here you didnt specify what to delete
                     .addOnSuccessListener {
                         binding.itemFav.removeAllViews()
                         Toast.makeText(
@@ -177,7 +174,7 @@ class FavoriteFragment : Fragment() {
 
     fun loadData(favManga: String) {
         val list = listOf<DataManga>()
-        infoUserCollection
+       Constants.infoUserCollection
             // mangaFavCollection
             .whereEqualTo("favManga", id)
             .get().addOnSuccessListener {

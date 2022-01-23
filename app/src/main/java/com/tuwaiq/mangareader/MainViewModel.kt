@@ -11,13 +11,12 @@ import kotlinx.coroutines.launch
 
 class MainViewModel:ViewModel() {
 
-    val repo = MangaRepo()
-
+   // val repo = MangaRepo()
 
 
     fun uploadPhoto(imageUri: Uri) {
         viewModelScope.launch {
-            repo.changePhoto(imageUri)
+         Constants.repo.changePhoto(imageUri)
         }
     }
 

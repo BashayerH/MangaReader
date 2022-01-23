@@ -1,13 +1,12 @@
 package com.tuwaiq.mangareader.searchPage
 
 import androidx.lifecycle.*
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.mangaApi.MangaRepo
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 
 private const val TAG = "DownloadPageViewModel"
 class DownloadPageViewModel : ViewModel() {
-
-    val repo: MangaRepo = MangaRepo()
 
 
     private val searchTermLiveData: MutableLiveData<String> = MutableLiveData()
@@ -27,21 +26,13 @@ class DownloadPageViewModel : ViewModel() {
         return Transformations.switchMap(searchTermLiveData){
             liveData{
                 if (it.isBlank()){
-                    emit(repo.randomManga())
+                    emit(Constants.repo.randomManga())
                 }else{
-                    emit(repo.searchManga(it))
+                    emit(Constants.repo.searchManga(it))
                 }
             }
 
 
         }
     }
-
-
-//    val  dataLiveDataPopular :LiveData<List<DataManga>> =  liveData {
-//        emit(repo.fetchManga())
-//    }
-
-   // val  setSearch :LiveData<List<DataManga>> = repo.searchManga(query = "Attack")
-
  }

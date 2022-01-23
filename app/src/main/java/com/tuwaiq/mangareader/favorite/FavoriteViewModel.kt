@@ -2,6 +2,7 @@ package com.tuwaiq.mangareader.favorite
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.tuwaiq.mangareader.Constants
 import com.tuwaiq.mangareader.mangaApi.MangaRepo
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
 import kotlinx.coroutines.CoroutineScope
@@ -11,7 +12,6 @@ import kotlinx.coroutines.launch
 private const val TAG = "FavoriteViewModel"
 class FavoriteViewModel : ViewModel() {
 
-    val repo: MangaRepo = MangaRepo()
 
     //   val favLiveData:LiveData<List<DataManga>> = repo.getFav()
 
@@ -25,7 +25,7 @@ class FavoriteViewModel : ViewModel() {
 
     fun fetchFav(currentUser: String):LiveData<List<DataManga>> = liveData {
 
-        emit(repo.getFav(currentUser))
+        emit(Constants.repo.getFav(currentUser))
     }
 
 

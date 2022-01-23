@@ -29,8 +29,6 @@ import com.tuwaiq.mangareader.WorkManager
 import com.tuwaiq.mangareader.databinding.MainPageFragmentBinding
 import com.tuwaiq.mangareader.databinding.MangaListItemBinding
 import com.tuwaiq.mangareader.mangaApi.models.DataManga
-import com.tuwaiq.mangareader.register.infoUserCollection
-import java.util.concurrent.TimeUnit
 
 
 class MainPageFragment : Fragment() {
