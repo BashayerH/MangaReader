@@ -79,6 +79,9 @@
         <action
             android:id="@+id/action_mangaPageDetailsFragment_to_descrDialogFragment"
             app:destination="@id/descrDialogFragment" />
+        <action
+            android:id="@+id/action_mangaPageDetailsFragment_to_chaptersFragment"
+            app:destination="@id/chaptersFragment" />
 
     </fragment>
     <fragment
@@ -151,17 +154,24 @@
             app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
             app:nullable="true"
             android:defaultValue="@null"/>
-        <argument
-            android:name="MangaIdDetails"
-            app:argType="com.tuwaiq.mangareader.mangaApi.models.Data"
-            app:nullable="true"
-            android:defaultValue="@null" />
+
 
     </dialog>
     <fragment
         android:id="@+id/pdfViewFragment"
         android:name="com.tuwaiq.mangareader.pdfView.PdfViewFragment"
         android:label="PdfViewFragment" />
+    <fragment
+        android:id="@+id/chaptersFragment"
+        android:name="com.tuwaiq.mangareader.Chapters.ChaptersFragment"
+        android:label="ChaptersFragment" >
+        <argument
+            android:name="currentManga"
+            app:argType="com.tuwaiq.mangareader.mangaApi.models.DataManga"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
+    </fragment>
 
 
 </navigation>

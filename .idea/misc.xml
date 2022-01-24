@@ -34,6 +34,8 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.1875" />
         <entry key="app/src/main/res/layout/aleart_dialog.xml" value="0.165" />
         <entry key="app/src/main/res/layout/change_photo_fragment.xml" value="0.1175925925925926" />
+        <entry key="app/src/main/res/layout/chapter_item.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/chapters_fragment.xml" value="0.165" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.18518518518518517" />
         <entry key="app/src/main/res/layout/comments_page_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/content_main_activity_login.xml" value="0.18541666666666667" />
@@ -44,6 +46,7 @@
         <entry key="app/src/main/res/layout/favorit_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_add_comment_dioalog.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/fragment_change_photo_dilog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_chapters_dialog.xml" value="0.16530797101449277" />
         <entry key="app/src/main/res/layout/fragment_descr_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dialog_change_photo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.1" />

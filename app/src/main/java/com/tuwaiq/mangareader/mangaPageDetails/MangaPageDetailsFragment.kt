@@ -58,7 +58,7 @@ class MangaPageDetailsFragment : Fragment() {
                 //to hide sensitive Material
                 val sensitive = arrayListOf(
                     "Adult", "Ecchi", "Doujinshi", "Gender bender", "Josei", "Manhwa",
-                    "Mature", "Yaoi", "Yuri", "Smut", "Shounen ai"
+                    "Mature", "Yaoi", "Yuri", "Smut", "Shounen ai","Harem"
                 )
                 sensitive.forEach { it ->
                     if (itList.data.genres.contains(it)) {
@@ -84,12 +84,16 @@ class MangaPageDetailsFragment : Fragment() {
                         binding.lastUpV.text = itList.data.last_updated
                         binding.decB.setOnClickListener {
                             val currentManga = navArgs.currentManga
-                            val mangaIdDetails = itList.data
                             val action =
                                 MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToDescrDialogFragment(
-                                    currentManga,
-                                    mangaIdDetails
+                                    currentManga
                                 )
+                            navController.navigate(action)
+                        }
+                        binding.chapter.setOnClickListener {
+                            val currentManga = navArgs.currentManga
+                            val  action =
+                                MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToChaptersFragment(currentManga)
                             navController.navigate(action)
                         }
                         binding.imageD.load(currentManga!!.img)

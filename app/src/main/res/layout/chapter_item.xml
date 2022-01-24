@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/chapterItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12sp"
+        android:padding="10sp">
+
+        <TextView
+            android:id="@+id/uplod"
+            android:layout_width="131dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="44dp"
+            android:text="@string/upload"
+            android:textColor="@color/chaines_red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ch_title"
+            android:layout_width="144dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textColor="@color/overWite"
+            app:layout_constraintEnd_toStartOf="@+id/upload_at"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/upload_at"
+            android:layout_width="161dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:text="upload at"
+            android:textColor="@color/overWite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ch_title"
+            app:layout_constraintTop_toBottomOf="@+id/uplod" />
+
+        <Button
+            android:id="@+id/url"
+            android:layout_width="174dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="118dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="119dp"
+            android:text="read"
+            android:textColor="@color/darkGreen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/upload_at"
+            app:layout_constraintVertical_bias="0.298" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="131dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="251dp"
+            android:text="ch_title"
+            android:textColor="@color/chaines_red"
+            app:layout_constraintBottom_toTopOf="@+id/ch_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.208"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="386dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/url" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
