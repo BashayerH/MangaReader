@@ -15,9 +15,10 @@
 
         <ImageView
             android:id="@+id/imageCatg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/titleCatg"
+            android:layout_width="128dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="4dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -26,11 +27,12 @@
             android:id="@+id/titleCatg"
             android:layout_width="173dp"
             android:layout_height="48dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="36dp"
             android:text="TextView"
             android:textColor="@color/isablin"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageCatg" />
+            app:layout_constraintStart_toEndOf="@+id/imageCatg"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

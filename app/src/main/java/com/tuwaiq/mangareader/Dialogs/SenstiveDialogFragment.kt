@@ -29,6 +29,7 @@ class SenstiveDialogFragment : DialogFragment() {
         naveController = findNavController()
 
         binding.yesBtn.setOnClickListener {
+
             naveController.navigate(R.id.mainPageFragment)
             dismiss()
         }

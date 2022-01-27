@@ -11,17 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/catgRV"
-            android:layout_width="402dp"
-            android:layout_height="313dp"
-            android:padding="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
         <ImageView
             android:id="@+id/addPdf"
             android:layout_width="107dp"
@@ -38,13 +27,12 @@
             android:layout_width="200dp"
             android:layout_height="46dp"
             android:layout_marginStart="66dp"
-            android:layout_marginTop="61dp"
+            android:layout_marginTop="144dp"
             android:layout_marginEnd="145dp"
-            android:layout_marginBottom="13dp"
             android:text="@string/uploaded_file"
             android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/pdfManga"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,15 +41,29 @@
             android:layout_width="340dp"
             android:layout_height="108dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="41dp"
-            android:layout_marginBottom="117dp"
             android:hint="@string/uploaded_file"
             android:padding="10sp"
-            app:layout_constraintBottom_toTopOf="@+id/catgRV"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/upload" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="354dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="41dp"
+            android:layout_marginEnd="43dp"
+            android:padding="10sp"
+            android:text="@string/here_you_can_upload_your_translated_manga"
+            android:textAlignment="center"
+            android:textColor="@color/greenBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

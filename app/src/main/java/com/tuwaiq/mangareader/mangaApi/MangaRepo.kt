@@ -134,7 +134,7 @@ open class MangaRepo() {
 
     }
 
-    suspend fun uploadPdf(mangaPdf:Uri){
+    suspend fun uploadPdf(mangaPdf:Uri):List<String>{
 
         val refPdf = Constants.mangaUpRef.putFile(mangaPdf).await()
 
@@ -145,7 +145,7 @@ open class MangaRepo() {
 
 
         }
-
+        return emptyList()
     }
 
 }

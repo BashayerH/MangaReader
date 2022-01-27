@@ -97,7 +97,7 @@
             android:layout_gravity="start"
             android:background="@color/darkGreen"
             app:headerLayout="@layout/header"
-            app:itemTextColor="@color/chaines_red"
+            app:itemTextColor="@color/mornGreen"
             app:itemIconTint="@color/greenBlue"
             app:menu="@menu/drawer_nav_menu" />
         <!--        <include layout="@layout/drawble_layout"-->
