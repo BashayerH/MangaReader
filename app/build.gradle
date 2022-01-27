@@ -113,6 +113,9 @@ dependencies {
     implementation 'net.yslibrary.keyboardvisibilityevent:keyboardvisibilityevent:2.1.0'
     //
         implementation 'com.tbuonomo:dotsindicator:4.2'
+    //
+    implementation 'com.ncorti:slidetoact:0.7.0'
+
 
 
 

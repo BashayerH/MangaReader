@@ -93,7 +93,7 @@
             android:layout_marginBottom="24dp"
             android:backgroundTint="@color/white"
             android:fontFamily="@font/advent_pro_semibold"
-            android:text="@string/log_in"
+
             android:textColor="#EFECEC"
             android:textSize="24sp"
             android:textStyle="italic"
@@ -102,14 +102,36 @@
             app:layout_constraintHorizontal_bias="0.752"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/imageView"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginBottom="25dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/logIn_btn"-->
+<!--            app:srcCompat="@drawable/arrow" />-->
+
+        <com.ncorti.slidetoact.SlideToActView
+
+            android:layout_width="258dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            app:area_margin="4dp"
             android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="25dp"
+            app:inner_color="@color/blue_alice"
+            app:text="@string/log_in"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/logIn_btn"
-            app:srcCompat="@drawable/arrow" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/conform_pass_rg"
+            app:layout_constraintVertical_bias="0.377"
+            app:outer_color="@color/greenBlue"
+            app:slider_height="55dp"
+            app:text_color="@color/chaines_red"
+            app:slider_icon_color="@color/chaines_red">
+
+        </com.ncorti.slidetoact.SlideToActView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -68,7 +68,7 @@ class RegisterFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         //log in
-        binding.logInBtn.setOnClickListener {
+        binding.imageView.setOnClickListener {
             validateRegister()
             //  findNavController().navigate(R.id.action_registerFragment_to_mainPageFragment)
         }

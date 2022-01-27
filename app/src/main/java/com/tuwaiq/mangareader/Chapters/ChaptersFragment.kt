@@ -34,7 +34,6 @@ class ChaptersFragment : Fragment() {
         binding = ChaptersFragmentBinding.inflate(layoutInflater)
         binding.chapterRV.layoutManager = LinearLayoutManager(context)
 
-        binding.name.setText(navArgs.currentManga!!.title)
 
 
         return binding.root
