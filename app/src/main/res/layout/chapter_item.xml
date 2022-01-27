@@ -16,81 +16,76 @@
 
         <TextView
             android:id="@+id/uplod"
-            android:layout_width="131dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="44dp"
-            android:text="@string/upload"
+            android:layout_width="142dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="216dp"
+            android:layout_marginBottom="15dp"
+            android:text="@string/last_update"
             android:textColor="@color/chaines_red"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/ch_title"
             android:layout_width="144dp"
             android:layout_height="34dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="49dp"
+            android:layout_marginBottom="14dp"
             android:text="TextView"
             android:textColor="@color/overWite"
-            app:layout_constraintEnd_toStartOf="@+id/upload_at"
+            app:layout_constraintBottom_toTopOf="@+id/uplod"
+            app:layout_constraintEnd_toStartOf="@+id/url"
+            app:layout_constraintHorizontal_bias="0.02"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/upload_at"
             android:layout_width="161dp"
             android:layout_height="34dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="24dp"
-            android:text="upload at"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/upload_at"
             android:textColor="@color/overWite"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ch_title"
-            app:layout_constraintTop_toBottomOf="@+id/uplod" />
+            app:layout_constraintStart_toEndOf="@+id/uplod"
+            app:layout_constraintTop_toBottomOf="@+id/url" />
 
-        <Button
+        <ImageView
             android:id="@+id/url"
-            android:layout_width="174dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="118dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="119dp"
-            android:text="read"
-            android:textColor="@color/darkGreen"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="94dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="52dp"
+            android:src="@drawable/open_book"
+            app:layout_constraintBottom_toTopOf="@+id/upload_at"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/upload_at"
-            app:layout_constraintVertical_bias="0.298" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="131dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="251dp"
-            android:text="ch_title"
-            android:textColor="@color/chaines_red"
-            app:layout_constraintBottom_toTopOf="@+id/ch_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.208"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="386dp"
             android:layout_height="2dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="104dp"
             android:layout_marginEnd="16dp"
             android:background="?android:attr/listDivider"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/url" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

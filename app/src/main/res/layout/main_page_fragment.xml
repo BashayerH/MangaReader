@@ -27,6 +27,8 @@
 <!--            app:layout_constraintHorizontal_bias="0.475"-->
 <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
+
+
         <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
             android:id="@+id/recycler_manga"
             android:layout_width="395dp"

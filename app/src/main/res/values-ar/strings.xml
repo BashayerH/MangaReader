@@ -53,4 +53,6 @@
     <string name="genres">النوع</string>
     <string name="chapters">الفصول</string>
     <string name="uploaded_file">تحميل ملف:</string>
+    <string name="upload_at">تم رفعها قبل:</string>
+    <string name="ch_title">عنوان الشابتر</string>
 </resources>

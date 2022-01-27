@@ -16,31 +16,34 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
-            android:layout_width="268dp"
-            android:layout_height="111dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginEnd="32dp"
+            android:layout_width="255dp"
+            android:layout_height="107dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/up_corn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51">
 
             <TextView
                 android:id="@+id/fav_title"
                 android:layout_width="243dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
                 android:text="@string/title"
                 android:textAlignment="center"
                 android:textColor="@color/eggPlant"
-                android:textSize="18sp"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.571"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.131" />
 
             <CheckBox
                 android:id="@+id/checkBoxFav"
@@ -53,9 +56,10 @@
                 android:button="@drawable/fav_checked"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.46"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fav_title"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.57" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,7 +67,7 @@
             android:id="@+id/favImg"
             android:layout_width="111dp"
             android:layout_height="135dp"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="10dp"
             android:scaleType="fitXY"

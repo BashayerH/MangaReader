@@ -97,60 +97,6 @@ class MangaPageDetailsFragment : Fragment() {
                             navController.navigate(action)
                         }
                         binding.imageD.load(currentManga!!.img)
-                        binding.favB.apply {
-                            this.setOnClickListener {
-                                animate().apply {
-                                    duration = 500
-                                    //   translationXBy(-1000f)
-                                    rotationYBy(360f)
-                                }.withEndAction {
-                                    val firebaseUser = Constants.firebaseAuth.currentUser!!.uid
-                                    val person =
-                                        (DataManga(currentManga.id, currentManga.title, currentManga.img))
-                                    Log.d(TAG, "fav manga list $person")
-
-                                    lifecycleScope.launch(Dispatchers.IO) {
-
-                                        val infoUserFav: MutableList<String> =
-                                            (Constants.infoUserCollection.document(Firebase.auth.currentUser!!.uid)
-                                                .get()
-                                                .await()
-                                                .toObject(InfoUser::class.java)
-                                                ?.favManga ?: emptyList()).toMutableList()
-                                        if (!infoUserFav.contains(person.id)) {
-                                            infoUserFav += person.id
-                                        }
-
-                                        Constants.infoUserCollection.document(firebaseUser)
-                                            .update("favManga", infoUserFav)
-                                        //  mangaFavCollection.document(firebaseUser).set(person)
-                                        val idee = Constants.mangaFavCollection.document().id
-                                        Constants.mangaFavCollection.document(idee).set(person)
-                                            .addOnSuccessListener {
-                                                Toast.makeText(
-                                                    context,
-                                                    "added to favorite",
-                                                    Toast.LENGTH_LONG
-                                                )
-                                                    .show()
-                                            }
-                                            .addOnFailureListener {
-                                                Toast.makeText(
-                                                    context,
-                                                    "you don't have an account",
-                                                    Toast.LENGTH_LONG
-                                                ).show()
-                                            }
-                                    }
-
-                                    val action =
-                                        MangaPageDetailsFragmentDirections.actionMangaPageDetailsFragmentToFavoritFragment(
-                                            currentManga
-                                        )
-                                    navController.navigate(action)
-                                }
-                            }
-                        }
                         binding.comment.apply {
                             this.setOnClickListener {
                                 animate().apply {
@@ -175,11 +121,10 @@ class MangaPageDetailsFragment : Fragment() {
                         }
                     }
                 }
-                // data that coming from search
+
             }
             Log.d(TAG, " current manga id ${navArgs.currentManga!!.id}")
         }
-
         val currentManga = navArgs.currentManga
         binding.mangaName.text = currentManga!!.title
         binding.imageD.load(currentManga!!.img)
